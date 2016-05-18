@@ -3,8 +3,8 @@ ServiceConfiguration.configurations.remove({
 });
 ServiceConfiguration.configurations.insert({
 		  service: 'facebook',
-		  appId: 507758349412679,
-		  secret: b9f783f35fc11d6dbda3a5c050f58401,
+		  appId: Meteor.settings.private.oAuth.facebook.appId,
+		  secret: Meteor.settings.private.oAuth.facebook.secret,
 });
 
 ServiceConfiguration.configurations.remove({
@@ -12,6 +12,6 @@ ServiceConfiguration.configurations.remove({
 })
 ServiceConfiguration.configurations.insert({
 		  service: 'google',
-		  clientId: 224132618328-hc2128g4d8frn2d42gmop7243a63e3t2.apps.googleusercontent.com,
-		  secret: cLDbqD6BUfcqvzpqfEU6FbFc,
+		  clientId: Meteor.settings.private.oAuth.google.clientId,
+		  secret: Meteor.settings.private.oAuth.google.secret,
 });
