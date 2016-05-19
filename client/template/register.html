@@ -1,0 +1,12 @@
+<template name='register'>
+  <h1>Bienvenue sur la page de connexin</h1>
+
+  {{#if currentUser}}
+    Si ce message s'affiche, c'est que tu es co :D
+  {{ /if}}
+
+  {{#unless currentUser}}
+    Vous pouvez pour l'instant vous connecter avec : <br>
+    <a class="js-facebook" href="#">facebook</a> ou <a class="js-google" href="#">google</a>
+  {{/unless}}
+</template>
