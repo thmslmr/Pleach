@@ -1,5 +1,6 @@
 Template.addLesson.events({
   'click .js-submit' : function(evt){
+    
     // Récupération de l'objet cours
     LessonObject = {
       title : $('.js-title').val(),
@@ -19,7 +20,7 @@ Template.addLesson.events({
     // Appel de la méthode d'ajout d'un cours
     Meteor.call('addLesson', LessonObject, function(err){
        if(err){
-         console.log(err.reason)
+         console.log(err)
        }
     });
 
