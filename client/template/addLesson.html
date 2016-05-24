@@ -1,21 +1,19 @@
 <template name="addLesson">
-  Voici la page pour ajouter un cours :D
-  <br>
-  <form class="js-formNewLesson">
-    <input type="text" name='title' placeholder="Titre">
-    <input type="text" name='level' placeholder="Niveau">
-    <input type="number" step='0.01' name='price' placeholder="Tarif">
-    <input type="text" name='categorie' placeholder="Categorie">
-    <input type="text" name='desc' placeholder="Description">
-    <input type="number" step='1' name='nbseats' placeholder="Nombre de places">
-    <input type="text" name='address.street' placeholder="Rue">
-    <input type="text" name='address.city' placeholder="Ville">
-    <input type="text" name='address.country' placeholder="Pays">
-    <input type="text" name='duration' placeholder="Durée du cours">
-    <input type="date" name="date">
-  </form>
+    <h1>Ajouter un cours</h1>
 
-  <br>
-  <a href="#" class="js-submit">Créer le cours!</a>
+    <form class="js-newLesson">
+        <input class='js-text' name='title' placeholder="Titre" type="text" >
+        <textarea class='js-text' name="description" placeholder="Description" rows="8" cols="40"></textarea>
+        <input class='js-text' name='categorie' placeholder="Categorie" type="text" >
+        <input class='js-int' name="level" value="1" type="radio" checked> Debutant
+        <input class='js-int' name="level" value="2" type="radio"> Amateur
+        <input class='js-int' name="level" value="3" type="radio"> Expert
+        <input class='js-int' name='nbseats' placeholder="Nombre de places" type="number" step='1'>
+        <input class="js-address" name='address' placeholder="Adresse" type="text">
+        <input class='js-date' name="date" placeholder="Quand ?" type="date">
+        <input class='js-int' name='price' placeholder="Tarif" type="number" step="1">
+    </form>
+
+    <button href="#" class="js-submit btn btn-primary">Créer le cours!</button>
 
 </template>
