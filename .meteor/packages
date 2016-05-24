@@ -22,3 +22,8 @@ accounts-password
 accounts-facebook
 accounts-google
 service-configuration
+check
+stevezhu:lodash
+jeremy:geocomplete
+dburles:google-maps
+momentjs:moment

@@ -1,0 +1,19 @@
+<template name="addLesson">
+    <h1>Ajouter un cours</h1>
+
+    <form class="js-newLesson">
+        <input class='js-text' name='title' placeholder="Titre" type="text" >
+        <textarea class='js-text' name="description" placeholder="Description" rows="8" cols="40"></textarea>
+        <input class='js-text' name='categorie' placeholder="Categorie" type="text" >
+        <input class='js-int' name="level" value="1" type="radio" checked> Debutant
+        <input class='js-int' name="level" value="2" type="radio"> Amateur
+        <input class='js-int' name="level" value="3" type="radio"> Expert
+        <input class='js-int' name='nbseats' placeholder="Nombre de places" type="number" step='1'>
+        <input class="js-address" name='address' placeholder="Adresse" type="text">
+        <input class='js-date' name="date" placeholder="Quand ?" type="date">
+        <input class='js-int' name='price' placeholder="Tarif" type="number" step="1">
+    </form>
+
+    <button href="#" class="js-submit btn btn-primary">Créer le cours!</button>
+
+</template>

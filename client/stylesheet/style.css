@@ -1,0 +1,8 @@
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+}
+
+.pac-container:after{
+    content: none !important;
+}
