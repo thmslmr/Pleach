@@ -1,21 +1,20 @@
 Template.addLesson.events({
   'click .js-submit' : function(evt){
-    
-    // Récupération de l'objet cours
-    LessonObject = {
-      title : $('.js-title').val(),
-      level : $('.js-level').val(),
-      price : parseInt($('.js-price').val()),
-      categorie : $('.js-categorie').val(),
-      description : $('.js-desc').val(),
-      nbseats : $('.js-nbseats').val(),
-      address : {
-        street : $('.js-street').val(),
-        city : $('.js-city').val(),
-        country : $('.js-country').val()
-      },
-      date : $('.js-date').val()
-    }
+
+    var keys = [] , values = [];
+
+    // Parcours des inputs pour récupérer les clés / valeurs
+    $('.js-formNewLesson :input').each(function(){
+      key = this.name;
+      value = pretifyInput(this.type, $(this).val())
+
+      keys.push(key);
+      values.push(value);
+
+    })
+
+    //Création de l'objet lessons
+    LessonObject = _.zipObjectDeep(keys, values)
 
     // Appel de la méthode d'ajout d'un cours
     Meteor.call('addLesson', LessonObject, function(err){

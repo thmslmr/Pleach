@@ -1,18 +1,19 @@
 <template name="addLesson">
   Voici la page pour ajouter un cours :D
   <br>
-
-  <input type="text" class="js-title" placeholder="Titre">
-  <input type="text" class="js-level" placeholder="Niveau">
-  <input type="text" class="js-price" placeholder="Tarif">
-  <input type="text" class="js-categorie" placeholder="Categorie">
-  <input type="text" class="js-desc" placeholder="Description">
-  <input type="text" class="js-nbseats" placeholder="Nombre de places">
-  <input type="text" class="js-street" placeholder="Rue">
-  <input type="text" class="js-city" placeholder="Ville">
-  <input type="text" class="js-country" placeholder="Pays">
-  <input type="text" class="js-duration" placeholder="Durée du cours">
-  <input type="text" class="js-date" placeholder="Date du cours">
+  <form class="js-formNewLesson">
+    <input type="text" name='title' placeholder="Titre">
+    <input type="text" name='level' placeholder="Niveau">
+    <input type="number" step='0.01' name='price' placeholder="Tarif">
+    <input type="text" name='categorie' placeholder="Categorie">
+    <input type="text" name='desc' placeholder="Description">
+    <input type="number" step='1' name='nbseats' placeholder="Nombre de places">
+    <input type="text" name='address.street' placeholder="Rue">
+    <input type="text" name='address.city' placeholder="Ville">
+    <input type="text" name='address.country' placeholder="Pays">
+    <input type="text" name='duration' placeholder="Durée du cours">
+    <input type="date" name="date">
+  </form>
 
   <br>
   <a href="#" class="js-submit">Créer le cours!</a>
