@@ -1,10 +1,12 @@
 <template name="profile">
-    Voici ton profile !
+    {{#if isUser _id}}
+        Voici ton profile !
+    {{/if}}
     <img src="{{myPic}}" alt=""/>
-    {{myName}}
+    {{userName this._id}}
     <br>
-    mes cours :
-    {{#each myLessons}}
-        {{public.title}}
+    <h3>Cours de {{userName this._id}}</h3>
+    {{#each userLessons}}
+        {{public.title}} <br>
     {{/each}}
 </template>

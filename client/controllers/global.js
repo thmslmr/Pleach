@@ -1,6 +1,9 @@
 // Helpers utilisables dans n'importe quel template
 
 registerHelper = {
+    isUser : function(userId){
+        return Meteor.userId() == userId;
+    },
     myId : function(){
         return Meteor.userId();
     },

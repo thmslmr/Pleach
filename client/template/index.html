@@ -1,4 +1,5 @@
 <template name="index">
-  Coucou, ceci est le 1er template du projet. <br>
+  Coucou, ceci est le 1er template du projet.   {{#if currentUser}}{{myName}} <a href="#" class="js-logout">log out</a> {{/if}}
+  <br>
   {{>yield}}
 </template>

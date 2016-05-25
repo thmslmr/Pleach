@@ -8,3 +8,15 @@ Template.index.onRendered(function(){
   });
 
 })
+
+Template.index.events({
+    'click .js-logout' : function(){
+        Meteor.logout(function(err){
+            if(err){
+                console.log(err)
+            }else{
+                Router.go('home')
+            }
+        })
+    }
+})
