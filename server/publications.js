@@ -33,3 +33,7 @@ Meteor.publish('userInfo', function(userId){
     // Retourne l'utilisateur sans informations services (privées)
     return Meteor.users.find(userId, {fields : {'services' : 0}})
 })
+
+Meteor.publish('avis', function(){
+  return Avis.find();
+})

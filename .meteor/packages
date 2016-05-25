@@ -23,9 +23,13 @@ accounts-facebook
 accounts-google
 service-configuration
 check
+<<<<<<< HEAD
 stevezhu:lodash
 jeremy:geocomplete
 dburles:google-maps
 momentjs:moment
 accounts-base
 session
+=======
+momentjs:moment
+>>>>>>> AddAvis
