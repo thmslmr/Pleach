@@ -1,0 +1,10 @@
+<template name="profile">
+    Voici ton profile !
+    <img src="{{myPic}}" alt=""/>
+    {{myName}}
+    <br>
+    mes cours :
+    {{#each myLessons}}
+        {{public.title}}
+    {{/each}}
+</template>
