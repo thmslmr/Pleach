@@ -1,4 +1,4 @@
-<template name="notice">
+<template name="addNotice">
   Vous avez participé au cours de Thomas, donnez votre avis !
   <br>
 <input type="text" class="js-com" placeholder="Commentaire">
@@ -9,11 +9,11 @@
 <br>
 
 <!-- parcours la liste des avis de la DB -->
-  {{#each displayNotice}}
-    {{public.description}}
-    {{public.note}}
-    {{formatDate}} par
-    {{userName}}
+  {{#each notices}}
+    {{public.comment}}
+    {{public.grade}}
+    {{dateCalendar private.createdAt}} par
+    {{userName private.owner}}
     <br>
   {{/each}}
 </template>
