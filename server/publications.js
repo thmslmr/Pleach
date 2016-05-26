@@ -29,7 +29,7 @@ Meteor.publish('lessons', function(){
     }
 
     // Retourne l'ensemble des cours
-    return Lessons.find()
+    return Lessons.find({}, {fields : {'private' : 0} })
 });
 
 Meteor.publish('linkedLessons', function(){

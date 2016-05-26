@@ -47,12 +47,16 @@ Template.addLesson.events({
     //Création de l'objet lessons
     LessonObject = _.zipObjectDeep(keys, values)
     LessonObject['address'] = _.pick(address_object, ['formatted_address', 'geometry', 'place_id']);
+    LessonObject.address.geometry.location.lat = LessonObject.address.geometry.location.lat()
+    LessonObject.address.geometry.location.lng = LessonObject.address.geometry.location.lng()
 
     // Appel de la méthode d'ajout d'un cours
     Meteor.call('addLesson', LessonObject, function(err){
-       if(err){
-         console.log(err)
-       }
+        if(err){
+            console.log(err)
+        }else{
+            $('input, textarea').val('')
+        }
     });
 
   }
