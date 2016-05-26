@@ -1,5 +1,9 @@
 <template name="index">
-  Coucou, ceci est le 1er template du projet.   {{#if currentUser}}{{myName}} <a href="#" class="js-logout">log out</a> {{/if}}
-  <br>
-  {{>yield}}
+    <h1>Meach</h1>
+    {{#if currentUser}}
+    {{myName}} <a href="#" class="js-logout">log out</a>
+    {{/if}}
+    <hr>
+    {{> googleMap name="map"}}
+    {{>yield}}
 </template>
