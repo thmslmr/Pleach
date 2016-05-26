@@ -67,6 +67,7 @@ mongo@1.1.7
 mongo-id@1.0.4
 npm-bcrypt@0.8.5
 npm-mongo@1.4.43
+oakworks:marker-clusterer@0.1.1
 oauth@1.1.10
 oauth2@1.1.9
 observe-sequence@1.0.11

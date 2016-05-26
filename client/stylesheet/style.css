@@ -31,3 +31,6 @@ img{
 .header, .content{
     position: relative;
 }
+.gm-style-cc {
+    display: none;
+}

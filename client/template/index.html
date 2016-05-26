@@ -3,10 +3,11 @@
         {{> googleMap name="map" options=mapOptions}}
     </div>
     <div class="header">
-        <h1>Meach</h1>
+        <strong>Meach</strong>
         {{#if currentUser}}
         {{myName}} <a href="#" class="js-logout">log out</a>
         {{/if}}
+        <a href="{{pathFor 'addLesson'}}">Ajouter un cours</a>
     </div>
     <div class="content">
         {{>yield}}

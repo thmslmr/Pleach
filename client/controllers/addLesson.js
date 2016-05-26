@@ -18,35 +18,17 @@ Template.addLesson.events({
     var keys = [] , values = [];
     $('.js-address').trigger('geocode')
 
-    // Parcours des inputs pour récupérer les clés / valeurs après traitement
-    $('.js-newLesson :input').each(function(){
-      type = $(this).attr('class').replace('js-','');
-      input = $(this).val();
+    LessonObject = {
+        title : _.trim( $('input[name="title"]') ),
+        description : _.trim( $('input[name="description"]') ),
+        categorie : _.trim( $('input[name="categorie"]') ),
+        level : parseInt( $('input[name="level"]') ),
+        nbseats : parseInt( $('input[name="nbseats"]') ),
+        date : moment( $('input[name="date"]') )._d,
+        price : parseInt( $ ('input[name ="price"]') ),
+        address : _.pick(address_object, ['formatted_address', 'geometry', 'place_id'])
+    }
 
-      key = _.trim( _.toLower(this.name) );
-
-      switch (type) {
-        case 'text':
-          value = _.trim( input );
-          break;
-        case 'int':
-          value = parseInt( input );
-          break;
-        case 'date' :
-          value = moment( input )._d;
-          break;
-        case 'address':
-          value = address_object;
-          break;
-      }
-
-      keys.push(key);
-      values.push(value);
-    })
-
-    //Création de l'objet lessons
-    LessonObject = _.zipObjectDeep(keys, values)
-    LessonObject['address'] = _.pick(address_object, ['formatted_address', 'geometry', 'place_id']);
     LessonObject.address.geometry.location.lat = LessonObject.address.geometry.location.lat()
     LessonObject.address.geometry.location.lng = LessonObject.address.geometry.location.lng()
 
@@ -55,7 +37,7 @@ Template.addLesson.events({
         if(err){
             console.log(err)
         }else{
-            $('input, textarea').val('')
+            Router.go('home')
         }
     });
 

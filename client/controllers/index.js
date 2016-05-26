@@ -7,9 +7,27 @@ Template.index.onRendered(function(){
         'libraries' : 'places'
     });
 
+
     markers = {}
 
     GoogleMaps.ready('map', function(map) {
+
+        clusterOptions = {
+            gridSize: 65,
+            maxZoom: 12,
+            styles : [
+                {
+                    url: '/cluster.png',
+                    width: 30,
+                    height: 30,
+                    anchorText: ["-3px", "0px"],
+                    anchor: [200, 140],
+                    textColor: '#ffffff',
+                    textSize: "10px"
+                }
+            ]
+        };
+        cluster = new MarkerClusterer(map.instance, _.values(markers), clusterOptions);
 
         Lessons.find().observe({
             added: function(document) {
@@ -18,11 +36,15 @@ Template.index.onRendered(function(){
                     animation: google.maps.Animation.DROP,
                     position: new google.maps.LatLng(document.public.address.geometry.location.lat, document.public.address.geometry.location.lng),
                     map: map.instance,
+                    icon : {
+                        url: '/marker.png',
+                        scaledSize: new google.maps.Size(25, 25),
+                    },
                     id: document._id
                 });
 
                 markers[document._id] = marker;
-
+                cluster.addMarker(marker)
                 marker.addListener('click', function(){
                     Router.go('lessonPreview', {_id : document._id})
                 })
@@ -62,6 +84,7 @@ Template.index.helpers({
                 zoom: 10,
                 styles: Meteor.settings.public.googleMaps.style,
                 disableDefaultUI: true,
+                zoomControl: true,
             };
         }
     }
