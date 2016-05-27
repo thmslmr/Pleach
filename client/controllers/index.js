@@ -1,66 +1,26 @@
 // Fonction exécutée au rendu du template index
 Template.index.onRendered(function(){
+    // Initialisation de Google Maps
+    initGoogleMaps()
 
-    // chargement de google map
-    GoogleMaps.load({
-        'key' : Meteor.settings.public.googleMaps.key,
-        'libraries' : 'places'
-    });
+    // Sessions
 
+    Session.set({
+        'userPosition' : null,
+        'userRadius' : null,
+    })
 
-    markers = {}
-
-    GoogleMaps.ready('map', function(map) {
-
-        clusterOptions = {
-            gridSize: 65,
-            maxZoom: 12,
-            styles : [
-                {
-                    url: '/cluster.png',
-                    width: 30,
-                    height: 30,
-                    anchorText: ["-3px", "0px"],
-                    anchor: [200, 140],
-                    textColor: '#ffffff',
-                    textSize: "10px"
-                }
-            ]
-        };
-        cluster = new MarkerClusterer(map.instance, _.values(markers), clusterOptions);
-
-        Lessons.find().observe({
-            added: function(document) {
-
-                marker = new google.maps.Marker({
-                    animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(document.public.address.geometry.location.lat, document.public.address.geometry.location.lng),
-                    map: map.instance,
-                    icon : {
-                        url: '/marker.png',
-                        scaledSize: new google.maps.Size(25, 25),
-                    },
-                    id: document._id
-                });
-
-                markers[document._id] = marker;
-                cluster.addMarker(marker)
-                marker.addListener('click', function(){
-                    Router.go('lessonPreview', {_id : document._id})
-                })
-            },
-            changed: function(newDocument, oldDocument) {
-                markers[newDocument._id].setPosition({ lat: newDocument.public.address.geometry.location.lat, lng: newDocument.public.address.geometry.location.lng });
-            },
-            removed: function(oldDocument) {
-                // Remove the marker from the map
-                markers[oldDocument._id].setMap(null);
-
-                // Remove the reference to this marker instance
-                delete markers[oldDocument._id];
-            }
-        });
-    });
+    // Geocomplete sur l'input d'adresse
+    this.autorun(function(){
+        if (GoogleMaps.loaded()) {
+            $(".js-address").geocomplete().bind("geocode:result", function(evt, res){
+                Session.set('userLatLng', [
+                    res.geometry.location.lat(),
+                    res.geometry.location.lng()
+                ]);
+            });
+        }
+    })
 
 })
 
@@ -73,6 +33,70 @@ Template.index.events({
                 Router.go('home')
             }
         })
+    },
+    'click .js-myposition' : function(evt){
+        if(navigator.geolocation){
+
+            navigator.geolocation.getCurrentPosition(function(position){
+                lat = position.coords.latitude;
+                lng = position.coords.longitude
+
+                Session.set('userLatLng', [ lat , lng ] );
+
+                geocoder = new google.maps.Geocoder
+                geocoder.geocode({'location': {lat : lat, lng: lng}}, function(results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            adr = results[1].formatted_address;
+                            $('.js-address').val(adr);
+                            $('.js-radius').focus();
+                        } else {
+                            console.log("impossible de trouver votre position")
+                        }
+                    } else {
+                        console.log(status)
+                    }
+                });
+            })
+
+        }else{
+            console.log('Le navigateur ne le permet pas')
+        }
+    },
+    'click .js-searchLessons' : function(){
+        // Récuperation de la latitude et longitude
+        lat = Session.get('userLatLng')[0];
+        lng = Session.get('userLatLng')[1];
+
+        // Récupération du rayon de recherche
+        radius = parseInt( $('.js-radius').val() ) * 1000;
+        Session.set('userRadius', radius)
+
+        // Récupération des cours selon la position et le rayon
+        Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius)
+
+        // Création du marqueur pointant l'utilisateur
+        userMarker = new google.maps.Marker({
+            map: gmap,
+            position: new google.maps.LatLng(lat, lng),
+            icon : {
+                url: '/userMarker.png',
+                scaledSize: new google.maps.Size(10, 10),
+            },
+        });
+
+        // Création du cercle
+        circle = new google.maps.Circle({
+            map: gmap,
+            radius: radius,
+            strokeWeight:0,
+            fillColor:"#838ab6",
+            fillOpacity: 0.3
+        });
+        circle.bindTo('center', userMarker, 'position');
+
+        // Centrage de la map + zoom to fit
+        gmap.setCenter(userMarker.getPosition())
     }
 })
 
