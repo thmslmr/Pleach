@@ -1,13 +1,13 @@
 // Fonction exécutée au rendu du template addLesson
 Template.addLesson.onRendered(function(){
 
-  this.autorun(function(){
-    if (GoogleMaps.loaded()) {
-      $(".js-address").geocomplete().bind("geocode:result", function(evt, res){
-        address_object = res
-      });
-    }
-  })
+    this.autorun(function(){
+        if (GoogleMaps.loaded()) {
+            $(".js-address").geocomplete().bind("geocode:result", function(evt, res){
+                address_object = res;
+            });
+        }
+    })
 
 });
 
@@ -19,18 +19,23 @@ Template.addLesson.events({
     $('.js-address').trigger('geocode')
 
     LessonObject = {
-        title : _.trim( $('input[name="title"]') ),
-        description : _.trim( $('input[name="description"]') ),
-        categorie : _.trim( $('input[name="categorie"]') ),
-        level : parseInt( $('input[name="level"]') ),
-        nbseats : parseInt( $('input[name="nbseats"]') ),
-        date : moment( $('input[name="date"]') )._d,
-        price : parseInt( $ ('input[name ="price"]') ),
-        address : _.pick(address_object, ['formatted_address', 'geometry', 'place_id'])
+        title : _.trim( $('input[name="title"]').val() ),
+        description : _.trim( $('input[name="description"]').val() ),
+        categorie : _.trim( $('input[name="categorie"]').val() ),
+        level : parseInt( $('input[name="level"]').val() ),
+        nbseats : parseInt( $('input[name="nbseats"]').val() ),
+        date : moment( $('input[name="date"]').val() )._d,
+        price : parseInt( $ ('input[name ="price"]').val() ),
     }
 
-    LessonObject.address.geometry.location.lat = LessonObject.address.geometry.location.lat()
-    LessonObject.address.geometry.location.lng = LessonObject.address.geometry.location.lng()
+    LessonObject.address = {
+        name : address_object.formatted_address,
+        loc : {
+            type : "Point",
+            coordinates : [ address_object.geometry.location.lng() , address_object.geometry.location.lat() ]
+        }
+
+    }
 
     // Appel de la méthode d'ajout d'un cours
     Meteor.call('addLesson', LessonObject, function(err){
