@@ -1,7 +1,7 @@
-// Objet GoogleMaps
+// Variable global pour l'objet GoogleMaps
 gmap = null;
 
-// Fonction d'initialisation de Google Maps
+// Fonction d'initialisation de Google Maps (appelée dans le controller de index)
 initGoogleMaps = function(){
 
         // Chargement de google map
@@ -16,10 +16,10 @@ initGoogleMaps = function(){
             // Récupération de l'objet Google Maps
             gmap = map.instance
 
-            // Liste associative des marqueurs : _id
+            // Liste associative pour stocker les marqueurs des cours {_id : marqueur}
             markers = {}
 
-            // Création du cluster
+            // Création du cluster (système de grille permettant le regroupement de marqueur s'ils sont trop proches)
             cluster = map_createCluster(map, markers)
 
             // Détection des changements dans la Collection Lessons

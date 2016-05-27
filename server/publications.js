@@ -32,14 +32,17 @@ Meteor.publish('lessons', function(){
 
 // Publication des cours dans un espace géographique réduit
 Meteor.publish('geoLessons', function(latLng, radius ){
+
     // Verification présence d'un utilisateur
     if(!this.userId){
         throw new Meteor.Error('not-authorized');
         return this.ready();
     }
 
+    // Création d'un index sur le champs loc (coordonnées du cours)
     Lessons._ensureIndex({'public.address.loc':'2dsphere'});
 
+    // Retroune les cours compris entre un point (coordonnée de l'utilisateur) et une distance maximal (rayon de recherche)
     return Lessons.find({'public.address.loc' :
         {
             $near: {

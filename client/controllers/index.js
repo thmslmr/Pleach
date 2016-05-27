@@ -1,16 +1,15 @@
 // Fonction exécutée au rendu du template index
 Template.index.onRendered(function(){
-    // Initialisation de Google Maps
+    // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
 
     // Sessions
-
     Session.set({
         'userPosition' : null,
         'userRadius' : null,
     })
 
-    // Geocomplete sur l'input d'adresse
+    // Geocompletion sur l'input d'adresse
     this.autorun(function(){
         if (GoogleMaps.loaded()) {
             $(".js-address").geocomplete().bind("geocode:result", function(evt, res){
@@ -35,18 +34,27 @@ Template.index.events({
         })
     },
     'click .js-myposition' : function(evt){
+        // Si le navigateur fournis la géolocalisation ...
         if(navigator.geolocation){
-
+            // Récupération de la position de l'utilisateur
             navigator.geolocation.getCurrentPosition(function(position){
+                // Récupération de la latitude et de la longitude
                 lat = position.coords.latitude;
                 lng = position.coords.longitude
 
+                // Stockage des données en session
                 Session.set('userLatLng', [ lat , lng ] );
 
+                // Création d'un geocoder pour le revert-geocoding (coordonnées -> adresse)
                 geocoder = new google.maps.Geocoder
+
+                // Revert géocoding depuis les coordonnées récupérées
                 geocoder.geocode({'location': {lat : lat, lng: lng}}, function(results, status) {
+                    // Si le géocoding marche
                     if (status === google.maps.GeocoderStatus.OK) {
+                        // Vérification de la présence d'un résultat
                         if (results[1]) {
+                            // Récupération de l'address puis affichage dans l'input + focus le prochain input
                             adr = results[1].formatted_address;
                             $('.js-address').val(adr);
                             $('.js-radius').focus();
@@ -58,7 +66,6 @@ Template.index.events({
                     }
                 });
             })
-
         }else{
             console.log('Le navigateur ne le permet pas')
         }
@@ -68,7 +75,7 @@ Template.index.events({
         lat = Session.get('userLatLng')[0];
         lng = Session.get('userLatLng')[1];
 
-        // Récupération du rayon de recherche
+        // Récupération du rayon de recherche (convertion en metre)
         radius = parseInt( $('.js-radius').val() ) * 1000;
         Session.set('userRadius', radius)
 
