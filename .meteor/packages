@@ -30,3 +30,5 @@ momentjs:moment
 accounts-base
 session
 oakworks:marker-clusterer
+email
+meteorhacks:ssr
