@@ -6,7 +6,7 @@ Meteor.startup( function(){
 
     // Function d'envoie d'un email de bienvenue (appelée à la création d'un utilisateur)
     sendWelcomeEmail = function(newUserProfile){
-        // Récupération et rendu code html
+        // Récupération et rendu du code html
         SSR.compileTemplate( 'welcomeEmail', Assets.getText( 'emailTemplates/welcomeEmail.html' ) );
         htmlEmail = SSR.render( 'welcomeEmail', newUserProfile )
 
