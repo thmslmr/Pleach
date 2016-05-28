@@ -2,16 +2,16 @@
     <h1>Ajouter un cours</h1>
 
     <form class="js-newLesson">
-        <input name='title' placeholder="Titre" type="text" >
-        <textarea name="description" placeholder="Description" rows="8" cols="40"></textarea>
-        <input name='categorie' placeholder="Categorie" type="text" >
-        <input name="level" value="1" type="radio" checked> Debutant
-        <input name="level" value="2" type="radio"> Amateur
-        <input name="level" value="3" type="radio"> Expert
-        <input name='nbseats' placeholder="Nombre de places" type="number" step='1'>
-        <input class="js-address" name='address' placeholder="Adresse" type="text">
-        <input name="date" placeholder="Quand ?" type="date">
-        <input name='price' placeholder="Tarif" type="number" step="1">
+        <input data-newLesson = 'title' placeholder="Titre" type="text" >
+        <textarea data-newLesson = "description" placeholder="Description" rows="8" cols="40"></textarea>
+        <input data-newLesson = 'categorie' placeholder="Categorie" type="text" >
+        <input data-newLesson = "level" value="1" type="radio" checked> Debutant
+        <input data-newLesson = "level" value="2" type="radio"> Amateur
+        <input data-newLesson = "level" value="3" type="radio"> Expert
+        <input data-newLesson = 'nbseats' placeholder="Nombre de places" type="number" step='1'>
+        <input class="js-address" data-newLesson = 'address' placeholder="Adresse" type="text">
+        <input data-newLesson = "date" placeholder="Quand ?" type="date">
+        <input data-newLesson = 'price' placeholder="Tarif" type="number" step="1">
     </form>
 
     <button href="#" class="js-submit btn btn-primary">Créer le cours!</button>

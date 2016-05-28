@@ -19,13 +19,13 @@ Template.addLesson.events({
     $('.js-address').trigger('geocode')
 
     LessonObject = {
-        title : _.trim( $('input[name="title"]').val() ),
-        description : _.trim( $('input[name="description"]').val() ),
-        categorie : _.trim( $('input[name="categorie"]').val() ),
-        level : parseInt( $('input[name="level"]').val() ),
-        nbseats : parseInt( $('input[name="nbseats"]').val() ),
-        date : moment( $('input[name="date"]').val() )._d,
-        price : parseInt( $ ('input[name ="price"]').val() ),
+        title : _.trim( $('[data-newLesson = "title"]').val() ),
+        description : _.trim( $('[data-newLesson = "description"]').val() ),
+        categorie : _.trim( $('[data-newLesson = "categorie"]').val() ),
+        level : parseInt( $('[data-newLesson = "level"]').val() ),
+        nbseats : parseInt( $('[data-newLesson = "nbseats"]').val() ),
+        date : moment( $('[data-newLesson = "date"]').val() )._d,
+        price : parseInt( $ ('[data-newLesson   ="price"]').val() ),
     }
 
     LessonObject.address = {

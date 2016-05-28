@@ -1,7 +1,12 @@
+body, a{
+    color : #fff;
+    font: 14px 'Sans pro';
+}
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button{
   -webkit-appearance: none;
 }
+
 input, textarea{
     border-radius: 5px;
     padding : 5px 10px;
@@ -12,15 +17,13 @@ input, textarea{
 img{
     width : 100px;
 }
-.panel{
-    background-color: rgba(255,255,255,0.8);
-    width: 30vw;
-    padding: 20px 50px;
-}
+/* Google Maps*/
 .pac-container:after{
     content: none !important;
 }
-
+.gm-style-cc {
+    display: none;
+}
 .map-container {
     width : 100vw;
     height: 100vh;
@@ -30,7 +33,4 @@ img{
 }
 .header, .content{
     position: relative;
-}
-.gm-style-cc {
-    display: none;
 }

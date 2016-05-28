@@ -2,8 +2,11 @@
     <div class="panel">
         <a href="{{pathFor 'home'}}">x</a>
         <h2>{{public.title}}</h2>
-        <strong>Info : </strong> <br>
+        {{public.address.name}} <br>
+        <strong>Info : </strong>
         {{public.description}}
+
+        <a href="{{pathFor 'lesson' _id=_id}}">En savoir plus</a>
     </div>
     <br>
 </template>
