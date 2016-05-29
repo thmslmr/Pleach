@@ -15,8 +15,8 @@ Template.addLesson.onRendered(function(){
 Template.addLesson.events({
 
   'click .js-submit' : function(evt){
-    var keys = [] , values = [];
-    $('.js-address').trigger('geocode')
+
+    $('.js-address').trigger('geocode');
 
     LessonObject = {
         title : _.trim( $('[data-newLesson = "title"]').val() ),
@@ -25,7 +25,9 @@ Template.addLesson.events({
         level : parseInt( $('[data-newLesson = "level"]').val() ),
         nbseats : parseInt( $('[data-newLesson = "nbseats"]').val() ),
         date : moment( $('[data-newLesson = "date"]').val() )._d,
-        price : parseInt( $ ('[data-newLesson   ="price"]').val() ),
+        price : parseInt( $('[data-newLesson   ="price"]').val() ),
+        duration : _.trim( $('[data-newLesson = "duration"]').val() ),
+        timestart : _.trim( $('[data-newLesson = "timestart"]').val() )
     }
 
     LessonObject.address = {
@@ -52,5 +54,10 @@ Template.addLesson.events({
 
 // Helpers pour le template addLesson
 Template.addLesson.helpers({
-  //
+    'mindate' : function(){
+        return moment().format("YYYY-MM-DD");
+    },
+    'maxdate' : function(){
+        return moment().add('1','years').format('YYYY-MM-DD');
+    }
 });

@@ -9,8 +9,12 @@
         <input data-newLesson = "level" value="2" type="radio"> Amateur
         <input data-newLesson = "level" value="3" type="radio"> Expert
         <input data-newLesson = 'nbseats' placeholder="Nombre de places" type="number" step='1'>
-        <input class="js-address" data-newLesson = 'address' placeholder="Adresse" type="text">
-        <input data-newLesson = "date" placeholder="Quand ?" type="date">
+        <input data-newLesson = 'address' class="js-address" placeholder="Adresse" type="text">
+        <input data-newLesson = "date" placeholder="Quand ?" type="date" min="{{mindate}}" max="{{maxdate}}">
+        <br>
+        commence à : <input data-newLesson = "timestart" type="text" placeholder="..h.." maxlength="5">
+        et dur : <input data-newLesson = "duration" type="text" placeholder="..h.." maxlength="5">
+        <br>
         <input data-newLesson = 'price' placeholder="Tarif" type="number" step="1">
     </form>
 
