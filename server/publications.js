@@ -78,3 +78,13 @@ Meteor.publish('notice', function(){
     //Retroune l'ensemble des avis.
     return Notices.find();
 })
+
+Meteor.publish('conversation', function(){
+
+  if(!this.userId){
+      throw new Meteor.Error('not-authorized');
+      return this.ready();
+  }
+
+  return Conversations.find();
+})
