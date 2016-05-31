@@ -9,7 +9,7 @@
 
         <br>
         <img src="{{userPicture private.owner}}" alt="{{userName private.owner}}" />
-        Atelier proposer par {{userFirstName private.owner}}
+        Atelier proposer par <a href="{{pathFor 'profile' _id=private.owner}}"> {{userFirstName private.owner}} </a>
 
         <a href="{{pathFor 'lesson' _id=_id}}">En savoir plus</a>
     </div>

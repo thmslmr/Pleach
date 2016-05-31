@@ -22,7 +22,7 @@ Template.lesson.onRendered(function(){
 
 Template.lesson.helpers({
     'isRegistered' : function(){
-        return this.private && this.private.registered.indexOf( Meteor.userId() ) > -1 
+        return this.private && this.private.registered.indexOf( Meteor.userId() ) > -1
     }
 });
 
@@ -36,3 +36,11 @@ Template.lesson.events({
         })
     }
 });
+
+//
+Template.lesson.onDestroyed(function(){
+    // Suppression du trajet sur la map
+    directionsDisplay.setMap(null)
+    // Recentrage sur l'utilisateur
+    gmap.setCenter(userMarker.getPosition())
+})

@@ -2,7 +2,7 @@
     {{#if isUser _id}}
         Voici ton profile !
     {{/if}}
-    <img src="{{myPic}}" alt=""/>
+    <img src="{{userPicture this._id}}" alt=""/>
     {{userName this._id}}
     <br>
     <h3>Cours de {{userName this._id}}</h3>
