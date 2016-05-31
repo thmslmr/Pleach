@@ -34,10 +34,10 @@ initGoogleMaps = function(){
                     cluster.addMarker(marker)
                 },
                 // Pour une changement
-                changed: function(newDocument, oldDocument) {
-                    // Modification de la position
-                    markers[newDocument._id].setPosition({ lat: newDocument.public.address.loc.coordinates[1], lng: newDocument.public.address.geometry.loc.coordinates[0] });
-                },
+                // changed: function(newDocument, oldDocument) {
+                //     // Modification de la position
+                //     markers[newDocument._id].setPosition({ lat: newDocument.public.address.loc.coordinates[1], lng: newDocument.public.address.geometry.loc.coordinates[0] });
+                // },
                 // Pour une suppression
                 removed: function(oldDocument) {
                     oldmarker = markers[oldDocument._id]

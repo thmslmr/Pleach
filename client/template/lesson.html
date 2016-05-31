@@ -1,3 +1,17 @@
 <template name="lesson">
-    Voici le cours {{public.title}}
+    Voici le cours {{public.title}} <br>
+    {{public.address.name}} <br>
+    {{public.description}} <br>
+    {{public.prix}} <br>
+    {{public.duration}}
+    <br>
+    {{lengthTab private.registered}} Participant
+    <br>
+
+    {{#if isRegistered}}
+        Inscrit
+    {{else}}
+        <a href="#" class="js-entry">S'inscrire !</a>
+    {{/if}}
+
 </template>

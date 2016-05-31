@@ -3,8 +3,13 @@
         <a href="{{pathFor 'home'}}">x</a>
         <h2>{{public.title}}</h2>
         {{public.address.name}} <br>
+        {{dateCalendar public.date}}
         <strong>Info : </strong>
         {{public.description}}
+
+        <br>
+        <img src="{{userPicture private.owner}}" alt="{{userName private.owner}}" />
+        Atelier proposer par {{userFirstName private.owner}}
 
         <a href="{{pathFor 'lesson' _id=_id}}">En savoir plus</a>
     </div>

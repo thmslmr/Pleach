@@ -54,6 +54,9 @@ Meteor.publish('geoLessons', function(latLng, radius ){
                 $minDistance : 0
             },
         }
+    },{
+        public : 1,
+        private : 1
     })
 })
 
