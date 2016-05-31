@@ -91,3 +91,8 @@ Meteor.publish('conversation', function(){
 
   return Conversations.find();
 })
+
+Meteor.publish('user', function(){
+
+  return Meteor.users.find()
+})

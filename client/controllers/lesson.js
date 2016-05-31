@@ -34,7 +34,7 @@ Template.lesson.events({
                 console.log(err)
             }
         })
-    }
+    },
     "click .js-messaging": function(){
       Meteor.call('addConv', this._id, function(err, result){
         if(err){

@@ -1,3 +1,9 @@
 <template name="messaging">
-  
+  {{#each conversations}}
+    <a href="{{pathFor 'conversation' _id=_id}}">{{titleLesson}}</a>
+    <br>
+    <img src="{{userPicture speaker}}" alt="" />
+    {{lastMessage}}
+
+  {{/each}}
 </template>
