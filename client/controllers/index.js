@@ -80,7 +80,14 @@ Template.index.events({
         Session.set('userRadius', radius)
 
         // Récupération des cours selon la position et le rayon
-        Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius)
+        Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
+            onReady : function(){
+                // Récupération des infos utilisateur de chaque cours
+                Lessons.find().forEach( function(el){
+                    Meteor.subscribe('userInfo', el.private.owner)
+                })
+            }
+        })
 
         // Création du marqueur pointant l'utilisateur
         userMarker = new google.maps.Marker({

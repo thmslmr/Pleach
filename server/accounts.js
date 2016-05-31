@@ -43,7 +43,7 @@ Accounts.onCreateUser(function(options, user){
 	user.profile = options.profile
 
 	// Appel de la fonction d'envoie d'email de bienvenue.
-	sendWelcomeEmail( user.profile );
+	// sendWelcomeEmail( user.profile );
 
     return user;
 });

@@ -25,7 +25,7 @@ registerHelper = {
     userName : function(userId){
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.name;
     },
-    userFirstName : function(){
+    userFirstName : function(userId){
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.first_name;
     },
     // util
@@ -34,6 +34,9 @@ registerHelper = {
     },
     dateFromNow : function(date){
         return moment(date).frowNow();
+    },
+    lengthTab :  function(tab){
+        return tab && tab.length;
     }
 }
 
