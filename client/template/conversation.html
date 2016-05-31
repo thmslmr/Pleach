@@ -1,3 +1,12 @@
 <template name="conversation">
+    {{isView}}
+    <br>
     c'est une conversation
+    {{#each messages}}
+    {{text}}
+    <br>
+    {{/each}}
+    <input type="text" class="js-message" placeholder="Ecrivez un message...">
+
+
 </template>
