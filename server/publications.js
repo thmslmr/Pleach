@@ -27,7 +27,7 @@ Meteor.publish('userInfo', function(userId){
 Meteor.publish('lessons', function(){
 
     // Retourne l'ensemble des cours
-    return Lessons.find({}, {fields : {'private' : 0} })
+    return Lessons.find({}, {fields : {'private' : 1, 'public': 1} })
 });
 
 // Publication des cours dans un espace géographique réduit
@@ -90,4 +90,9 @@ Meteor.publish('conversation', function(){
   }
 
   return Conversations.find();
+})
+
+Meteor.publish('user', function(){
+
+  return Meteor.users.find()
 })
