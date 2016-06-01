@@ -1,8 +1,10 @@
 // Fonction exécutée au rendu du template index
 Template.index.onRendered(function(){
+
+    Meteor.subscribe('conversation');
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
-    
+
     // Sessions
     Session.set({
         'userPosition' : null,
@@ -125,5 +127,16 @@ Template.index.helpers({
                 zoomControl: true,
             };
         }
+    },
+
+    nonViewMessage: function(){
+      return Conversations.find({
+        'public.views' : {
+          $elemMatch : {
+            'user' : Meteor.userId(),
+            'view' : false
+          }
+        }
+      }).count()
     }
 })

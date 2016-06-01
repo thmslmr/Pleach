@@ -20,6 +20,9 @@ registerHelper = {
     },
     // random user
     userPicture : function(userId){
+        if(!userId){
+          return '/img/hodor.jpg'
+        }
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.picture;
     },
     userName : function(userId){

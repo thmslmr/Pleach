@@ -1,6 +1,11 @@
 Template.conversation.onRendered(function(){
 
     Meteor.subscribe('conversation');
+    Meteor.call('changeView', this.data._id, function(err){
+      if(err){
+        console.log(err)
+      }
+    })
 
 });
 
