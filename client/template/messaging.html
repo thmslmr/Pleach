@@ -1,4 +1,5 @@
 <template name="messaging">
+  <!-- parcours les conversations et affiche dans le template de messagerie -->
   {{#each conversations}}
     <a href="{{pathFor 'conversation' _id=_id}}">{{titleLesson}}</a>
     <br>

@@ -6,6 +6,7 @@ Template.conversation.onRendered(function(){
 
 Template.conversation.helpers({
 
+  //affiche le message qqui vient juste d'être envoyé
   'messages': function(){
     return this.public && this.public.messages;
   },
@@ -19,6 +20,7 @@ Template.conversation.helpers({
 
 Template.conversation.events({
 
+  //ajoute un message quand appuie sur enter
   'keyup .js-message' : function(evt){
     if(evt.which == 13){
       text = $('.js-message').val()
@@ -33,13 +35,12 @@ Template.conversation.events({
       })
     }
 
-
-
   }
 })
 
 Template.conversation.onDestroyed(function(){
 
+  //appel de méthode
   Meteor.call('changeView', this.data._id, function(err){
     if(err){
       console.log(err)
