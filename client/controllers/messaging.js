@@ -1,6 +1,5 @@
 Template.messaging.onRendered(function(){
 
-    Meteor.subscribe('conversation');
     Meteor.subscribe('user') //permet de récupèrer les données user
 
 });
