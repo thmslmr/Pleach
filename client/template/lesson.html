@@ -2,17 +2,15 @@
     Voici le cours {{public.title}} <br>
     {{public.address.name}} <br>
     {{public.description}} <br>
-    {{public.duration}} pour {{public.prix}} 
+    {{public.duration}} pour {{public.prix}}
     <br>
     {{lengthTab private.registered}} Participant sur {{public.nbseats}}
     <br>
 
     {{#if isRegistered}}
         Inscrit
+        <a href="#" class="js-messaging">Discuter</a>
     {{else}}
         <a href="#" class="js-entry">S'inscrire !</a>
     {{/if}}
-
-    <a href="#" class="js-messaging">Discuter</a>
-     <br>
 </template>

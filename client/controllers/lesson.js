@@ -48,7 +48,6 @@ Template.lesson.events({
     }
 });
 
-//
 Template.lesson.onDestroyed(function(){
     // Suppression du trajet sur la map
     directionsDisplay.setMap(null)
