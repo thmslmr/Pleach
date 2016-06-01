@@ -19,8 +19,7 @@ Template.messaging.helpers({
 
 //récupère l'idée user qui n'est pas le notre
   'speaker': function(){
-    views = this.public.views
-    return _.find(views, function(el){
+    return _.find(this.public.views , function(el){
       return el.user != Meteor.userId()
     }).user
   },
@@ -28,7 +27,9 @@ Template.messaging.helpers({
 //permet d'afficher le dernier message en preview des conversations
   'lastMessage': function(){
     //retourne le dernier message du tableau message
-    return _.last(this.public.messages).text
+    if(_.last(this.public.messages)){
+      return _.last(this.public.messages).text
+    }
   }
 
 })
