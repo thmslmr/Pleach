@@ -44,6 +44,34 @@ Accounts.onCreateUser(function(options, user){
 
 	// Appel de la fonction d'envoie d'email de bienvenue.
 	// sendWelcomeEmail( user.profile );
-
+	addNotifConv(user._id)
     return user;
 });
+
+function addNotifConv(idUser){
+
+	newConversation = Conversations.insert({
+		public : {
+			views : [
+				{
+					user : idUser,
+					view : false
+				}
+			],
+			messages : [
+ 			{
+				author: null,
+				text: 'Bienvenue sur Pleach !',
+				createdAt: new Date()
+				}
+			],
+		},
+		private: {
+			id_cours: null,
+			createdAt: new Date(),
+			notification: true,
+		}
+	});
+
+	return newConversation;
+}

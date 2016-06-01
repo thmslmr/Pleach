@@ -14,14 +14,15 @@ Template.messaging.helpers({
 //récupère le titre de la leçon
   'titleLesson': function(){
     _id = this.private.id_cours
-    return Lessons.findOne(_id).public.title
+    return _id ? Lessons.findOne(_id).public.title : "Hodor"
   },
 
 //récupère l'idée user qui n'est pas le notre
   'speaker': function(){
-    return _.find(this.public.views , function(el){
+    obj =  _.find(this.public.views , function(el){
       return el.user != Meteor.userId()
-    }).user
+    })
+    return obj ? obj.user : false;
   },
 
 //permet d'afficher le dernier message en preview des conversations
