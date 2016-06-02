@@ -1,19 +1,7 @@
 <template name="addNotice">
-  Vous avez participé au cours de Thomas, donnez votre avis !
-  <br>
-<input type="text" class="js-com" placeholder="Commentaire">
-<input type="text" class="js-note" placeholder="Note">
-<br>
-<a href="#" class="js-submit">Envoyer l'avis !</a>
-<br>
-<br>
-
-<!-- parcours la liste des avis de la DB -->
-  {{#each notices}}
-    {{public.comment}}
-    {{public.grade}}
-    {{dateCalendar private.createdAt}} par
-    {{userName private.owner}}
+    <input type="text" class="js-com" placeholder="Commentaire">
+    <input type="text" class="js-note" placeholder="Note">
     <br>
-  {{/each}}
+    <a href="#" class="js-submit">Envoyer l'avis !</a>
+    <br>
 </template>

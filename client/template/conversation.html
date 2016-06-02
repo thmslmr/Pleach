@@ -4,6 +4,11 @@
     c'est une conversation
     <!-- parcours tous les messages -->
     {{#each messages}}
+        {{#if actionNotice}}
+            {{#with action}}
+                {{>addNotice}}
+            {{/with}}
+        {{/if}}
     {{text}}
     <br>
     {{/each}}

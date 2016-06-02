@@ -89,7 +89,9 @@ Meteor.publish('conversation', function(){
       return this.ready();
   }
 
-  return Conversations.find();
+  return Conversations.find({
+      'public.views.user': this.userId
+  });
 })
 
 Meteor.publish('user', function(){
