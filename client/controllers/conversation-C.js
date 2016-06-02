@@ -20,7 +20,11 @@ Template.conversation.helpers({
         'user': Meteor.userId()
       }))
     return this.public && match[0].view ? "vue" : "pas vue";
-  }
+},
+
+    'actionNotice': function(){
+        return this.action.name == 'Notice'
+    }
 });
 
 Template.conversation.events({

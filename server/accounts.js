@@ -56,11 +56,15 @@ function addNotifConv(idUser){
 				{
 					user : idUser,
 					view : false
+				},
+				{
+					user : '0',
+					view : false
 				}
 			],
 			messages : [
  			{
-				author: null,
+				author: '0',
 				text: 'Bienvenue sur Pleach !',
 				createdAt: new Date()
 				}
