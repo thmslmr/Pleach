@@ -4,7 +4,7 @@
     {{/if}}
     <img src="{{userPicture this._id}}" alt=""/>
     {{userName this._id}}
-    {{nbNotices}} {{average}}
+    {{userNotices.nb}} {{userNotices.average}}
     <br>
     <h3>Cours de {{userName this._id}}</h3>
     {{#each userLessons}}
@@ -12,7 +12,7 @@
     {{/each}}
     <h3>Avis</h3>
 
-    {{#each userNotices}}
+    {{#each userNotices.array}}
         {{comment}}
         {{grade}} <br>
         {{dateFromNow createdAt}}

@@ -31,36 +31,38 @@ Template.lesson.onRendered(function(){
 });
 
 Template.lesson.helpers({
+    // Retourne un boolean indiquant si l'utilisateur est inscrit au cours
     'isRegistered' : function(){
         return this.private && this.private.registered.indexOf( Meteor.userId() ) > -1
     }
+
 });
 
 Template.lesson.events({
     'click .js-entry' : function(){
-        id = this._id
-        Meteor.call('addParticipant', id, function(err){
+        Meteor.call('addParticipant', this._id, function(err){
             if(err){
                 console.log(err)
             }
         })
     },
-    'click .js-messaging': function(evt){
-      Meteor.call('addConv', this._id, function(err, result){
-        if(err){
-          console.log(err);
-        }
-        else{
-          //la fonction go() prend en second paramètre les paramètres de la route
-          Router.go('conversation', {_id : newConversation})
-        }
-      })
+    'click .js-messaging': function(){
+        Meteor.call('addConv', this._id, function(err, result){
+            if(err){
+                console.log(err);
+            }
+            else{
+                Router.go('conversation', {_id : newConversation})
+            }
+        })
     }
 });
 
 Template.lesson.onDestroyed(function(){
+
     // Suppression du trajet sur la map
     directionsDisplay.setMap(null)
     // Recentrage sur l'utilisateur
     gmap.setCenter(userMarker.getPosition())
+
 })

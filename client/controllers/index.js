@@ -155,7 +155,7 @@ Template.index.helpers({
                 }
             }
         )
-        
+
         return conv.count()
     }
 })

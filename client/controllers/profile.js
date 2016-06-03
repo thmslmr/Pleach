@@ -1,44 +1,33 @@
-// Fonction exécutée au rendu du template profile
-Template.profile.onRendered(function(){
-    Session.set({
-        'userId' : Router.current().params._id,
-    })
-});
-
-// Gestion des evenements pour le template addLesson
-Template.profile.events({
-//
-});
-
-// Helpers pour le template addLesson
 Template.profile.helpers({
+    // Retourne les cours de l'utilisateur
     'userLessons' : function(){
-        return Lessons.find({'private.owner' : Meteor.userId()},{sort : {'private.createdAt' : -1}});
+        return Lessons.find(
+            {
+                'private.owner' : this._id
+            },{
+                sort : { 'private.createdAt' : -1 }
+            }
+        );
     },
+    // Retourne les avis de l'utilisateur (liste, nombre, moyenne)
     'userNotices' : function(){
-        lessons = Lessons.find({'private.owner' : Meteor.userId()});
         notices = []
-        lessons.forEach(function(el){
-            notices.push(el.private.notice)
-        })
+        lessons = Lessons.find(
+            {
+                'private.owner' : this._id
+            }
+        );
 
-        return _.flattenDeep(notices)
-    },
-    'nbNotices' : function(){
-        lessons = Lessons.find({'private.owner' : Meteor.userId()});
-        notices = []
         lessons.forEach(function(el){
             notices.push(el.private.notice)
         })
-        return _.flattenDeep(notices).length
+        n = _.flattenDeep(notices)
+        return {
+            array : n,
+            nb : n.length,
+            average : _.meanBy( n , function(el) {
+                return el.grade
+            })
+        }
     },
-    'average' : function(){
-        lessons = Lessons.find({'private.owner' : Meteor.userId()});
-        notices = []
-        lessons.forEach(function(el){
-            notices.push(el.private.notice)
-        })
-
-        return _.meanBy( _.flattenDeep(notices), function(el) { return el.grade} );
-    }
 });
