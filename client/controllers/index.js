@@ -143,7 +143,7 @@ Template.index.helpers({
         }
     },
 
-    nonViewMessage: function(){
+    notViewMessage: function(){
       return Conversations.find({
         'public.views' : {
           $elemMatch : {

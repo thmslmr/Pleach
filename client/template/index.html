@@ -5,11 +5,10 @@
     <div class="header">
         <strong>Meach</strong>
         {{#if currentUser}}
-        {{myName}} <a href="#" class="js-logout">log out</a>
+            {{myName}} <a href="#" class="js-logout">log out</a> 
         {{/if}}
         <a href="{{pathFor 'addLesson'}}">Ajouter un cours</a>
-        {{nonViewMessage}}
-        <a href="{{pathFor 'messaging'}}">Messagerie</a>
+        {{notViewMessage}} <a href="{{pathFor 'messaging'}}">Messagerie</a>
     </div>
     <hr>
     <div class="content">
