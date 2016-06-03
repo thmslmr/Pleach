@@ -1,16 +1,16 @@
 // Fonction exécutée au rendu du template index
 Template.index.onRendered(function(){
+    if( Meteor.userId() )
+    Meteor.subscribe('userData')
 
-    Meteor.subscribe('conversation');
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
 
-    // // Sessions
     Session.set('userLatLng', null)
 
     // Geocompletion sur l'input d'adresse
     this.autorun(function(){
-        if (GoogleMaps.loaded()) {
+        if ( GoogleMaps.loaded() ) {
             $(".js-address").geocomplete().bind("geocode:result", function(evt, res){
                 Session.set('userLatLng', [
                     res.geometry.location.lat(),
@@ -131,26 +131,31 @@ Template.index.events({
 })
 
 Template.index.helpers({
+
     mapOptions: function() {
-        if (GoogleMaps.loaded()) {
+        if ( GoogleMaps.loaded() ) {
             return {
                 center: new google.maps.LatLng(48.8566140, 2.3522219),
                 zoom: 15,
                 styles: Meteor.settings.public.googleMaps.style,
                 disableDefaultUI: true,
                 zoomControl: true,
-            };
+            }
         }
     },
 
-    notViewMessage: function(){
-      return Conversations.find({
-        'public.views' : {
-          $elemMatch : {
-            'user' : Meteor.userId(),
-            'view' : false
-          }
-        }
-      }).count()
+    notViewConv: function(){
+        conv = Conversations.find(
+            {
+                'public.views' : {
+                    $elemMatch : {
+                        'user' : Meteor.userId(),
+                        'view' : false
+                    }
+                }
+            }
+        )
+        
+        return conv.count()
     }
 })
