@@ -23,7 +23,15 @@ initGoogleMaps = function(){
             cluster = map_createCluster(map, markers)
 
             // Détection des changements dans la Collection Lessons
-            Lessons.find().observe({
+            Lessons.find({
+                $and : [
+                    {
+                        'private.owner' : { $ne : Meteor.userId() }
+                    },{
+                        'public.date' : { $gt : new Date() }
+                    }
+                ]
+            }).observe({
                 // Pour un ajout
                 added: function(document) {
                     // Création d'un marqueur

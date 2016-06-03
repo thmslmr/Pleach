@@ -18,6 +18,12 @@ img{
     width : 100px;
 }
 /* Google Maps*/
+a[href^="http://maps.google.com/maps"]{
+    display:none !important;
+}
+a[href^="https://maps.google.com/maps"]{
+    display:none !important;
+}
 .pac-container:after{
     content: none !important;
 }
