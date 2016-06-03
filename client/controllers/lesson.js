@@ -5,18 +5,28 @@ Template.lesson.onRendered(function(){
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers : true});
 
-    request = {
-        origin : new google.maps.LatLng(Session.get('userLatLng')[0], Session.get('userLatLng')[1]),
-        destination : new google.maps.LatLng(lessonLocation[1], lessonLocation[0]),
-        travelMode : google.maps.TravelMode.DRIVING,
-    };
+    requests = [];
+    travel = ['WALKING','BICYCLING','DRIVING'];
 
-    directionsService.route(request, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(result);
-            directionsDisplay.setMap(gmap);
-        }
-    });
+    travel.forEach(function(el){
+        requests.push(
+            {
+                origin : new google.maps.LatLng(Session.get('userLatLng')[0], Session.get('userLatLng')[1]),
+                destination : new google.maps.LatLng(lessonLocation[1], lessonLocation[0]),
+                travelMode : google.maps.TravelMode[el],
+            }
+        );
+    })
+
+    requests.forEach(function(el){
+        directionsService.route(el, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                console.log(result.routes[0].legs[0].duration.text)
+                // directionsDisplay.setDirections(result);
+                // directionsDisplay.setMap(gmap);
+            }
+        });
+    })
 
 });
 

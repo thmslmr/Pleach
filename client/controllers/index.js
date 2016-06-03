@@ -5,11 +5,8 @@ Template.index.onRendered(function(){
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
 
-    // Sessions
-    Session.set({
-        'userPosition' : null,
-        'userRadius' : null,
-    })
+    // // Sessions
+    Session.set('userLatLng', null)
 
     // Geocompletion sur l'input d'adresse
     this.autorun(function(){
@@ -22,6 +19,9 @@ Template.index.onRendered(function(){
             });
         }
     })
+
+    circle = null;
+    userMarker = null;
 
 })
 
@@ -73,13 +73,18 @@ Template.index.events({
         }
     },
     'click .js-searchLessons' : function(){
+        // Vérifie que les champs ont été rentré
+        if( !Session.get('userLatLng') || !$('.js-radius').val() )
+        return null;
+
         // Récuperation de la latitude et longitude
         lat = Session.get('userLatLng')[0];
         lng = Session.get('userLatLng')[1];
 
         // Récupération du rayon de recherche (convertion en metre)
         radius = parseInt( $('.js-radius').val() ) * 1000;
-        Session.set('userRadius', radius)
+        if(radius > 20000 || radius < 0)
+        return null
 
         // Récupération des cours selon la position et le rayon
         Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
@@ -90,6 +95,12 @@ Template.index.events({
                 })
             }
         })
+
+        // Efface le cercle et marqueur si une recherche a déjà été faite
+        if(circle && userMarker){
+            circle.setMap(null)
+            userMarker.setMap(null)
+        }
 
         // Création du marqueur pointant l'utilisateur
         userMarker = new google.maps.Marker({
@@ -109,10 +120,13 @@ Template.index.events({
             fillColor:"#838ab6",
             fillOpacity: 0.3
         });
+
+        // Centre le cercle sur le marqueur utilisateur
         circle.bindTo('center', userMarker, 'position');
 
-        // Centrage de la map + zoom to fit
+        // Centrage de la map + fit
         gmap.setCenter(userMarker.getPosition())
+        gmap.fitBounds(circle.getBounds());
     }
 })
 
@@ -121,7 +135,7 @@ Template.index.helpers({
         if (GoogleMaps.loaded()) {
             return {
                 center: new google.maps.LatLng(48.8566140, 2.3522219),
-                zoom: 10,
+                zoom: 15,
                 styles: Meteor.settings.public.googleMaps.style,
                 disableDefaultUI: true,
                 zoomControl: true,
