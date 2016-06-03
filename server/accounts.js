@@ -66,7 +66,8 @@ function addNotifConv(idUser){
  			{
 				author: '0',
 				text: 'Bienvenue sur Pleach !',
-				createdAt: new Date()
+				createdAt: new Date(),
+				action : null
 				}
 			],
 		},

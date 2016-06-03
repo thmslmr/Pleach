@@ -36,7 +36,7 @@ registerHelper = {
         return moment(date).calendar();
     },
     dateFromNow : function(date){
-        return moment(date).frowNow();
+        return moment(date).fromNow();
     },
     lengthTab :  function(tab){
         return tab && tab.length;

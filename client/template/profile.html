@@ -4,9 +4,17 @@
     {{/if}}
     <img src="{{userPicture this._id}}" alt=""/>
     {{userName this._id}}
+    {{nbNotices}} {{average}}
     <br>
     <h3>Cours de {{userName this._id}}</h3>
     {{#each userLessons}}
         {{public.title}} <br>
+    {{/each}}
+    <h3>Avis</h3>
+
+    {{#each userNotices}}
+        {{comment}}
+        {{grade}} <br>
+        {{dateFromNow createdAt}}
     {{/each}}
 </template>
