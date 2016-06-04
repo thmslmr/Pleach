@@ -1,3 +1,15 @@
+Template.inbox.onRendered(function(){
+
+    Conversations.find().forEach(function(el){
+
+        u = _.find(el.public.views, function(e) {
+            return e.user != Meteor.userId();
+        });
+
+        Meteor.subscribe('userInfo', u.user)
+    })
+
+})
 Template.inbox.helpers({
 
     // Retourne toutes les conversations
@@ -7,13 +19,14 @@ Template.inbox.helpers({
 
     // Retourne le titre du cours
     'titleLesson': function(){
-        _id = this.private.id_cours
-        return _id ? Lessons.findOne(_id).public.title : "Hodor"
+        _id = this.private.id_cours;
+        lesson = Lessons.findOne(_id);
+        return lesson && _id ? lesson.public.title : "Hodor"
     },
 
     // Retourne de l'objet utilisateur qui n'est pas l'utilisateur courant
     'speaker': function(){
-        return _.find(this.public.views , function(el){
+        return this.public && _.find(this.public.views , function(el){
             return el.user != Meteor.userId()
         }).user
     },
