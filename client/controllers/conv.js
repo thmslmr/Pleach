@@ -1,4 +1,4 @@
-Template.conversation.onRendered(function(){
+Template.conversation.onCreated(function(){
 
     // Changement de la vue de l'utilisateur au rendu de la conversation
     Meteor.call('changeView', this.data._id, function(err){

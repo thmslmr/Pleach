@@ -1,20 +1,22 @@
 <template name="profile">
-    {{#if isUser _id}}
-        Voici ton profile !
-    {{/if}}
-    <img src="{{userPicture this._id}}" alt=""/>
-    {{userName this._id}}
-    {{userNotices.nb}} {{userNotices.average}}
-    <br>
-    <h3>Cours de {{userName this._id}}</h3>
-    {{#each userLessons}}
-        {{public.title}} <br>
-    {{/each}}
-    <h3>Avis</h3>
+    <div class="panel short-panel">
+        {{#if isUser _id}}
+            Voici ton profile !
+        {{/if}}
+        <img src="{{userPicture this._id}}" alt=""/>
+        {{userName this._id}}
+        {{userNotices.nb}} {{userNotices.average}}
+        <br>
+        <h3>Cours de {{userName this._id}}</h3>
+        {{#each userLessons}}
+            {{public.title}} <br>
+        {{/each}}
+        <h3>Avis</h3>
 
-    {{#each userNotices.array}}
-        {{comment}}
-        {{grade}} <br>
-        {{dateFromNow createdAt}}
-    {{/each}}
+        {{#each userNotices.array}}
+            {{comment}}
+            {{grade}} <br>
+            {{dateFromNow createdAt}}
+        {{/each}}
+    </div>
 </template>

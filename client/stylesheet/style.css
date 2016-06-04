@@ -1,7 +1,11 @@
 body, a{
     color : #fff;
-    font: 14px 'Sans pro';
+    font: 14px 'Calibri';
+    padding : 0;
+    margin: 0;
+    text-decoration: none;
 }
+
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button{
   -webkit-appearance: none;
@@ -14,29 +18,50 @@ input, textarea{
     height: 30px;
     opacity: 0.8
 }
-img{
+/*img{
     width : 100px;
+    border-radius: 50%;
+}*/
+.ontop{
+    position: relative;
 }
-/* Google Maps*/
-a[href^="http://maps.google.com/maps"]{
-    display:none !important;
+.header{
+    text-align: right;
 }
-a[href^="https://maps.google.com/maps"]{
-    display:none !important;
+.search{
+    position: absolute;
+    width: 100vw;
+    bottom : 10px;
+    text-align: center;
 }
-.pac-container:after{
-    content: none !important;
-}
-.gm-style-cc {
-    display: none;
-}
-.map-container {
-    width : 100vw;
+.panel{
     height: 100vh;
     position: absolute;
-    top: 0; left: 0;
-    z-index: 0;
+    top : 0; left : 0;
+    padding : 0 20px;
+    background-color: rgba(255,255,255,0.3);
 }
-.header, .content{
-    position: relative;
+.long-panel{
+    width: 80vw;
+}
+.short-panel{
+    width: 30vw;
+}
+.util{
+    display: flex;
+    margin : 20px 0;
+}
+.util div{
+    flex : 1;
+    text-align: center;
+}
+.close{
+    position: absolute;
+    right: 10px;
+    top : 10px;
+    font-size: 20px;
+}
+.profile-pic{
+    width: 50px;
+    border-radius: 50%;
 }

@@ -1,16 +1,32 @@
 <template name="lesson">
-    Voici le cours {{public.title}} <br>
-    {{public.address.name}} <br>
-    {{public.description}} <br>
-    {{public.duration}} pour {{public.prix}}
-    <br>
-    {{lengthTab private.registered}} Participant sur {{public.nbseats}}
-    <br>
+    <div class="panel long-panel">
+        <a href="{{pathFor 'home'}}" class="close">x</a>
+        <h2>{{public.title}}</h2>
+        <div class="util">
+            <div>
+                {{public.address.name}}
+            </div>
+            <div>
+                {{dateCalendar public.date}}
+            </div>
+            <div>
+                {{public.price}}€ pour {{public.duration}}
+            </div>
+        </div>
+        <div style= "margin : 20px 0">
+            <strong>Info : </strong>
+            {{public.description}}
+        </div>
+        <div>
+            {{lengthTab private.registered}} Participant sur {{public.nbseats}}
+        </div>
 
-    {{#if isRegistered}}
-        Inscrit
-        <a href="#" class="js-messaging">Discuter</a>
-    {{else}}
-        <a href="#" class="js-entry">S'inscrire !</a>
-    {{/if}}
+        {{#if isRegistered}}
+            <i>Inscrit</i>
+            <a href="#" class="js-messaging">Discuter</a>
+        {{else}}
+            <a href="#" class="js-entry">S'inscrire !</a>
+        {{/if}}
+
+    </div>
 </template>

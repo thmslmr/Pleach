@@ -2,23 +2,21 @@
     <div class="map-container">
         {{> googleMap name="map" options=mapOptions}}
     </div>
-    <div class="header">
+    <div class="header ontop">
         <strong>Meach</strong>
         {{#if currentUser}}
-            {{myName}} <a href="#" class="js-logout">log out</a>
+            <a href="{{pathFor 'profile' _id=myId}}">{{myName}}</a> <a href="#" class="js-logout">log out</a>
         {{/if}}
         <a href="{{pathFor 'addLesson'}}">Ajouter un cours</a>
         {{notViewConv}} <a href="{{pathFor 'inbox'}}">Messagerie</a>
     </div>
-    <hr>
-    <div class="content">
-        {{>yield}}
-        <br>
-        <br>
-        <input type="text" class="js-address">
-        <a href="#" class="js-myposition">utiliser ma position</a> <br>
-        <input type="number" class="js-radius" placeholder="Kilomètre autour de vous"> <br>
-        <a href="#" class="js-searchLessons">Rechercher !</a>
 
+    {{>yield}}
+
+    <div class="ontop search">
+        <a href="#" class="js-myposition">Ici</a>
+        <input type="text" class="js-address">
+        <input type="number" class="js-radius" placeholder="Kilomètre autour de vous">
+        <a href="#" class="js-searchLessons">Rechercher !</a>
     </div>
 </template>

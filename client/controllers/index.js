@@ -1,12 +1,19 @@
-// Fonction exécutée au rendu du template index
-Template.index.onRendered(function(){
+// Fonction exécutée à la création du template index
+Template.index.onCreated(function(){
     if( Meteor.userId() )
     Meteor.subscribe('userData')
 
+    Session.set('userLatLng', null)
+
+    circle = null;
+    userMarker = null;
+})
+
+// Fonction exécutée au rendu du template index
+Template.index.onRendered(function(){
+
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
-
-    Session.set('userLatLng', null)
 
     // Geocompletion sur l'input d'adresse
     this.autorun(function(){
@@ -20,8 +27,6 @@ Template.index.onRendered(function(){
         }
     })
 
-    circle = null;
-    userMarker = null;
 
 })
 
