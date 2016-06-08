@@ -1,5 +1,12 @@
 <template name='home'>
-  Bienvenue sur la home.
-  <br>
-  <a href="{{pathFor 'register'}}">Register</a> <a href="{{pathFor 'profile' _id = myId}}">Voir mon profil</a>
+    {{#unless search}}
+                    <div class="content">
+                        <div class="title">
+                            <h1>Bienvenue sur Meach</h1>
+                        </div>
+                        <div class="subtitle">
+                            <h2>La plateforme communautaire pour apprendre et découvrir de nouvelles choses.</h2>
+                        </div>
+                    </div>
+    {{/unless}}
 </template>

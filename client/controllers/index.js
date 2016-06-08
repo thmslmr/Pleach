@@ -1,9 +1,14 @@
 // Fonction exécutée à la création du template index
 Template.index.onCreated(function(){
+    sub = null
     if( Meteor.userId() )
     Meteor.subscribe('userData')
 
-    Session.set('userLatLng', null)
+    Session.set({
+        'userLatLng': null,
+        'search' : false
+
+    })
 
     circle = null;
     userMarker = null;
@@ -39,6 +44,12 @@ Template.index.events({
                 Router.go('home')
             }
         })
+    },
+    'focus input' : function(){
+        $('.search').velocity({'translateY' : '-50vh'})
+    },
+    'blur .js-radius' : function(){
+        $('.search').velocity({'translateY' : '0'})
     },
     'click .js-myposition' : function(evt){
         // Si le navigateur fournis la géolocalisation ...
@@ -78,9 +89,17 @@ Template.index.events({
         }
     },
     'click .js-searchLessons' : function(){
+
+        $('.search').velocity({'translateY' : '0'})
+
         // Vérifie que les champs ont été rentré
         if( !Session.get('userLatLng') || !$('.js-radius').val() )
         return null;
+
+        // Supprime le precedent subscribe
+        if(sub){
+            sub.stop()
+        }
 
         // Récuperation de la latitude et longitude
         lat = Session.get('userLatLng')[0];
@@ -92,7 +111,7 @@ Template.index.events({
         return null
 
         // Récupération des cours selon la position et le rayon
-        Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
+        sub = Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
             onReady : function(){
                 // Récupération des infos utilisateur de chaque cours
                 Lessons.find().forEach( function(el){
@@ -100,6 +119,8 @@ Template.index.events({
                 })
             }
         })
+
+        Session.set('search', true)
 
         // Efface le cercle et marqueur si une recherche a déjà été faite
         if(circle && userMarker){
@@ -121,9 +142,10 @@ Template.index.events({
         circle = new google.maps.Circle({
             map: gmap,
             radius: radius,
-            strokeWeight:0,
+            strokeWeight:5,
+            strokeColor : "#838ab6",
             fillColor:"#838ab6",
-            fillOpacity: 0.3
+            fillOpacity: 0,
         });
 
         // Centre le cercle sur le marqueur utilisateur

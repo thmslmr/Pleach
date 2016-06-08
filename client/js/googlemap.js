@@ -21,19 +21,20 @@ initGoogleMaps = function(){
 
             // Création du cluster (système de grille permettant le regroupement de marqueur s'ils sont trop proches)
             cluster = map_createCluster(map, markers)
-
+            console.log('ready')
             // Détection des changements dans la Collection Lessons
             Lessons.find({
-                $and : [
-                    {
-                        'private.owner' : { $ne : Meteor.userId() }
-                    },{
-                        'public.date' : { $gt : new Date() }
-                    }
-                ]
+                // $and : [
+                //     {
+                //         'private.owner' : { $ne : Meteor.userId() }
+                //     },{
+                //         'public.date' : { $gt : new Date() }
+                //     }
+                // ]
             }).observe({
                 // Pour un ajout
                 added: function(document) {
+                    console.log('add')
                     // Création d'un marqueur
                     marker = map_createLessonMarker(map, document._id, document.public.address.loc.coordinates)
                     // Ajout à la liste associative
@@ -42,10 +43,10 @@ initGoogleMaps = function(){
                     cluster.addMarker(marker)
                 },
                 // Pour une changement
-                // changed: function(newDocument, oldDocument) {
-                //     // Modification de la position
-                //     markers[newDocument._id].setPosition({ lat: newDocument.public.address.loc.coordinates[1], lng: newDocument.public.address.geometry.loc.coordinates[0] });
-                // },
+                changed: function(newDocument, oldDocument) {
+                    // Modification de la position
+                    markers[newDocument._id].setPosition({ lat: newDocument.public.address.loc.coordinates[1], lng: newDocument.public.address.geometry.loc.coordinates[0] });
+                },
                 // Pour une suppression
                 removed: function(oldDocument) {
                     oldmarker = markers[oldDocument._id]
@@ -92,12 +93,12 @@ function map_createLessonMarker(map, idLesson, location){
         position: new google.maps.LatLng(location[1], location[0]),
         map: map.instance,
         icon : {
-            url: '/marker.png',
-            scaledSize: new google.maps.Size(25, 25),
+            url: '/pin7.png',
+            scaledSize: new google.maps.Size(20, 20),
         },
         id: idLesson
     }
-
+    console.log('create')
     // Création du marqueur
     marker = new google.maps.Marker(markerOptions);
 
