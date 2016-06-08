@@ -6,7 +6,10 @@ Template.index.onRendered(function(){
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
 
-    Session.set('userLatLng', null)
+    Session.set({
+        'userLatLng': null,
+        'search' : false
+    })
 
     // Geocompletion sur l'input d'adresse
     this.autorun(function(){
@@ -73,6 +76,7 @@ Template.index.events({
         }
     },
     'click .js-searchLessons' : function(){
+        Session.set('search', true)
         // Vérifie que les champs ont été rentré
         if( !Session.get('userLatLng') || !$('.js-radius').val() )
         return null;
