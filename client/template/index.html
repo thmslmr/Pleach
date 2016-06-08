@@ -1,24 +1,34 @@
 <template name="index">
+    <!-- map -->
     <div class="map-container">
         {{> googleMap name="map" options=mapOptions}}
     </div>
-    <div class="header">
-        <strong>Meach</strong>
-        {{#if currentUser}}
-            {{myName}} <a href="#" class="js-logout">log out</a>
-        {{/if}}
-        <a href="{{pathFor 'addLesson'}}">Ajouter un cours</a>
-        {{notViewConv}} <a href="{{pathFor 'inbox'}}">Messagerie</a>
-    </div>
-    <hr>
-    <div class="content">
-        {{>yield}}
-        <br>
-        <br>
-        <input type="text" class="js-address">
-        <a href="#" class="js-myposition">utiliser ma position</a> <br>
-        <input type="number" class="js-radius" placeholder="Kilomètre autour de vous"> <br>
-        <a href="#" class="js-searchLessons">Rechercher !</a>
 
+    <!-- header -->
+    <div class="header__sign-in">
+        <a class="header__sign-in--btn" href="{{pathFor 'register'}}">Connexion</a>
     </div>
+
+    <!-- {{#if currentUser}}
+        <a href="{{pathFor 'profile' _id=myId}}">{{myName}}</a> <a href="#" class="js-logout">log out</a>
+    {{/if}}
+    <a href="{{pathFor 'addLesson'}}">Ajouter un cours</a>
+    {{notViewConv}} <a href="{{pathFor 'inbox'}}">Messagerie</a> -->
+
+    {{>yield}}
+
+    <a href="#" class="js-myposition">Ici</a>
+    <footer>
+        <form class="search-form">
+            <div class="search-form__address">
+                <input class="js-address" id="address" placeholder="Adresse" type="text" name="username" />
+            </div>
+            <div class="search-form__rayon">
+                <input id="adress" class="js-radius" placeholder="3km" type="text" name="username" />
+            </div>
+            <a class="search-form__btn js-searchLessons" href="">
+                Rechercher
+            </a>
+        </form>
+    </footer>
 </template>

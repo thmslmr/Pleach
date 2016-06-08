@@ -1,10 +1,11 @@
 <template name="inbox">
-  <!-- parcours les conversations et affiche dans le template de messagerie -->
-  {{#each conversations}}
-    <a href="{{pathFor 'conversation' _id=_id}}">{{titleLesson}}</a>
-    <br>
-    <img src="{{userPicture speaker}}" alt="" />
-    {{lastMessage}}
-
-  {{/each}}
+    <div class="panel short-panel">
+        <a href="{{pathFor 'home'}}" class="close">x</a>
+        {{#each conversations}}
+            <div>
+                <img src="{{userPicture speaker}}" alt="" class="profile-pic"/>
+                <strong><a href="{{pathFor 'conversation' _id=_id}}">{{titleLesson}}</a></strong> {{lastMessage}}
+            </div>
+        {{/each}}
+    </div>
 </template>

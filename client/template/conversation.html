@@ -1,18 +1,15 @@
 <template name="conversation">
-    {{isView}}
-    <br>
-    c'est une conversation
-    <!-- parcours tous les messages -->
-    {{#each messages}}
-        {{#if actionNotice}}
-            {{#with action}}
-                {{>addNotice}}
-            {{/with}}
-        {{/if}}
-    {{text}}
-    <br>
-    {{/each}}
-    <input type="text" class="js-message" placeholder="Ecrivez un message...">
-
-
+    <div class="panel short-panel">
+        <a href="{{pathFor 'home'}}" class="close">x</a>
+        {{#each messages}}
+            {{text}} <br>
+            {{#if actionNotice}}
+                {{#with action}}
+                    {{>addNotice}}
+                {{/with}}
+            {{/if}}
+            <br>
+        {{/each}}
+        <input type="text" class="js-message" placeholder="Ecrivez un message...">
+    </div>
 </template>

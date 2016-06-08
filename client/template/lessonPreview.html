@@ -1,17 +1,16 @@
 <template name="lessonPreview">
-    <div class="panel">
-        <a href="{{pathFor 'home'}}">x</a>
+    <div class="panel short-panel">
+        <a href="{{pathFor 'home'}}" class="close">x</a>
         <h2>{{public.title}}</h2>
         {{public.address.name}} <br>
-        {{dateCalendar public.date}}
-        <strong>Info : </strong>
+        {{dateCalendar public.date}} <br>
+        <strong>Info : </strong> <br>
         {{public.description}}
 
         <br>
-        <img src="{{userPicture private.owner}}" alt="{{userName private.owner}}" />
-        Atelier proposer par <a href="{{pathFor 'profile' _id=private.owner}}"> {{userFirstName private.owner}} </a>
-
+        <img class="profile-pic" src="{{userPicture private.owner}}" alt="{{userName private.owner}}" />
+        <a href="{{pathFor 'profile' _id=private.owner}}"> {{userFirstName private.owner}}</a>
+        <br>
         <a href="{{pathFor 'lesson' _id=_id}}">En savoir plus</a>
     </div>
-    <br>
 </template>
