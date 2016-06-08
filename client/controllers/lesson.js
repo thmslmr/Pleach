@@ -1,4 +1,5 @@
-Template.lesson.onCreated(function(){
+Template.lesson.onRendered(function(){
+
     lessonLocation = this.data.public.address.loc.coordinates
 
     directionsService = new google.maps.DirectionsService;
@@ -6,6 +7,7 @@ Template.lesson.onCreated(function(){
 
     requests = [];
     travel = ['WALKING','BICYCLING','DRIVING'];
+
     travel.forEach(function(el){
         requests.push(
             {
@@ -19,32 +21,14 @@ Template.lesson.onCreated(function(){
     requests.forEach(function(el){
         directionsService.route(el, function(result, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-                // console.log(result.routes[0].legs[0].duration.text)
+                console.log(result.routes[0].legs[0].duration.text)
                 // directionsDisplay.setDirections(result);
                 // directionsDisplay.setMap(gmap);
             }
         });
     })
+
 });
-
-Template.lesson.onRendered(function(){
-    $('.long-panel').velocity('transition.slideLeftBigIn')
-})
-
-Template.lessonPreview.uihooks({
-    '.long-panel' : {
-        insert : function(node, next){
-            $(node).insertBefore(next)
-        },
-        remove : function(node, tpl){
-            $(node).velocity('transition.slideLeftOut', {
-                complete : function(){
-                    $(this).remove()
-                }
-            })
-        }
-    }
-})
 
 Template.lesson.helpers({
     // Retourne un boolean indiquant si l'utilisateur est inscrit au cours
@@ -62,30 +46,15 @@ Template.lesson.events({
             }
         })
     },
-    'click .js-messaging': function(e){
-        e.preventDefault()
-        commonConv = Conversations.findOne({
-            $and : [{
-                'public.views.user' : Meteor.userId()
-            },
-            {
-                'public.views.user' : this.private.owner
-            }]
+    'click .js-messaging': function(){
+        Meteor.call('addConv', this._id, function(err, result){
+            if(err){
+                console.log(err);
+            }
+            else{
+                Router.go('conversation', {_id : newConversation})
+            }
         })
-        if(commonConv){
-            Router.go('conversation', {_id : commonConv._id})
-        }else{
-
-            Meteor.call('addConv', this._id, function(err, result){
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    Router.go('conversation', {_id : newConversation})
-                }
-            })
-        }
-
     }
 });
 

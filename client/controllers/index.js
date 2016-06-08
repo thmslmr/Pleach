@@ -1,24 +1,12 @@
-// Fonction exécutée à la création du template index
-Template.index.onCreated(function(){
-    sub = null
+// Fonction exécutée au rendu du template index
+Template.index.onRendered(function(){
     if( Meteor.userId() )
     Meteor.subscribe('userData')
 
-    Session.set({
-        'userLatLng': null,
-        'search' : false
-
-    })
-
-    circle = null;
-    userMarker = null;
-})
-
-// Fonction exécutée au rendu du template index
-Template.index.onRendered(function(){
-
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps()
+
+    Session.set('userLatLng', null)
 
     // Geocompletion sur l'input d'adresse
     this.autorun(function(){
@@ -32,6 +20,8 @@ Template.index.onRendered(function(){
         }
     })
 
+    circle = null;
+    userMarker = null;
 
 })
 
@@ -44,12 +34,6 @@ Template.index.events({
                 Router.go('home')
             }
         })
-    },
-    'focus input' : function(){
-        $('.search').velocity({'translateY' : '-50vh'})
-    },
-    'blur .js-radius' : function(){
-        $('.search').velocity({'translateY' : '0'})
     },
     'click .js-myposition' : function(evt){
         // Si le navigateur fournis la géolocalisation ...
@@ -89,17 +73,9 @@ Template.index.events({
         }
     },
     'click .js-searchLessons' : function(){
-
-        $('.search').velocity({'translateY' : '0'})
-
         // Vérifie que les champs ont été rentré
         if( !Session.get('userLatLng') || !$('.js-radius').val() )
         return null;
-
-        // Supprime le precedent subscribe
-        if(sub){
-            sub.stop()
-        }
 
         // Récuperation de la latitude et longitude
         lat = Session.get('userLatLng')[0];
@@ -111,7 +87,7 @@ Template.index.events({
         return null
 
         // Récupération des cours selon la position et le rayon
-        sub = Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
+        Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
             onReady : function(){
                 // Récupération des infos utilisateur de chaque cours
                 Lessons.find().forEach( function(el){
@@ -119,8 +95,6 @@ Template.index.events({
                 })
             }
         })
-
-        Session.set('search', true)
 
         // Efface le cercle et marqueur si une recherche a déjà été faite
         if(circle && userMarker){
@@ -142,10 +116,9 @@ Template.index.events({
         circle = new google.maps.Circle({
             map: gmap,
             radius: radius,
-            strokeWeight:5,
-            strokeColor : "#838ab6",
+            strokeWeight:0,
             fillColor:"#838ab6",
-            fillOpacity: 0,
+            fillOpacity: 0.3
         });
 
         // Centre le cercle sur le marqueur utilisateur
