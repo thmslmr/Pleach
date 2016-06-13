@@ -1,23 +1,91 @@
 <template name="addLesson">
-    <h1>Ajouter un cours</h1>
+    <section class="creation">
 
-    <form class="js-newLesson">
-        <input data-newLesson = 'title' placeholder="Titre" type="text" >
-        <textarea data-newLesson = "description" placeholder="Description" rows="8" cols="40"></textarea>
-        <input data-newLesson = 'categorie' placeholder="Categorie" type="text" >
-        <input data-newLesson = "level" value="1" type="radio" checked> Debutant
-        <input data-newLesson = "level" value="2" type="radio"> Amateur
-        <input data-newLesson = "level" value="3" type="radio"> Expert
-        <input data-newLesson = 'nbseats' placeholder="Nombre de places" type="number" step='1'>
-        <input data-newLesson = 'address' class="js-address" placeholder="Adresse" type="text">
-        <input data-newLesson = "date" placeholder="Quand ?" type="date" min="{{mindate}}" max="{{maxdate}}">
-        <br>
-        commence à : <input data-newLesson = "timestart" type="text" placeholder="..h.." maxlength="5">
-        et dur : <input data-newLesson = "duration" type="text" placeholder="..h.." maxlength="5">
-        <br>
-        <input data-newLesson = 'price' placeholder="Tarif" type="number" step="1">
-    </form>
+    <div class="creation__layout">
+    	<a href="#" class="close">
+    		<img src="img/close.svg" class="close-btn"/>
+    	</a>
+		<div class='en-tete'>
+			Nouvel atelier
+		</div>
+		<div class="steps">
+			<div class="step step--done">
+			</div>
+			<div class="step">
+			</div>
+			<div class="step">
+			</div>
+		</div>
+		<form class="nouveau-cours">
+			<div class="input-group">
+				Nombre de participants
+				<input data-newLesson = 'nbseats' placeholder="Nombre de places" type="number" step='1'>
+			</div>
+			<div class="input-group">
+				Tarif
+				<input data-newLesson = 'price' placeholder="Tarif" type="number" step="1">
+			</div>
+		</form>
+		<div class="end-form">
+			<a href="#" class="button js-submit">C'est parti !</a>
+		</div>
+		<form class="nouveau-cours">
+			<div class="input-group">
+				Adresse
+				<input data-newLesson = 'address' class="js-address" placeholder="Adresse" type="text">
+			</div>
+			<div class="input-group">
+				Date
+				<input data-newLesson = "date" placeholder="Quand ?" type="date" min="{{mindate}}" max="{{maxdate}}">
+			</div>
+			<div class="inputs">
+				<div class="input-group">
+					Commence à :
+					<input data-newLesson = "timestart" type="text" placeholder="..h.." maxlength="5">
+				</div>
+				<div class="input-group">
+					Et dure :
+					<input data-newLesson = "duration" type="text" placeholder="..h.." maxlength="5">
+				</div>
+			</div>
+			<div class="input-group">
+				Email
+				<input data-newLesson = 'contact' type="text" value="{{myEmail}}">
+			</div>
+		</form>
+		<form>
+			<div class="input-group">
+				Titre
+				<input data-newLesson = 'title' placeholder="Titre" type="text">
+			</div>
+			<div class="input-group">
+				Description
+				<textarea data-newLesson = "description" placeholder="Description" rows="5">
+				</textarea>
+			</div>
+			<div class="input-group">
+				Catégorie
+                <input data-newLesson = 'categorie' placeholder="Categorie" type="text" >
+<!--
+				<select class="" name="categorie">
+					<option value="scolaire">Scolaire</option>
+					<option value="art">Art</option>
+					<option value="musique">Musique</option>
+					<option value="cuisine">Cuisine</option>
+					<option value="sport">Sport</option>
+					<option value="ludique">Ludique</option>
+					<option value="divers">Divers</option>
+				</select> -->
+			</div>
+			<div class="inputs">
+                <input data-newLesson = "level" type="radio" name="level" value="1" checked> Debutant
+				<input data-newLesson = "level" type="radio" name="level" value="3"> Confirmé
+				<input data-newLesson = "level" type="radio" name="level" value="2"> Amateur
+			</div>
+		</form>
 
-    <button href="#" class="js-submit btn btn-primary">Créer le cours!</button>
+		</div>
+    </section>
+
 
 </template>

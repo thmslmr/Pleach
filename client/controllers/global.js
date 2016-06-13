@@ -18,6 +18,9 @@ registerHelper = {
     myFirstName : function(){
         return Meteor.user() && Meteor.user().profile.first_name;
     },
+    myEmail : function(){
+        return Meteor.user() && Meteor.user().profile.email;
+    },
     // random user
     userPicture : function(userId){
         if(userId == '0'){

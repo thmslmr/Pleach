@@ -24,13 +24,13 @@ initGoogleMaps = function(){
 
             // Détection des changements dans la Collection Lessons
             Lessons.find({
-                $and : [
-                    {
-                        'private.owner' : { $ne : Meteor.userId() }
-                    },{
-                        'public.date' : { $gt : new Date() }
-                    }
-                ]
+                // $and : [
+                //     {
+                //         'private.owner' : { $ne : Meteor.userId() }
+                //     },{
+                //         'public.date' : { $gt : new Date() }
+                //     }
+                // ]
             }).observe({
                 // Pour un ajout
                 added: function(document) {
@@ -92,8 +92,11 @@ function map_createLessonMarker(map, idLesson, location){
         position: new google.maps.LatLng(location[1], location[0]),
         map: map.instance,
         icon : {
-            url: '/marker.png',
-            scaledSize: new google.maps.Size(25, 25),
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#E84C3C',
+            fillOpacity: 0.8,
+            scale: 10,
+            strokeWeight: 0
         },
         id: idLesson
     }
