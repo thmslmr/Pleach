@@ -1,15 +1,15 @@
 // Fonction exécutée au rendu du template index
 Template.index.onRendered(function(){
     if( Meteor.userId() )
-    Meteor.subscribe('userData')
+    Meteor.subscribe('userData');
 
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
-    initGoogleMaps()
+    initGoogleMaps();
 
     Session.set({
         'userLatLng': null,
         'search' : false
-    })
+    });
 
     // Geocompletion sur l'input d'adresse
     this.autorun(function(){
@@ -21,22 +21,22 @@ Template.index.onRendered(function(){
                 ]);
             });
         }
-    })
+    });
 
     circle = null;
     userMarker = null;
 
-})
+});
 
 Template.index.events({
     'click .js-logout' : function(){
         Meteor.logout(function(err){
             if(err){
-                console.log(err)
+                console.log(err);
             }else{
-                Router.go('home')
+                Router.go('home');
             }
-        })
+        });
     },
     'click .js-myposition' : function(evt){
         // Si le navigateur fournis la géolocalisation ...
@@ -45,13 +45,13 @@ Template.index.events({
             navigator.geolocation.getCurrentPosition(function(position){
                 // Récupération de la latitude et de la longitude
                 lat = position.coords.latitude;
-                lng = position.coords.longitude
+                lng = position.coords.longitude;
 
                 // Stockage des données en session
                 Session.set('userLatLng', [ lat , lng ] );
 
                 // Création d'un geocoder pour le revert-geocoding (coordonnées -> adresse)
-                geocoder = new google.maps.Geocoder
+                geocoder = new google.maps.Geocoder;;
 
                 // Revert géocoding depuis les coordonnées récupérées
                 geocoder.geocode({'location': {lat : lat, lng: lng}}, function(results, status) {
@@ -64,19 +64,19 @@ Template.index.events({
                             $('.js-address').val(adr);
                             $('.js-radius').focus();
                         } else {
-                            console.log("impossible de trouver votre position")
+                            console.log("impossible de trouver votre position");
                         }
                     } else {
-                        console.log(status)
+                        console.log(status);
                     }
                 });
-            })
+            });
         }else{
-            console.log('Le navigateur ne le permet pas')
+            console.log('Le navigateur ne le permet pas');
         }
     },
     'click .js-searchLessons' : function(){
-        Session.set('search', true)
+        Session.set('search', true);
         // Vérifie que les champs ont été rentré
         if( !Session.get('userLatLng') || !$('.js-radius').val() )
         return null;
@@ -88,22 +88,22 @@ Template.index.events({
         // Récupération du rayon de recherche (convertion en metre)
         radius = parseInt( $('.js-radius').val() ) * 1000;
         if(radius > 20000 || radius < 0)
-        return null
+        return null;
 
         // Récupération des cours selon la position et le rayon
         Meteor.subscribe('geoLessons', Session.get('userLatLng'), radius, {
             onReady : function(){
                 // Récupération des infos utilisateur de chaque cours
                 Lessons.find().forEach( function(el){
-                    Meteor.subscribe('userInfo', el.private.owner)
-                })
+                    Meteor.subscribe('userInfo', el.private.owner);
+                });
             }
-        })
+        });
 
         // Efface le cercle et marqueur si une recherche a déjà été faite
         if(circle && userMarker){
-            circle.setMap(null)
-            userMarker.setMap(null)
+            circle.setMap(null);
+            userMarker.setMap(null);
         }
 
         // Création du marqueur pointant l'utilisateur
@@ -120,19 +120,20 @@ Template.index.events({
         circle = new google.maps.Circle({
             map: gmap,
             radius: radius,
-            strokeWeight:0,
-            fillColor:"#838ab6",
-            fillOpacity: 0.3
+            strokeWeight: 2,
+            strokeOpacity : 0.5,
+            strokeColor : "#53e1dc",
+            fillOpacity : 0,
         });
 
         // Centre le cercle sur le marqueur utilisateur
         circle.bindTo('center', userMarker, 'position');
 
         // Centrage de la map + fit
-        gmap.setCenter(userMarker.getPosition())
+        gmap.setCenter(userMarker.getPosition());
         gmap.fitBounds(circle.getBounds());
     }
-})
+});
 
 Template.index.helpers({
 
