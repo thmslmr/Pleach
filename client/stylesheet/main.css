@@ -1025,12 +1025,11 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  margin-bottom: 30px;
 }
 
 .creation__layout form .inputs input[type="radio"] {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+
   margin-left: 20px;
   outline: 0;
 }
