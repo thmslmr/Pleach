@@ -1,15 +1,48 @@
 <template name="conversation">
-    <div class="panel short-panel">
-        <a href="{{pathFor 'home'}}" class="close">x</a>
-        {{#each messages}}
-            {{text}} <br>
-            {{#if actionNotice}}
-                {{#with action}}
-                    {{>addNotice}}
-                {{/with}}
-            {{/if}}
-            <br>
-        {{/each}}
-        <input type="text" class="js-message" placeholder="Ecrivez un message...">
+    <div class="message__layout">
+        <a class="close-btn" href="{{pathFor 'home'}}">
+            <img src="img/close.svg" />
+        </a>
+        <div class="en-tete__message">
+            <div class="en-tete__message__precedent-btn">
+                <a class="back-btn" href="{{pathFor 'inbox'}}">
+                    <img src="img/back.svg" />
+                </a>
+            </div>
+            <div class="en-tete__message__title">
+                {{titleConv}}
+            </div>
+
+            <div class="en-tete__message__date">
+                {{dateCalendar this.private.createdAt}}
+            </div>
+        </div>
+        <div class="discussion">
+            {{#each messages}}
+                <div class="message {{isMine}} ">
+                    <div class="message__photo">
+                        <img src="{{userPicture author}}" />
+                    </div>
+                    <div class="message__contenu">
+                        <div class="message__contenu__text">
+                            {{text}}
+                        </div>
+                        {{#if actionNotice}}
+                            {{#with action}}
+                                {{>addNotice}}
+                            {{/with}}
+                        {{/if}}
+                        <div class="message__contenu__heure">
+                            {{dateCalendar createdAt}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            <!-- Message utilisateur -->
+        </div>
+        <form class="rediger js-formMessage">
+            <input type="textarea" class="rediger__input js-inputMessage" id="rediger__input" placeholder="Message ...">
+            <button class="rediger__btn" href="#">Envoyer</button>
+        </form>
     </div>
 </template>

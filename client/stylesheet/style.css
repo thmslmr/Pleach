@@ -12,7 +12,30 @@ header{
 .close-btn{
     right: 0px;
     top: 0px;
+    z-index: 200;
 }
+.modal{
+    z-index: 500;
+}
+
+button{
+    border: none;
+}
+.grade{
+    position: relative;
+}
+.grade svg{
+    vertical-align: bottom;
+}
+.grade circle{
+    fill : none;
+    stroke : #fff;
+    stroke-width : 1px;
+}
+.grade rect{
+    transition: all 0.5s;
+}
+
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -34,4 +57,7 @@ input, textarea,
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
+}
+:focus{
+    outline : 0;
 }

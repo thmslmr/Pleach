@@ -24,7 +24,7 @@ registerHelper = {
     // random user
     userPicture : function(userId){
         if(userId == '0'){
-          return '/img/hodor.jpg'
+          return 'img/hodor.jpg';
         }
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.picture;
     },
@@ -43,8 +43,14 @@ registerHelper = {
     },
     lengthTab :  function(tab){
         return tab && tab.length;
+    },
+    pluralize : function(nb){
+        return nb > 1 ? 's' :  '';
+    },
+    truncate : function(string, length){
+        return _.truncate(string, {'length' : length});
     }
-}
+};
 
 _.each(registerHelper, function(value, key){
   Template.registerHelper(key, value);

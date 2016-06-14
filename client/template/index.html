@@ -6,16 +6,14 @@
 
     <!-- header -->
     <header>
-        <div class="header__sign-in">
-            <a class="header__sign-in--btn" href="#"> Connexion</a>
-        </div>
+        {{#if currentUser}}
+			<a href='{{pathFor "addLesson" }}' class="header__purpose">Proposer un atelier</a>
+			<a href='{{pathFor "inbox"}}' class="header__chat">{{notViewConv}} Messagerie</a>
+			<a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{myPic}}" alt="{{myName}}"> </a>
+        {{else}}
+            <a class="header__sign-in--btn" href='{{pathFor "register"}}'> Connexion</a>
+        {{/if}}
     </header>
-
-    <!-- {{#if currentUser}}
-        <a href="{{pathFor 'profile' _id=myId}}">{{myName}}</a> <a href="#" class="js-logout">log out</a>
-    {{/if}}
-    <a href="{{pathFor 'addLesson'}}">Ajouter un cours</a>
-    {{notViewConv}} <a href="{{pathFor 'inbox'}}">Messagerie</a> -->
 
     {{>yield}}
 

@@ -1,7 +1,7 @@
-<template name="lessonPreview">
+    <template name="lessonPreview">
     <div class='recherche__layout'>
-        <a href="#"  class="close">
-            <img src="img/close.svg" class="close-btn"/>
+        <a class="close-btn" href="{{pathFor 'home'}}">
+            <img src="/img/close.svg" />
         </a>
     	<div class='content'>
     		<div class='en-tete__nom-atelier'>
@@ -18,20 +18,32 @@
     						s21-46.9,46.9-46.9s46.9,21,46.9,46.9S281.9,222.9,256,222.9z" />
     				</g>
     			</svg>
-    			{{public.address.name}}
+                <div>
+                    {{public.address.name}}
+                </div>
     		</div>
     		<div class='description'>
-                {{public.description}}
+                {{truncate public.description 250}}
     		</div>
 
     		<div class='date'>
-                {{dateCalendar public.date}}
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" fill='white' viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                    <g>
+                        <path d="M256,48C141.1,48,48,141.1,48,256s93.1,208,208,208c114.9,0,208-93.1,208-208S370.9,48,256,48z M256,446.7
+                    c-105.1,0-190.7-85.5-190.7-190.7c0-105.1,85.5-190.7,190.7-190.7c105.1,0,190.7,85.5,190.7,190.7
+                    C446.7,361.1,361.1,446.7,256,446.7z" />
+                        <polygon points="256,256 160,256 160,273.3 273.3,273.3 273.3,128 256,128 	" />
+                    </g>
+                </svg>
+                <div>
+                    {{dateCalendar public.date}}
+                </div>
     		</div>
 
     		<div class='inscrits'>
-    			Deja 3 inscrits sur 5
+    			Deja {{lengthTab private.registered}} inscrit{{pluralize lengthTab private.registered}} sur {{public.nbseats}}
     			<div class="progression">
-    				<div class="bar">
+    				<div class="bar" style="width : {{widthBar}}">
     				</div>
     			</div>
     		</div>
@@ -44,11 +56,25 @@
     					<img src="{{userPicture private.owner}}" alt="{{userName private.owner}}" class='footer__photo' />
     				</a>
     				<a href="{{pathFor 'profile' _id=private.owner}}" class="footer__link">{{userFirstName private.owner}}</a>
-    				<span class='footer__note footer__note--full'></span>
-    				<span class='footer__note footer__note--full'></span>
-    				<span class='footer__note'></span>
-    				<span class='footer__note'></span>
-    				<span class='footer__note'></span>
+                    <div class="grade">
+                        <svg  class="js-grade" version="1.1" width="100" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <clipPath id="grade-clip">
+                                    <circle cx="8" cy="8" r="7"/>
+                                    <circle cx="29" cy="8" r="7"/>
+                                    <circle cx="50" cy="8" r="7"/>
+                                    <circle cx="71" cy="8" r="7"/>
+                                    <circle cx="92" cy="8" r="7"/>
+                                </clipPath>
+                            </defs>
+                            <circle cx="8" cy="8" r="7"/>
+                            <circle cx="29" cy="8" r="7"/>
+                            <circle cx="50" cy="8" r="7"/>
+                            <circle cx="71" cy="8" r="7"/>
+                            <circle cx="92" cy="8" r="7"/>
+                            <rect x="0" y="0" fill="#fff" width="0" height="16" clip-path="url(#grade-clip)" />
+                        </svg>
+                    </div>
     			</div>
     		</div>
     	</div>
