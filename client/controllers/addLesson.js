@@ -7,7 +7,9 @@ Template.addLesson.onRendered(function(){
                 address_object = res;
             });
         }
-    })
+    });
+
+    $('.step-form').hide();
 
 });
 
@@ -28,7 +30,7 @@ Template.addLesson.events({
         price : parseInt( $('[data-newLesson   ="price"]').val() ),
         duration : _.trim( $('[data-newLesson = "duration"]').val() ),
         timestart : _.trim( $('[data-newLesson = "timestart"]').val() )
-    }
+    };
 
     LessonObject.address = {
         name : address_object.formatted_address,
@@ -37,14 +39,14 @@ Template.addLesson.events({
             coordinates : [ address_object.geometry.location.lng() , address_object.geometry.location.lat() ]
         }
 
-    }
+    };
 
     // Appel de la méthode d'ajout d'un cours
     Meteor.call('addLesson', LessonObject, function(err){
         if(err){
-            console.log(err)
+            console.log(err);
         }else{
-            Router.go('home')
+            Router.go('home');
         }
     });
 

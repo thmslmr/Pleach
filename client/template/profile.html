@@ -19,18 +19,21 @@
             {{dateFromNow createdAt}}
         {{/each}}
     </div> -->
-    <section class="profil">
     <div class="profil__layout">
+        <a class="close-btn" href="{{pathFor 'home'}}">
+            <img src="/img/close.svg" />
+        </a>
         <div class="profil__content">
             <div class="left-part">
+                {{#each userLessons}}
                 <div class="left-part__history">
                     <div class="left-part__history--bar"></div>
                     <div class="left-part__history--step">
-                        <h2 class="step-title">Titre 1er atelier</h2>
-                        <p class="step-date">Le 18/05/2016 à 11h</p>
+                        <h2 class="step-title">{{public.title}}</h2>
+                        <p class="step-date">{{dateCalendar public.date}}</p>
                     </div>
-                    <a class="left-part__history--step-btn" href="#"><img src="images/search.svg" /></a>
                 </div>
+                {{/each}}
                 <div class="left-part__level">
                     <div class="left-part__level--logo">
                         <img src="../images/badge_lvl1.svg" />
@@ -42,54 +45,49 @@
                 </div>
             </div>
             <div class="right-part">
+                {{#each userNotices.array}}
                 <div class="commentary">
                     <div class="commentary__user">
                         <div class="commentary__user--picture">
-                            <img src="images/tlm.jpg" />
+                            <img src="{{userPicture user}}" />
                         </div>
-                        <p class="commentary__user--name">Thomas</p>
+                        <p class="commentary__user--name">{{userName user}}</p>
                     </div>
                     <div class="commentary__content">
                         <p class="commentary__content--paragraph">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            {{comment}}
                         </p>
                         <div class="commentary__content--footer">
-                            <p class="commentary__content--date">20:24 - 10 mai 2016</p>
+                            <p class="commentary__content--date">{{dateFromNow createdAt}}</p>
                             <div class="commentary__content--rating">
                                 <div class="rating-circle--full"></div>
                                 <div class="rating-circle--full"></div>
                                 <div class="rating-circle--full"></div>
                                 <div class="rating-circle--empty"></div>
                                 <div class="rating-circle--empty"></div>
-                                <p class="rating-mark">3/5</p>
+                                <p class="rating-mark">{{grade}}/5</p>
                             </div>
                         </div>
                         <div class="commentary__limit"></div>
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
         <section class="profil__footer">
             <!-- medium screen markup -->
             <div class="footer__profil visible-medium">
                 <div class="footer__profil-picture">
-                    <img src="images/marion.jpg" />
+                    <img src="{{userPicture _id}}" />
                 </div>
                 <div class="footer__profil-name">
-                    <h4>Marion</h4>
+                    <h4>{{userName _id}}</h4>
                 </div>
             </div>
             <div class="footer__profil-info visible-medium">
                 <div class="footer__social">
                     <a class="footer__social--fb" href="#">
                         <img src="images/fb.svg" />
-                    </a>
-                    <a class="footer__social--tw" href="#">
-                        <img src="images/tw.svg" />
-                    </a>
-                    <a class="footer__social--ig" href="#">
-                        <img src="images/ig.svg" />
                     </a>
                 </div>
                 <div class="footer__rating-average">
@@ -111,20 +109,14 @@
                 <a class="footer__social--fb" href="#">
                     <img src="images/fb.svg" />
                 </a>
-                <a class="footer__social--tw" href="#">
-                    <img src="images/tw.svg" />
-                </a>
-                <a class="footer__social--ig" href="#">
-                    <img src="images/ig.svg" />
-                </a>
             </div>
             <div class="footer__half-circle hidden-medium">
             </div>
             <div class="footer__profil-picture hidden-medium">
-                <img src="images/marion.jpg" />
+                <img src="{{userPicture _id}}" />
             </div>
             <div class="footer__profil-name hidden-medium">
-                <h4>Marion</h4>
+                <h4>{{userFirstName _id}}</h4>
             </div>
             <div class="footer__rating-average hidden-medium">
                 <div class="rating-circle--full"></div>
@@ -138,5 +130,4 @@
         </section>
         <a class="close-btn" href=""><img src="images/close.svg" /></a>
     </div>
-</section>
 </template>

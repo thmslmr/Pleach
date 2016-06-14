@@ -24,14 +24,25 @@ initGoogleMaps = function(){
 
             // Détection des changements dans la Collection Lessons
             Lessons.find({
-                // $and : [
-                //     {
-                //         'private.owner' : { $ne : Meteor.userId() }
+                // $and : [{
+                //         'public.address.loc' :
+                //         {
+                //             $near: {
+                //                 $geometry: {
+                //                     type: "Point" ,
+                //                     coordinates: [ latLng[1] , latLng[0] ]
+                //                 },
+                //                 $maxDistance : radius,
+                //                 $minDistance : 0
+                //             },
+                //         }
                 //     },{
-                //         'public.date' : { $gt : new Date() }
+                //         'private.owner' : { $ne : this.userId }
+                //     },{
+                //         'public.date' : {$gt : new Date() }
                 //     }
                 // ]
-            }).observe({
+                }).observe({
                 // Pour un ajout
                 added: function(document) {
                     // Création d'un marqueur

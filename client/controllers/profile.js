@@ -1,3 +1,6 @@
+Template.profile.onCreated(function(){
+
+})
 Template.profile.helpers({
     // Retourne les cours de l'utilisateur
     'userLessons' : function(){
@@ -5,7 +8,8 @@ Template.profile.helpers({
             {
                 'private.owner' : this._id
             },{
-                sort : { 'private.createdAt' : -1 }
+                sort : { 'private.createdAt' : -1 },
+                limit : 3
             }
         );
     },
