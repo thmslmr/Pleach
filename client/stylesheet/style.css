@@ -61,3 +61,10 @@ input, textarea,
 :focus{
     outline : 0;
 }
+.all-container{
+    display: flex;
+}
+.step-content{
+    min-width: 100%;
+    margin-right: 100px;
+}
