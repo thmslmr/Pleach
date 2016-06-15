@@ -1030,13 +1030,10 @@
 
 .creation__layout form .inputs input[type="radio"] {
 
-  margin-left: 20px;
+  /*margin-left: 20px;*/
   outline: 0;
 }
 
-.creation__layout form .inputs input[type="radio"]:first-child {
-  margin-left: 0;
-}
 
 .creation__layout form .inputs .input-group:first-child {
   margin-right: 25px;
