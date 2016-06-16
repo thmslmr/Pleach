@@ -13,6 +13,11 @@ Template.profile.helpers({
             }
         );
     },
+
+    'userService' : function(){
+        return Meteor.user().profile.service == 'facebook'
+    },
+
     // Retourne les avis de l'utilisateur (liste, nombre, moyenne)
     'userNotices' : function(){
         notices = []

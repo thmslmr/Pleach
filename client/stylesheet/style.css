@@ -9,7 +9,7 @@ header{
     z-index: 50;
 }
 
-.close-btn{
+.creation__layout .close-btn, .recherche__layout .close-btn, .messagerie__layout .close-btn {
     right: 0px;
     top: 0px;
     z-index: 200;
