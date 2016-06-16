@@ -10,6 +10,7 @@
 			<a href='{{pathFor "addLesson" }}' class="header__purpose">Proposer un atelier</a>
 			<a href='{{pathFor "inbox"}}' class="header__chat">{{notViewConv}} Messagerie</a>
 			<a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{myPic}}" alt="{{myName}}"> </a>
+            <a href="#" class="logout-icon js-logout"> <img src="/img/logout.svg" alt=""> </a>
         {{else}}
             <a class="header__sign-in--btn" href='{{pathFor "register"}}'> Connexion</a>
         {{/if}}
@@ -19,14 +20,16 @@
 
     <!-- <a href="#" class="js-myposition">Ici</a> -->
     <footer>
+        <a href="#" class="footer__search-icon js-showForm">
+            <img src="/img/search.svg" alt="search">
+        </a>
         <form class="search-form">
-            <div class="search-form__address">
-                <input class="address js-address" placeholder="Adresse" type="text" name="username" />
+            <a href="#" class="search-form__position js-myposition"><img src="/img/logo.svg" alt=""></a>
+            <div class="input-group">
+                <input class="js-address" placeholder="Adresse" type="text" name="username" />
+                <input class="js-radius" placeholder="Amplitude de déplacement" type="number" name="username" maxlength="3"/>
+                <a class="search-form__btn js-searchLessons" href=""> Rechercher </a>
             </div>
-            <div class="search-form__rayon">
-                <input class="rayon js-radius" placeholder="3km" type="text" name="username" />
-            </div>
-            <a class="search-form__btn js-searchLessons" href=""> Rechercher </a>
         </form>
     </footer>
 </template>

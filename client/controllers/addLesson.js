@@ -22,15 +22,18 @@ Template.addLesson.events({
 
         LessonObject = {
             title : _.trim( $('[data-newLesson = "title"]').val() ),
-            description : _.trim( $('[data-newLesson = "description"]').val() ),
+            description : _.trim( $('[data-newLesson = "description"]').val().replace(/\r?\n/g, '<br />') ),
             categorie : _.trim( $('[data-newLesson = "categorie"]').val() ),
             level : parseInt( $('[data-newLesson = "level"]').val() ),
             nbseats : parseInt( $('[data-newLesson = "nbseats"]').val() ),
-            date : moment( $('[data-newLesson = "date"]').val() )._d,
+            date : moment( $('[data-newLesson = "date"]').val() ),
             price : parseInt( $('[data-newLesson   ="price"]').val() ),
             duration : _.trim( $('[data-newLesson = "duration"]').val() ),
-            timestart : _.trim( $('[data-newLesson = "timestart"]').val() )
         };
+
+        timestart = _.trim( $('[data-newLesson = "timestart"]').val() ).split('h');
+
+        LessonObject.date = LessonObject.date.add({ h : timestart[0], m : timestart[1] })._d;
 
         LessonObject.address = {
             name : address_object.formatted_address,
@@ -38,7 +41,6 @@ Template.addLesson.events({
                 type : "Point",
                 coordinates : [ address_object.geometry.location.lng() , address_object.geometry.location.lat() ]
             }
-
         };
 
         // Appel de la méthode d'ajout d'un cours
@@ -64,6 +66,47 @@ Template.addLesson.events({
         if(step_nb == 3){
             $('.end-form a').addClass('js-submit').removeClass('js-next').text("C'est parti !");
         }
+    },
+    'keyup .js-hour' : function(evt){
+        val = $(evt.target).val();
+
+        if( val.length == 5){
+            evt.preventDefault();
+        }else if (val.length == 2 && val.indexOf('h') == -1 && evt.which != 8){
+            $(evt.target).val(val + 'h');
+        }
+    },
+    'blur .js-hour' : function(evt){
+        if(!$(evt.target).val())
+        return;
+
+        val = $(evt.target).val().split('h');
+
+        hVal = _.padStart(val[0], 2, '0');
+        mVal = _.padEnd(val[1], 2, '0');
+
+        $(evt.target).val(hVal + 'h' + mVal);
+    },
+    'keydown textarea' : function(evt){
+        old_val = 500 - $(evt.target).val().length;
+
+        if(evt.which == 8){
+            if(old_val >= 500){
+                evt.preventDefault();
+                return;
+            }else{
+                new_val = old_val + 1;
+            }
+        }else{
+            if( old_val <= 0){
+                evt.preventDefault();
+                return;
+            }else{
+                new_val = old_val - 1;
+            }
+        }
+
+        $('.js-textareaInfo').text(new_val);
     }
 });
 

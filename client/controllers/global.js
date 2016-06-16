@@ -24,7 +24,7 @@ registerHelper = {
     // random user
     userPicture : function(userId){
         if(userId == '0'){
-          return 'img/hodor.jpg';
+          return 'img/hodor.gif';
         }
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.picture;
     },
@@ -49,6 +49,9 @@ registerHelper = {
     },
     truncate : function(string, length){
         return _.truncate(string, {'length' : length});
+    },
+    'lineBreaker' : function(string){
+        return string.replace(/\r?\n/g, '<br />');
     }
 };
 

@@ -1,5 +1,7 @@
 // Variable global pour l'objet GoogleMaps
 gmap = null;
+userMarker = null;
+circle = null;
 
 // Fonction d'initialisation de Google Maps (appelée dans le controller de index)
 initGoogleMaps = function(){
@@ -14,13 +16,34 @@ initGoogleMaps = function(){
         GoogleMaps.ready('map', function(map) {
 
             // Récupération de l'objet Google Maps
-            gmap = map.instance
+            gmap = map.instance;
+
+            // Création du marqueur utilisateur
+            userMarker = new google.maps.Marker({
+                map: gmap,
+                position: new google.maps.LatLng(48.8566140, 2.3522219),
+                icon : {
+                    url: '/userMarker.png',
+                    scaledSize: new google.maps.Size(10, 10),
+                },
+            });
+
+            // Création du cercle utilisateur
+            circle = new google.maps.Circle({
+                map: gmap,
+                radius: 0,
+                strokeWeight: 2,
+                strokeOpacity : 0.5,
+                strokeColor : "#53e1dc",
+                fillOpacity : 0,
+            });
+            circle.bindTo('center', userMarker, 'position');
 
             // Liste associative pour stocker les marqueurs des cours {_id : marqueur}
-            markers = {}
+            markers = {};
 
             // Création du cluster (système de grille permettant le regroupement de marqueur s'ils sont trop proches)
-            cluster = map_createCluster(map, markers)
+            cluster = map_createCluster(map, markers);
 
             // Détection des changements dans la Collection Lessons
             Lessons.find({
@@ -46,11 +69,11 @@ initGoogleMaps = function(){
                 // Pour un ajout
                 added: function(document) {
                     // Création d'un marqueur
-                    marker = map_createLessonMarker(map, document._id, document.public.address.loc.coordinates)
+                    marker = map_createLessonMarker(map, document._id, document.public.address.loc.coordinates);
                     // Ajout à la liste associative
                     markers[document._id] = marker;
                     // Ajout au cluster
-                    cluster.addMarker(marker)
+                    cluster.addMarker(marker);
                 },
                 // Pour une changement
                 // changed: function(newDocument, oldDocument) {
@@ -59,9 +82,9 @@ initGoogleMaps = function(){
                 // },
                 // Pour une suppression
                 removed: function(oldDocument) {
-                    oldmarker = markers[oldDocument._id]
+                    oldmarker = markers[oldDocument._id];
                     // Suppression du marqueur dans le cluster
-                    cluster.removeMarker(oldmarker)
+                    cluster.removeMarker(oldmarker);
                     // Suppression du marqueur sur la map
                     oldmarker.setMap(null);
                     // Suppression du marqueur dasn la liste associative
@@ -69,7 +92,7 @@ initGoogleMaps = function(){
                 }
             });
         });
-}
+};
 
 // Fonction de création du cluster
 function map_createCluster(map, markers){
@@ -110,15 +133,15 @@ function map_createLessonMarker(map, idLesson, location){
             strokeWeight: 0
         },
         id: idLesson
-    }
+    };
 
     // Création du marqueur
     marker = new google.maps.Marker(markerOptions);
 
     // Création d'un evenment click associé au marqueur (Preview du cours)
     marker.addListener('click', function(){
-        Router.go('lessonPreview', {_id : idLesson} )
-    })
+        Router.go('lessonPreview', {_id : idLesson} );
+    });
 
     return marker;
 }

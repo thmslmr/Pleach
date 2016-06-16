@@ -7,12 +7,9 @@
 			Mon atelier
 		</div>
 		<div class="steps">
-			<div class="step step--done">
-			</div>
-			<div class="step">
-			</div>
-			<div class="step">
-			</div>
+			<a class="step step--done" href="#"></a>
+			<a class="step" href="#"></a>
+			<a class="step" href="#"></a>
 		</div>
         <div class="all-container">
 
@@ -20,12 +17,12 @@
                 <form>
                     <div class="input-group">
                         Titre
-                        <input data-newLesson = 'title' placeholder="Titre" type="text">
+                        <input data-newLesson = 'title' placeholder="Titre" type="text" maxlength="70">
                     </div>
                     <div class="input-group">
                         Description
-                        <textarea data-newLesson = "description" placeholder="Description" rows="5">
-                        </textarea>
+                        <textarea data-newLesson = "description" placeholder="Description" rows="5"></textarea>
+                        <div class="info-textearea js-textareaInfo">500</div>
                     </div>
                     <div class="input-group">
                         Catégorie
@@ -60,15 +57,15 @@
                     <div class="inputs">
                         <div class="input-group">
                             Commence à :
-                            <input data-newLesson = "timestart" type="text" placeholder="..h.." maxlength="5">
+                            <input class="js-hour" data-newLesson = "timestart" type="text" placeholder="..h.." maxlength="5">
                         </div>
                         <div class="input-group">
                             Et dure :
-                            <input data-newLesson = "duration" type="text" placeholder="..h.." maxlength="5">
+                            <input class="js-hour" data-newLesson = "duration" type="text" placeholder="..h.." maxlength="5">
                         </div>
                     </div>
                     <div class="input-group">
-                        Email
+                        Contact
                         <input data-newLesson = 'contact' type="text" value="{{myEmail}}">
                     </div>
                 </form>
@@ -81,7 +78,7 @@
         			</div>
         			<div class="input-group">
         				Tarif
-        				<input data-newLesson = 'price' placeholder="Tarif" type="number" step="1">
+        				<input data-newLesson = 'price' placeholder="Tarif" type="number" step="1" maxlength="3">
         			</div>
         		</form>
             </div>
