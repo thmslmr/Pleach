@@ -945,19 +945,9 @@
 }
 
 .creation__layout form .inputs {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   margin-bottom: 30px;
 }
-
-.creation__layout form .inputs input[type="radio"] {
-
-  /*margin-left: 20px;*/
-  outline: 0;
-
-}
-
 
 .creation__layout form .inputs .input-group:first-child {
   margin-right: 25px;
