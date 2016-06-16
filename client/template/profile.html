@@ -87,7 +87,7 @@
             <div class="footer__profil-info visible-medium">
                 <div class="footer__social">
                     <a class="footer__social--fb" href="#">
-                        <img src="images/fb.svg" />
+                        <img src="/img/fb.svg" />
                     </a>
                 </div>
                 <div class="footer__rating-average">
@@ -106,9 +106,15 @@
             </div>
             <!-- large screen markup -->
             <div class="footer__social hidden-medium">
-                <a class="footer__social--fb" href="#">
-                    <img src="images/fb.svg" />
+                {{#if userService}}
+                <a class="footer__social--fb" href="{{userLink _id}}" target="_blank">
+                    <img src="/img/fb.svg" />
                 </a>
+                {{else}}
+                <a class="footer__social--goo" href="{{userLink _id}}" target="_blank">
+                        <img src="/img/goo.svg" />
+                </a>
+                {{/if}}
             </div>
             <div class="footer__half-circle hidden-medium">
             </div>
@@ -128,6 +134,5 @@
             </div>
             <!-- <a class="footer__profil-edit-btn"></a> -->
         </section>
-        <a class="close-btn" href=""><img src="images/close.svg" /></a>
     </div>
 </template>

@@ -34,6 +34,9 @@ registerHelper = {
     userFirstName : function(userId){
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.first_name;
     },
+    userLink : function(userId){
+        return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.link;
+    },
     // util
     dateCalendar : function(date){
         return moment(date).calendar();

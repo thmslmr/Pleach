@@ -23,7 +23,7 @@ Meteor.publish('userData', function(){
     profileData = Meteor.users.find(
         this.userId,
         {
-            fields : { profile : 1 }
+            fields : { profile : 1}
         }
     );
 
