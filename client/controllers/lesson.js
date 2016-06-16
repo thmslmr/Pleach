@@ -1,46 +1,29 @@
 Template.lesson.onRendered(function(){
 
-    lessonLocation = this.data.public.address.loc.coordinates;
+    lessonLocation = this.data && this.data.public.address.loc.coordinates;
 
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers : true});
 
-    // requests = [];
     // travel = ['WALKING','BICYCLING','DRIVING'];
-    //
-    // travel.forEach(function(el){
-    //     requests.push(
-    //         {
-    //             origin : new google.maps.LatLng(Session.get('userLatLng')[0], Session.get('userLatLng')[1]),
-    //             destination : new google.maps.LatLng(lessonLocation[1], lessonLocation[0]),
-    //             travelMode : google.maps.TravelMode[el],
-    //         }
-    //     );
-    // });
-    //
-    // requests.forEach(function(el){
-    //     directionsService.route(el, function(result, status) {
-    //         if (status == google.maps.DirectionsStatus.OK) {
-    //             console.log(result.routes[0].legs[0].duration.text);
-    //             // directionsDisplay.setDirections(result);
-    //             // directionsDisplay.setMap(gmap);
-    //         }
-    //     });
-    // });
-    
-    directionsService.route({
-        origin : new google.maps.LatLng(Session.get('userLatLng')[0], Session.get('userLatLng')[1]),
-        destination : new google.maps.LatLng(lessonLocation[1], lessonLocation[0]),
-        travelMode : google.maps.TravelMode.WALKING,
-    }, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            console.log(result.routes[0].legs[0].duration.text);
-            directionsDisplay.setDirections(result);
-            directionsDisplay.setMap(gmap);
-        }
+    Session.set('travel', null );
+
+    this.autorun(function(){
+        directionsService.route({
+            origin : new google.maps.LatLng(Session.get('userLatLng')[0], Session.get('userLatLng')[1]),
+            destination : new google.maps.LatLng(lessonLocation[1], lessonLocation[0]),
+            travelMode : google.maps.TravelMode.BICYCLING,
+        }, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                data = result.routes[0].legs[0];
+                Session.set({
+                    'travel' : [data.distance.text, data.duration.text]
+                });
+                directionsDisplay.setDirections(result);
+                directionsDisplay.setMap(gmap);
+            }
+        });
     });
-
-
 
 });
 
@@ -52,8 +35,13 @@ Template.lesson.helpers({
     'levelLesson' : function(level){
         l = ["debutant","amateur","expert"];
         return l[level - 1];
+    },
+    'breakAddress' : function(address){
+        return address && address.replace(',','<br/>');
+    },
+    'travel' : function(){
+        return Session.get('travel') && Session.get('travel')[0] + '<br/>' + Session.get('travel')[1];
     }
-
 });
 
 Template.lesson.events({

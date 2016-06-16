@@ -1088,25 +1088,16 @@
 }
 
 
-.atelier__layout .icone-bloc {
+.atelier__layout .infos{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
     text-align: center;
 }
-
-@media screen and (max-width: 690px) {
-    .atelier__layout .icone-bloc {
-        flex-direction: column;
-        align-items: center;
-    }
+.atelier__layout .infos div{
+    flex : 1;
 }
-
-@media screen and (max-width: 690px) {
-    .atelier__layout .icone-bloc__indiv {
-        margin-bottom: 25px;
-    }
+.atelier__layout .infos div img{
+    height: 50px;
 }
 
 .atelier__layout .texte-bloc {
@@ -1165,11 +1156,12 @@
 }
 
 .atelier__layout .footer__inscription__bouton a {
-    padding: 10px;
+    padding: 10px 30px;
     box-sizing: content-box;
     background: #838ab6;
     border-radius: 5px;
     text-transform: uppercase;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .atelier__layout .footer__photo {
@@ -1331,15 +1323,14 @@
 }
 
 .recherche__layout {
-  height: 100vh;
-  width: 40%;
-  background-image: -webkit-linear-gradient(305deg, rgba(131, 138, 182, 0.8), rgba(83, 225, 220, 0.8));
-  background-image: linear-gradient(145deg, rgba(131, 138, 182, 0.8), rgba(83, 225, 220, 0.8));
-  top: 0;
-  box-shadow: 3px 3px 50px grey;
-  position: absolute;
-  padding: 50px;
-  overflow-y: auto;
+    height: 100vh;
+    width: 40%;
+    background-image: linear-gradient(145deg, rgba(131, 138, 182, 0.8), rgba(83, 225, 220, 0.8));
+    top: 0;
+    box-shadow: 3px 3px 50px grey;
+    position: absolute;
+    padding: 50px;
+    overflow-y: auto;
 }
 
 @media screen and (max-width: 1240px) {
@@ -1370,23 +1361,15 @@
 }
 
 .recherche__layout .en-tete__nom-atelier {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  font-size: 30px;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
-  text-transform: uppercase;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 640px) {
-  .recherche__layout .en-tete__nom-atelier {
-    font-size: 23px;
-    margin-bottom: 30px;
-  }
+    .recherche__layout .en-tete__nom-atelier {
+        font-size: 23px;
+    }
 }
 
 .recherche__layout .localisation,
@@ -1394,6 +1377,7 @@
     display: flex;
     align-items: center;
     font-style: italic;
+    margin-bottom: 10px;
 }
 /*
 @media (max-width: 640px) {
@@ -1412,21 +1396,21 @@
 }
 
 .recherche__layout .description {
-  text-align: justify;
-  text-indent: 20px;
+    text-align: justify;
+    font: 18px 'Open sans light';
+    padding: 7vh 0;
 }
-
 .recherche__layout .plus {
-  text-decoration: none;
-  color: white;
-  font-style: italic;
+    font-style: italic;
 }
-
+.recherche__layout .inscrits{
+    font-weight: 600;
+}
 .recherche__layout .progression {
     height: 15px;
     border: solid 1px #fff;
     border-radius: 15px;
-    margin-top: 10px;
+    margin: 10px 0 20px;
     overflow: hidden;
 }
 
@@ -1441,21 +1425,9 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 50px;
 }
-
-.recherche__layout .footer__professeur {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    flex-direction: row;
-}
-
-.recherche__layout .footer__link {
-    margin-right: 30px;
-}
-
-.recherche__layout .footer__photo-block {
+.recherche__layout .footer a{
     margin-right: 30px;
 }
 
@@ -1463,23 +1435,6 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-}
-
-.recherche__layout .footer__note {
-    display: inline-block;
-    margin-left: 5px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: solid 1px #fff;
-}
-
-.recherche__layout .footer__note--full {
-    background-color: #fff;
-}
-
-.recherche__layout .footer__note:last-child {
-    margin-right: 30px;
 }
 
 .message__layout {

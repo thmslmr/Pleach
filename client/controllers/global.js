@@ -5,37 +5,59 @@ registerHelper = {
     isUser : function(userId){
         return Meteor.userId() == userId;
     },
-    // current user
     myId : function(){
         return Meteor.userId();
     },
-    myPic : function(){
-        return Meteor.user() && Meteor.user().profile.picture;
-    },
-    myName : function(){
-        return Meteor.user() && Meteor.user().profile.name;
-    },
-    myFirstName : function(){
-        return Meteor.user() && Meteor.user().profile.first_name;
-    },
-    myEmail : function(){
-        return Meteor.user() && Meteor.user().profile.email;
-    },
-    // random user
-    userPicture : function(userId){
+    userPicture : function(id){
+        var userId = id || Meteor.userId();
+
         if(userId == '0'){
           return 'img/hodor.gif';
         }
+
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.picture;
     },
-    userName : function(userId){
+    userName : function(id){
+        var userId = id || Meteor.userId();
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.name;
     },
-    userFirstName : function(userId){
+    userFirstName : function(id){
+        var userId = id || Meteor.userId();
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.first_name;
     },
-    userLink : function(userId){
+    userLink : function(id){
+        var userId = id || Meteor.userId();
         return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.link;
+    },
+    userEmail : function(id){
+        var userId = id || Meteor.userId();
+        return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.email;
+    },
+    userNotices : function(id){
+        var userId = id || Meteor.userId();
+
+        notices = [];
+        lessons = Lessons.find(
+            {
+                'private.owner' : this._id
+            }
+        );
+
+        lessons.forEach(function(el){
+            notices.push(el.private.notice);
+        });
+        n = _.flattenDeep(notices);
+        return {
+            array : n,
+            nb : n.length,
+            average : _.meanBy( n , function(el) {
+                return el.grade;
+            })
+        };
+    },
+    userService : function(id){
+        var userId = id || Meteor.userId();
+        return Meteor.users.findOne(userId) && Meteor.users.findOne(userId).profile.service == 'facebook';
     },
     // util
     dateCalendar : function(date){

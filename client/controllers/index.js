@@ -121,29 +121,18 @@ Template.index.events({
         $('footer').addClass('in-search');
     },
     'keyup .js-radius' : function(evt){
-        val = parseFloat( $('.js-radius').val() ) * 1000;
+        val = parseFloat( $('.js-radius').val() );
 
         if(!val){
             return null;
         }
 
-        if( val > 20000){
+        if( val > 20){
             $('.js-radius').val('20');
-            val = 20000;
+            val = 20;
         }
+        circle.setRadius(val * 1000);
 
-        animRadius = setInterval(function(){
-
-            current_radius = circle.getRadius();
-
-            if(current_radius != val){
-                coef = current_radius > val ? -1 : 1;
-                circle.setRadius(current_radius + (coef * 100) );
-            }else{
-                clearInterval(animRadius);
-            }
-
-        }, 2);
     },
     'keyup .js-address' : function(){
         if( !$('.js-address').val() ){

@@ -34,8 +34,8 @@ initGoogleMaps = function(){
                 radius: 0,
                 strokeWeight: 2,
                 strokeOpacity : 0.5,
-                strokeColor : "#53e1dc",
-                fillOpacity : 0,
+                strokeColor : '#53e1dc',
+                fillOpacity : 0
             });
             circle.bindTo('center', userMarker, 'position');
 

@@ -9,7 +9,7 @@
         {{#if currentUser}}
 			<a href='{{pathFor "addLesson" }}' class="header__purpose">Proposer un atelier</a>
 			<a href='{{pathFor "inbox"}}' class="header__chat">{{notViewConv}} Messagerie</a>
-			<a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{myPic}}" alt="{{myName}}"> </a>
+			<a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{userPicture}}" alt="{{userName}}"> </a>
             <a href="#" class="logout-icon js-logout"> <img src="/img/logout.svg" alt=""> </a>
         {{else}}
             <a class="header__sign-in--btn" href='{{pathFor "register"}}'> Connexion</a>
