@@ -714,23 +714,23 @@
 }
 
 .profil__footer .footer__half-circle {
-  width: 170px;
-  height: 85px;
+  width: 182px;
+  height: 90px;
   background-image: -webkit-linear-gradient(305deg, rgba(128, 185, 193, 0.8), rgba(131, 195, 206, 0.8));
   background-image: linear-gradient(145deg, rgba(128, 185, 193, 0.8), rgba(131, 195, 206, 0.8));
   position: absolute;
-  left:  158px;
-  bottom: -44px;
+  left:  153px;
+  bottom: -50px;
   border-radius: 0 0 15rem 15rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
   .profil__footer .footer__half-circle {
-    width: 170px;
-    height: 85px;
-    left: 126px;
-    bottom: -28px;
+    width: 12rem;
+    height: 6rem;
+    left: 125px;
+    bottom: -40px;
   }
 }
 
@@ -755,14 +755,15 @@
   display: inline-block;
   overflow: hidden;
   border-radius: 50%;
-  bottom: -34px;
+  bottom: -33px;
   margin: 0 1.5rem;
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
   .profil__footer .footer__profil-picture {
-    bottom: -19px;
-    left: -5px;
+    width: 10rem;
+    height: 10rem;
+    bottom: -1.5rem;
   }
 }
 
@@ -1659,8 +1660,10 @@ footer{
 
 .close-btn {
   position: absolute;
+  top : 0;
+  right: 0;
   width: 50px;
-  opacity: .6;
+  z-index: 200;
 }
 
 .rating-circle, .rating-circle--full, .rating-circle--empty {
