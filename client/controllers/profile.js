@@ -13,4 +13,24 @@ Template.profile.helpers({
             }
         );
     },
+
+    'userBadge' : function(){
+        nb = Lessons.find({'private.owner' : this._id}).count();
+        console.log(nb);
+        level = 1;
+
+            if(nb>49){
+                return 5;
+            }else if (nb>19) {
+                return 4;
+            }else if (nb>4) {
+                return 3;
+            }else if (nb>0) {
+                return 2;
+            }else {
+                return 1;
+            }
+
+        }
+
 });
