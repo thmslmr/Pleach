@@ -20,7 +20,7 @@
         {{/each}}
     </div> -->
     <div class="profil__layout">
-        <a class="close-btn" href="{{pathFor 'home'}}">
+        <a class="close-btn close-btn--bottom" href="{{pathFor 'home'}}">
             <img src="/img/close.svg" />
         </a>
         <div class="profil__content">
@@ -96,7 +96,7 @@
                     <div class="rating-circle--full"></div>
                     <div class="rating-circle--empty"></div>
                     <div class="rating-circle--empty"></div>
-                    <p class="rating-mark">3/5</p>
+                    <p class="rating-mark">2/5</p>
                 </div>
             </div>
             <div class="separation-line visible-small">
@@ -106,7 +106,7 @@
             </div>
             <!-- large screen markup -->
             <div class="footer__social hidden-medium">
-                {{#if userService}}
+                {{#if userService _id}}
                 <a class="footer__social--fb" href="{{userLink _id}}" target="_blank">
                     <img src="/img/fb.svg" />
                 </a>
@@ -125,12 +125,12 @@
                 <h4>{{userFirstName _id}}</h4>
             </div>
             <div class="footer__rating-average hidden-medium">
-                <div class="rating-circle--full"></div>
-                <div class="rating-circle--full"></div>
-                <div class="rating-circle--full"></div>
-                <div class="rating-circle--empty"></div>
-                <div class="rating-circle--empty"></div>
-                <p class="rating-mark">3/5</p>
+                <p class="rating-mark">
+                    {{#with userNotices _id }}
+                        {{> notice}}
+                        {{average}} / 5
+                    {{/with}}
+                </p>
             </div>
             <!-- <a class="footer__profil-edit-btn"></a> -->
         </section>

@@ -69,7 +69,7 @@ Meteor.publish('userInfo', function(userId){
     }
 
     // Retourne l'utilisateur sans informations services (privées)
-    profileDate = Meteor.users.find(
+    profileData = Meteor.users.find(
         userId,
         {
             fields : { 'profile' : 1 }
@@ -79,11 +79,13 @@ Meteor.publish('userInfo', function(userId){
     lessonData = Lessons.find({
         'private.owner' : userId
     },{
-        'public' : 1,
+        'public.title' : 1,
+        'pulic.date' : 1,
         'private.notices' : 1,
 
     });
 
+    return [profileData, lessonData];
 });
 
 /*
