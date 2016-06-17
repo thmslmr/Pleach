@@ -32,7 +32,7 @@ footer.in-search .footer__search-icon{
     width: 20px;
 }
 
-.close-btn{
+.creation__layout .close-btn, .recherche__layout .close-btn, .messagerie__layout .close-btn {
     right: 0;
     top: 0;
     z-index: 200;
