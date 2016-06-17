@@ -11,7 +11,7 @@ ServiceConfiguration.configurations.insert({
 // Configuration du système d'OAuth avec google
 ServiceConfiguration.configurations.remove({
 	service : 'google'
-})
+});
 ServiceConfiguration.configurations.insert({
 		  service: 'google',
 		  clientId: Meteor.settings.private.oAuth.google.clientId,
@@ -22,7 +22,7 @@ ServiceConfiguration.configurations.insert({
 Accounts.onCreateUser(function(options, user){
 
 	// Récupération du service utilisé (fb / google)
-	service = Object.keys(user['services'])[0]
+	service = Object.keys(user.services)[0];
 
 	// Mise en forme des données utilisateur dans l'objet profile
 	if(service == 'google'){
@@ -43,11 +43,11 @@ Accounts.onCreateUser(function(options, user){
 	}
 	options.profile.service = service;
 	//  Mise à jour du profile de l'utilisateur
-	user.profile = options.profile
+	user.profile = options.profile;
 
 	// Appel de la fonction d'envoie d'email de bienvenue.
 	// sendWelcomeEmail( user.profile );
-	addNotifConv(user._id)
+	addNotifConv(user._id);
     return user;
 });
 

@@ -8,24 +8,14 @@ Meteor.startup( function(){
     sendWelcomeEmail = function(newUserProfile){
         // Récupération et rendu du code html
         SSR.compileTemplate( 'welcomeEmail', Assets.getText( 'emailTemplates/welcomeEmail.html' ) );
-        htmlEmail = SSR.render( 'welcomeEmail', newUserProfile )
+        htmlEmail = SSR.render( 'welcomeEmail', newUserProfile );
 
         // Envoie de l'email
         Email.send({
             to: newUserProfile.email,
-            from: "Meach <welcome@meach.com>",
-            subject: "Welcome to Meach !",
+            from: "Pleach <welcome@pleach.com>",
+            subject: "Bienvenue sur Pleach !",
             html: htmlEmail
         });
-    }
-    Lessons.update("EeTaPGvgNKxcs653c",{
-        $push : {
-            'private.notices' : {
-                comment : "super commentaire ! Ce cours fut vraiment formidable ! Je recommande vivement Adrien.",
-                grade : 5,
-                user : this.userId,
-                createdAt : new Date(),
-            }
-        }
-    })
-})
+    };
+});
