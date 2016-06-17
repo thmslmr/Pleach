@@ -50,24 +50,24 @@ initGoogleMaps = function(){
 
             // Détection des changements dans la Collection Lessons
             Lessons.find({
-                // $and : [{
-                //         'public.address.loc' :
-                //         {
-                //             $near: {
-                //                 $geometry: {
-                //                     type: "Point" ,
-                //                     coordinates: [ latLng[1] , latLng[0] ]
-                //                 },
-                //                 $maxDistance : radius,
-                //                 $minDistance : 0
-                //             },
-                //         }
-                //     },{
-                //         'private.owner' : { $ne : this.userId }
-                //     },{
-                //         'public.date' : {$gt : new Date() }
-                //     }
-                // ]
+                $and : [{
+                        'public.address.loc' :
+                        {
+                            $near: {
+                                $geometry: {
+                                    type: "Point" ,
+                                    coordinates: [ latLng[1] , latLng[0] ]
+                                },
+                                $maxDistance : radius,
+                                $minDistance : 0
+                            },
+                        }
+                    },{
+                        'private.owner' : { $ne : this.userId }
+                    },{
+                        'public.date' : {$gt : new Date() }
+                    }
+                ]
                 }).observe({
                 // Pour un ajout
                 added: function(document) {
@@ -78,11 +78,6 @@ initGoogleMaps = function(){
                     // Ajout au cluster
                     cluster.addMarker(marker);
                 },
-                // Pour une changement
-                // changed: function(newDocument, oldDocument) {
-                //     // Modification de la position
-                //     markers[newDocument._id].setPosition({ lat: newDocument.public.address.loc.coordinates[1], lng: newDocument.public.address.geometry.loc.coordinates[0] });
-                // },
                 // Pour une suppression
                 removed: function(oldDocument) {
                     oldmarker = markers[oldDocument._id];

@@ -24,12 +24,12 @@
                     <div class="message__contenu">
                         <div class="message__contenu__text">
                             {{text}}
+                            {{#if actionNotice}}
+                                {{#with action}}
+                                    {{>addNotice}}
+                                {{/with}}
+                            {{/if}}
                         </div>
-                        {{#if actionNotice}}
-                            {{#with action}}
-                                {{>addNotice}}
-                            {{/with}}
-                        {{/if}}
                         <div class="message__contenu__heure">
                             {{dateCalendar createdAt}}
                         </div>

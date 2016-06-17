@@ -43,6 +43,7 @@ Template.index.events({
             if(err){
                 console.log(err);
             }else{
+                Session.set('search', false);
                 Router.go('home');
             }
         });

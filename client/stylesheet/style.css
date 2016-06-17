@@ -22,9 +22,9 @@ footer.in-search .footer__search-icon{
 .footer__search-icon{
     position: absolute;
     width: 30px;
+    bottom: 0;
     transition: 0.5s;
     transform : translateY(100px);
-    margin-top: 30px;
 }
 
 .logout-icon img{
@@ -138,4 +138,25 @@ option{
     background-color: #838ab6;
     padding : 10px;
     border-radius: 10px;
+}
+.message-notice input{
+    width: 100%;
+    padding : 10px 10px;
+    border: solid 1px #838ab6;
+    color: #838ab6;
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 10px 0;
+}
+.message-notice ::-webkit-input-placeholder{
+    color: #838ab6;
+}
+.message-notice a{
+    padding : 10px;
+    background-color: #838ab6;
+    border-radius: 5px;
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
