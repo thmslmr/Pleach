@@ -37,22 +37,24 @@ registerHelper = {
         var userId = id || Meteor.userId();
 
         notices = [];
+
         lessons = Lessons.find(
             {
-                'private.owner' : this._id
+                'private.owner' : userId
             }
         );
 
         lessons.forEach(function(el){
-            notices.push(el.private.notice);
+            notices.push(el.private.notices);
         });
+
         n = _.flattenDeep(notices);
+        m =  _.meanBy( n , function(el) { return el.grade; });
         return {
             array : n,
             nb : n.length,
-            average : _.meanBy( n , function(el) {
-                return el.grade;
-            })
+            percent : m * 100 / 5 || 100,
+            average : m || '5'
         };
     },
     userService : function(id){

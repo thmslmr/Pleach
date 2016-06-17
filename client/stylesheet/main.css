@@ -836,7 +836,9 @@
   display: inline-block;
   vertical-align: middle;
 }
-
+.profil__footer .footer__rating-average .gradesvg{
+    margin-right: 30px;
+}
 .profil__footer .footer__rating-average p {
   display: inline-block;
   margin: 0 1.5rem;
@@ -860,14 +862,6 @@
   .profil__footer .footer__rating-average p {
     font-size: 1.275rem;
   }
-}
-
-.profil__layout .close-btn {
-  bottom: 0px;
-  right: 0px;
-  opacity: 1;
-  z-index:200;
-
 }
 
 .creation__layout {
@@ -1170,21 +1164,7 @@
     border-radius: 50%;
 }
 
-.atelier__layout .footer__note {
-    display: inline-block;
-    margin-left: 5px;
-    width: 15px;
-    min-width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: solid 1px #fff;
-}
-
-.atelier__layout .footer__note--full {
-    background-color: #fff;
-}
-
-.atelier__layout .footer__note:last-child {
+.atelier__layout svg.gradesvg {
     margin-right: 30px;
 }
 

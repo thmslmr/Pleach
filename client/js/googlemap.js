@@ -23,8 +23,11 @@ initGoogleMaps = function(){
                 map: gmap,
                 position: new google.maps.LatLng(48.8566140, 2.3522219),
                 icon : {
-                    url: '/userMarker.png',
-                    scaledSize: new google.maps.Size(10, 10),
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: "#838ab6",
+                    fillOpacity: 0.8,
+                    scale: 5,
+                    strokeWeight: 0
                 },
             });
 
@@ -69,7 +72,7 @@ initGoogleMaps = function(){
                 // Pour un ajout
                 added: function(document) {
                     // Création d'un marqueur
-                    marker = map_createLessonMarker(map, document._id, document.public.address.loc.coordinates);
+                    marker = map_createLessonMarker(map, document._id, document.public.categorie, document.public.address.loc.coordinates);
                     // Ajout à la liste associative
                     markers[document._id] = marker;
                     // Ajout au cluster
@@ -119,7 +122,7 @@ function map_createCluster(map, markers){
 }
 
 // Fonction de création d'un marqueur (associé à un cours)
-function map_createLessonMarker(map, idLesson, location){
+function map_createLessonMarker(map, idLesson, cat, location){
     // Option du marqueur
     markerOptions = {
         animation: google.maps.Animation.DROP,
@@ -127,7 +130,7 @@ function map_createLessonMarker(map, idLesson, location){
         map: map.instance,
         icon : {
             path: google.maps.SymbolPath.CIRCLE,
-            fillColor: '#E84C3C',
+            fillColor: Meteor.settings.public.util.categories[cat] || "#000",
             fillOpacity: 0.8,
             scale: 10,
             strokeWeight: 0

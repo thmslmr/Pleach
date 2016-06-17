@@ -43,7 +43,7 @@
 					{{dateCalendar public.date}}
 				</div>
 				<div>
-					<img src="/img/compass.svg" alt="how">
+					<img src="/img/ride.svg" alt="how">
 					<br>
 					{{{travel}}}
 				</div>
@@ -52,7 +52,7 @@
             <div class='texte-bloc'>
 				<h2> Infos </h2>
 				<div>
-                    {{public.description}}
+                    {{{public.description}}}
 				</div>
 			</div>
 
@@ -66,14 +66,10 @@
                     <a href='{{pathFor "profile" _id=private.owner}}' class="footer__link">
 						{{userName private.owner}}
 					</a>
-
-					<span class='footer__note footer__note--full'></span>
-					<span class='footer__note footer__note--full'></span>
-					<span class='footer__note'></span>
-					<span class='footer__note'></span>
-					<span class='footer__note'></span>
-
-                    5 avis
+					{{#with userNotices private.owner}}
+						{{>notice}}
+                    	{{nb}} avis
+					{{/with}}
 				</div>
 
 				<div class='footer__inscription'>
