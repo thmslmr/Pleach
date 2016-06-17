@@ -1,12 +1,17 @@
 <template name='home'>
-    {{#unless search}}
-                    <div class="content">
-                        <div class="title">
-                            <h1>Bienvenue sur Meach</h1>
-                        </div>
-                        <div class="subtitle">
-                            <h2>La plateforme communautaire pour apprendre et découvrir de nouvelles choses.</h2>
-                        </div>
-                    </div>
-    {{/unless}}
+        <div class="landing-page__layout {{search}}">
+            <div class="corner corner--home">
+                <div class="corner__content">
+                    <img src="img/logo.svg" class="logo" />
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <h1>Bienvenue sur Pleach</h1>
+                </div>
+                <div class="subtitle">
+                    <h2>La plateforme communautaire pour apprendre et découvrir près de chez soit.</h2>
+                </div>
+            </div>
+        </div>
 </template>

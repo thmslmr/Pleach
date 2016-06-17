@@ -23,7 +23,7 @@ Meteor.publish('userData', function(){
     profileData = Meteor.users.find(
         this.userId,
         {
-            fields : { profile : 1 }
+            fields : { profile : 1}
         }
     );
 
@@ -50,8 +50,8 @@ Meteor.publish('userData', function(){
     );
 
     // Retourne une liste de curseur
-    return [ profileData , convData, lessonData ]
-})
+    return [ profileData , convData, lessonData ];
+});
 
 //Publication des données d'un utilisateur selon son ID
 Meteor.publish('userInfo', function(userId){
@@ -64,19 +64,29 @@ Meteor.publish('userInfo', function(userId){
 
     // Verification de l'existence de l'utilisateur recherché
     if( !Meteor.users.find(userId) ){
-        throw new Meteor.Error('This user does not exist')
+        throw new Meteor.Error('This user does not exist');
         return this.ready();
     }
 
     // Retourne l'utilisateur sans informations services (privées)
-    return Meteor.users.find(
+    profileData = Meteor.users.find(
         userId,
         {
             fields : { 'profile' : 1 }
         }
     );
 
-})
+    lessonData = Lessons.find({
+        'private.owner' : userId
+    },{
+        'public.title' : 1,
+        'pulic.date' : 1,
+        'private.notices' : 1,
+
+    });
+
+    return [profileData, lessonData];
+});
 
 /*
     Publication des cours après recherche :
@@ -94,8 +104,8 @@ Meteor.publish('geoLessons', function(latLng, radius ){
 
     // Verification de la valeur de radius
     if(radius > 20000 && radius < 0){
-        throw new Meteor.Error('Not allowed radius value')
-        return this.ready()
+        throw new Meteor.Error('Not allowed radius value');
+        return this.ready();
     }
 
     // Création d'un index sur le champs loc (coordonnées du cours)
@@ -124,5 +134,5 @@ Meteor.publish('geoLessons', function(latLng, radius ){
         },{
             public : 1,
             private : 1
-        })
-})
+        });
+});

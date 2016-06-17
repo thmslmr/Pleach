@@ -1,13 +1,31 @@
 <template name='register'>
-  <h1>Bienvenue sur la page de connexin</h1>
 
-  {{#if currentUser}}
-    Si ce message s'affiche, c'est que tu es co :D
-    retour sur la <a href="{{pathFor 'home'}}">home</a>
-  {{ /if}}
+    {{#if currentUser}}
+        Tu es deja co :*
+    {{else}}
+        <section class="modal">
+            <div class="modal__connexion">
+                <div class="modal__connexion--header">
+                    <h4>Proposez ou participez à votre premier atelier sur Meach en vous connectant dès maintenant.</h4>
+                </div>
+                <div class="separation-line"></div>
+                <div class="modal__connexion--btn">
+                    <a class="modal__connexion--btn-fb js-facebook" href="#">
+                        <img src="img/fb.svg" />
+                        <h5 class="btn-label">Connectez-vous avec Facebook</h5>
+                    </a>
+                </div>
+                <div class="modal__connexion--btn">
+                    <a class="modal__connexion--btn-goo js-google" href="#">
+                        <img src="img/goo.svg" />
+                        <h5 class="btn-label">Connextez-vous avec Google</h5>
+                    </a>
+                </div>
+                <a class="close-btn" href="#">
+                    <img src="img/close.svg" />
+                </a>
+            </div>
+        </section>
+    {{ /if}}
 
-  {{#unless currentUser}}
-    Vous pouvez pour l'instant vous connecter avec : <br>
-    <a class="js-facebook" href="#">facebook</a> ou <a class="js-google" href="#">google</a>
-  {{/unless}}
 </template>

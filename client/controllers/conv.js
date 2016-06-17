@@ -3,10 +3,10 @@ Template.conversation.onRendered(function(){
     // Changement de la vue de l'utilisateur au rendu de la conversation
     Meteor.call('changeView', this.data._id, function(err){
         if(err){
-            console.log(err)
+            console.log(err);
         }
-    })
-
+    });
+    $('.discussion').scrollTop($('.discussion')[0].scrollHeight);
 });
 
 Template.conversation.helpers({
@@ -15,45 +15,52 @@ Template.conversation.helpers({
     'messages': function(){
         return this.public && this.public.messages;
     },
-
+    'titleConv' : function(){
+        lesson = this.private && Lessons.findOne(this.private.id_cours);
+        return lesson ? lesson.public.title: 'Hodor';
+    },
     // Retourne un boolean pour un message/notification d'avis
     'actionNotice': function(){
         if(this.action){
-            return this.action.name == 'Notif'
+            return this.action.name == 'Notif';
         }
+    },
+    'isMine' : function(){
+        return this.author == Meteor.userId() ? 'message--user' : '';
     }
 
 });
 
 Template.conversation.events({
 
-    // Ajout d'un message dans la conversation au Enter
-    'keyup .js-message' : function(evt){
-        if(evt.which != 13)
-        return;
+    'submit .js-formMessage' : function(evt){
 
-        text = _.trim( $('.js-message').val() );
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+
+        text = _.trim( $('.js-inputMessage').val() );
 
         Meteor.call('addMessage', text, this._id, function(err){
             if(err){
-                console.log(err)
+                console.log(err);
             }
             else{
-                $('.js-message').val("")
+                $('.js-inputMessage').val("");
+                $('.discussion').scrollTop($('.discussion')[0].scrollHeight);
             }
-        })
+        });
 
     }
 
-})
+});
 
 Template.conversation.onDestroyed(function(){
 
     // Changement de la vue de l'utilisateur quand il quitte la conversation
     Meteor.call('changeView', this.data._id, function(err){
         if(err){
-            console.log(err)
+            console.log(err);
         }
-    })
+    });
 
-})
+});

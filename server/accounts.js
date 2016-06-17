@@ -31,14 +31,17 @@ Accounts.onCreateUser(function(options, user){
 		options.profile.family_name = user.services.google.family_name;
 		options.profile.first_name = user.services.google.given_name;
 		options.profile.gender = user.services.google.gender;
+		options.profile.link = "https://plus.google.com/" +  user.services.google.id;
 	}else if(service == 'facebook'){
 		options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?width=150&height=150";
 		options.profile.email = user.services.facebook.email;
 		options.profile.family_name = user.services.facebook.last_name;
 	 	options.profile.first_name = user.services.facebook.first_name;
 		options.profile.gender = user.services.facebook.gender;
+		options.profile.link = user.services.facebook.link;
+		options.profile.service = "facebook";
 	}
-
+	options.profile.service = service;
 	//  Mise à jour du profile de l'utilisateur
 	user.profile = options.profile
 

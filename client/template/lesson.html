@@ -1,32 +1,100 @@
 <template name="lesson">
-    <div class="panel long-panel">
-        <a href="{{pathFor 'home'}}" class="close">x</a>
-        <h2>{{public.title}}</h2>
-        <div class="util">
-            <div>
-                {{public.address.name}}
-            </div>
-            <div>
-                {{dateCalendar public.date}}
-            </div>
-            <div>
-                {{public.price}}€ pour {{public.duration}}
-            </div>
-        </div>
-        <div style= "margin : 20px 0">
-            <strong>Info : </strong>
-            {{public.description}}
-        </div>
-        <div>
-            {{lengthTab private.registered}} Participant sur {{public.nbseats}}
-        </div>
+	<div class="atelier__layout">
+        <a class="close-btn" href="{{pathFor 'home'}}">
+            <img src="/img/close.svg" />
+        </a>
+        <!-- Corner -->
+		<div class="corner">
+			<div class="corner__content">
+				<div>
+					{{public.price}} €
+				</div>
+				<div class="info">
+					{{public.duration}}
+				</div>
+			</div>
+		</div>
+        <!-- Content -->
+        <div class='content'>
+			<div class='en-tete'>
+				<div class="en-tete__title">
+					{{public.title}}
+				</div>
+				<div class="en-tete__niveaux">
+					niveau {{levelLesson public.level}}
+				</div>
+			</div>
+			<div class='prix__petit-ecran'>
+				15€
+				<span style="font-style : italic;">
+                    pour
+                </span>
+				1h30
+			</div>
+			<div class='infos'>
+				<div>
+					<img src="/img/logo.svg" alt="where">
+					<br>
+                    {{{breakAddress public.address.name}}}
+				</div>
+				<div>
+					<img src="/img/time.svg" alt="when">
+					<br>
+					{{dateCalendar public.date}}
+				</div>
+				<div>
+					<img src="/img/ride.svg" alt="how">
+					<br>
+					{{{travel}}}
+				</div>
+			</div>
 
-        {{#if isRegistered}}
-            <i>Inscrit</i>
-            <a href="#" class="js-messaging">Discuter</a>
-        {{else}}
-            <a href="#" class="js-entry">S'inscrire !</a>
-        {{/if}}
+            <div class='texte-bloc'>
+				<h2> Infos </h2>
+				<div>
+                    {{{public.description}}}
+				</div>
+			</div>
 
-    </div>
+			<div class='footer'>
+				<div class='footer__professeur'>
+
+					<a href='{{pathFor "profile" _id=private.owner}}' class="footer__link">
+						<img src='{{userPicture private.owner}}' class='footer__photo' />
+					</a>
+
+                    <a href='{{pathFor "profile" _id=private.owner}}' class="footer__link">
+						{{userName private.owner}}
+					</a>
+					{{#with userNotices private.owner}}
+						{{>notice}}
+                    	{{nb}} avis
+					{{/with}}
+				</div>
+
+				<div class='footer__inscription'>
+
+					<div class="footer__inscription__info">
+                        {{#if isRegistered}}
+                            Vous êtes inscrit
+                        {{else}}
+                            Déjà {{lengthTab private.registered}} inscrit{{pluralize lengthTab private.registered}}  sur {{public.nbseats}}
+                        {{/if}}
+					</div>
+					<div class="footer__inscription__bouton">
+                        {{#if isRegistered}}
+                            <a href="#" class="js-messaging">
+                                Discuter
+                            </a>
+                        {{else}}
+                            <a href='#' class="js-entry">
+                                S'inscrire
+                            </a>
+                        {{/if}}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
