@@ -32,14 +32,10 @@ footer.in-search .footer__search-icon{
     width: 20px;
 }
 
-.creation__layout .close-btn, .recherche__layout .close-btn, .messagerie__layout .close-btn {
-    right: 0;
-    top: 0;
-    z-index: 200;
-}
 .close-btn--bottom{
     bottom : 0 !important;
     top : auto;
+    right : 0;
 }
 .back-btn img{
     width: 40px;
