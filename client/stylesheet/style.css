@@ -36,6 +36,7 @@ footer.in-search .footer__search-icon{
     bottom : 0 !important;
     top : auto;
     right : 0;
+    opacity: 1 !important;
 }
 .back-btn img{
     width: 40px;
