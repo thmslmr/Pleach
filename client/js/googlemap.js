@@ -49,20 +49,11 @@ initGoogleMaps = function(){
             cluster = map_createCluster(map, markers);
 
             // Détection des changements dans la Collection Lessons
+            latLng = Session.get('userLatLng');
+
             Lessons.find({
-                $and : [{
-                        'public.address.loc' :
-                        {
-                            $near: {
-                                $geometry: {
-                                    type: "Point" ,
-                                    coordinates: [ latLng[1] , latLng[0] ]
-                                },
-                                $maxDistance : radius,
-                                $minDistance : 0
-                            },
-                        }
-                    },{
+                $and : [
+                    {
                         'private.owner' : { $ne : this.userId }
                     },{
                         'public.date' : {$gt : new Date() }
@@ -71,6 +62,7 @@ initGoogleMaps = function(){
                 }).observe({
                 // Pour un ajout
                 added: function(document) {
+                    console.log("added");
                     // Création d'un marqueur
                     marker = map_createLessonMarker(map, document._id, document.public.categorie, document.public.address.loc.coordinates);
                     // Ajout à la liste associative
