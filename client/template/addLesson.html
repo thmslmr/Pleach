@@ -24,9 +24,18 @@
                     <div class="info-textarea js-textareaInfo">500</div>
                 </div>
                 <div class="input-group inputs-radio">
-                    <input data-newLesson="level" type="radio" name="level" value="1" checked> Debutant
-                    <input data-newLesson="level" type="radio" name="level" value="2"> Amateur
-                    <input data-newLesson="level" type="radio" name="level" value="3"> Confirmé
+                    <div>
+                        <input data-newLesson="level" type="radio" name="level" value="1" checked>
+                        Debutant
+                    </div>
+                    <div>
+                        <input data-newLesson="level" type="radio" name="level" value="2">
+                        Amateur
+                    </div>
+                    <div>
+                        <input data-newLesson="level" type="radio" name="level" value="3">
+                        Confirmé
+                    </div>
                 </div>
                 <div class="input-group">
                     Catégorie
@@ -42,6 +51,9 @@
                     </select>
                 </div>
             </form>
+            <div class="end-form">
+                <a href="#" class="button js-next">Suivant</a>
+            </div>
         </div>
             <div class="step-content">
                 <form class="nouveau-cours">
@@ -68,6 +80,9 @@
                         <input data-newLesson = 'contact' type="text" value="{{userEmail}}">
                     </div>
                 </form>
+                <div class="end-form">
+                    <a href="#" class="button js-next">Suivant</a>
+                </div>
             </div>
             <div class="step-content">
         		<form class="nouveau-cours">
@@ -80,10 +95,10 @@
         				<input data-newLesson = 'price' placeholder="Tarif" type="number" step="1" maxlength="3">
         			</div>
         		</form>
+                <div class="end-form">
+                    <a href="#" class="button js-submit">C'est parti !</a>
+                </div>
             </div>
-        </div>
-        <div class="end-form">
-            <a href="#" class="button js-next">Suivant</a>
         </div>
 	</div>
 </template>

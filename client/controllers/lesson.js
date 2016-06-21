@@ -33,14 +33,14 @@ Template.lesson.helpers({
         return this.private && this.private.registered.indexOf( Meteor.userId() ) > -1;
     },
     'levelLesson' : function(level){
-        l = ["debutant","amateur","expert"];
+        l = ["débutant","amateur","expert"];
         return l[level - 1];
     },
     'breakAddress' : function(address){
         return address && address.replace(',','<br/>');
     },
     'travel' : function(){
-        return Session.get('travel') && Session.get('travel')[0] + '<br/>' + Session.get('travel')[1];
+        return Session.get('travel') && Session.get('travel')[0] + '<br/>' + Session.get('travel')[1] || "trajet indisponible";
     }
 });
 

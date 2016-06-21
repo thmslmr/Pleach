@@ -50,24 +50,24 @@ initGoogleMaps = function(){
 
             // Détection des changements dans la Collection Lessons
             Lessons.find({
-                $and : [{
-                        'public.address.loc' :
-                        {
-                            $near: {
-                                $geometry: {
-                                    type: "Point" ,
-                                    coordinates: [ latLng[1] , latLng[0] ]
-                                },
-                                $maxDistance : radius,
-                                $minDistance : 0
-                            },
-                        }
-                    },{
-                        'private.owner' : { $ne : this.userId }
-                    },{
-                        'public.date' : {$gt : new Date() }
-                    }
-                ]
+                // $and : [{
+                //         'public.address.loc' :
+                //         {
+                //             $near: {
+                //                 $geometry: {
+                //                     type: "Point" ,
+                //                     coordinates: [ latLng[1] , latLng[0] ]
+                //                 },
+                //                 $maxDistance : radius,
+                //                 $minDistance : 0
+                //             },
+                //         }
+                //     },{
+                //         'private.owner' : { $ne : this.userId }
+                //     },{
+                //         'public.date' : {$gt : new Date() }
+                //     }
+                // ]
                 }).observe({
                 // Pour un ajout
                 added: function(document) {

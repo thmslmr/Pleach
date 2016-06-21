@@ -24,11 +24,12 @@ Template.addLesson.events({
             title : _.trim( $('[data-newLesson = "title"]').val() ),
             description : _.trim( $('[data-newLesson = "description"]').val().replace(/\r?\n/g, '<br />') ),
             categorie : _.trim( $('[data-newLesson = "categorie"]').val() ),
-            level : parseInt( $('[data-newLesson = "level"]').val() ),
+            level : parseInt( $('[data-newLesson = "level"]:checked').val() ),
             nbseats : parseInt( $('[data-newLesson = "nbseats"]').val() ),
             date : moment( $('[data-newLesson = "date"]').val() ),
             price : parseInt( $('[data-newLesson   ="price"]').val() ),
             duration : _.trim( $('[data-newLesson = "duration"]').val() ),
+            contact : _.trim( $('[data-newLesson = "contact"]').val() )
         };
 
         timestart = _.trim( $('[data-newLesson = "timestart"]').val() ).split('h');
@@ -63,9 +64,6 @@ Template.addLesson.events({
         dist = parseInt($('.step-content:nth-child(' + step_nb + ')').offset().left) - 50;
         $('.all-container').velocity({'translateX' : '-=' + dist}, {'easing' : 'ease-out'});
         $('.step:nth-child(' + step_nb + ')').addClass('step--done');
-        if(step_nb == 3){
-            $('.end-form a').addClass('js-submit').removeClass('js-next').text("C'est parti !");
-        }
     },
     'keyup .js-hour' : function(evt){
         val = $(evt.target).val();

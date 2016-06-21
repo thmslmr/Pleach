@@ -25,11 +25,11 @@
 				</div>
 			</div>
 			<div class='prix__petit-ecran'>
-				15€
+				{{public.price}}€
 				<span style="font-style : italic;">
                     pour
                 </span>
-				1h30
+				{{public.duration}}
 			</div>
 			<div class='infos'>
 				<div>
@@ -49,10 +49,20 @@
 				</div>
 			</div>
 
-            <div class='texte-bloc'>
-				<h2> Infos </h2>
+            <div class='text-bloc'>
+				<div>
+					Informations
+				</div>
 				<div>
                     {{{public.description}}}
+				</div>
+			</div>
+			<div class='text-bloc'>
+				<div>
+					Contact
+				</div>
+				<div>
+					{{public.contact}}
 				</div>
 			</div>
 
@@ -63,7 +73,7 @@
 						<img src='{{userPicture private.owner}}' class='footer__photo' />
 					</a>
 
-                    <a href='{{pathFor "profile" _id=private.owner}}' class="footer__link">
+                    <a href='{{pathFor "profile" _id=private.owner}}' class="footer__link slide-link" data-letters="{{userName private.owner}}">
 						{{userName private.owner}}
 					</a>
 					{{#with userNotices private.owner}}
@@ -83,11 +93,11 @@
 					</div>
 					<div class="footer__inscription__bouton">
                         {{#if isRegistered}}
-                            <a href="#" class="js-messaging">
+                            <a href="#" class="js-messaging button">
                                 Discuter
                             </a>
                         {{else}}
-                            <a href='#' class="js-entry">
+                            <a href='#' class="js-entry button">
                                 S'inscrire
                             </a>
                         {{/if}}
