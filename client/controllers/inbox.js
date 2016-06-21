@@ -8,7 +8,6 @@ Template.inbox.onCreated(function(){
 
         Meteor.subscribe('userInfo', u.user);
     });
-
 });
 Template.inbox.helpers({
 

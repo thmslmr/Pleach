@@ -1,31 +1,81 @@
-// Template.inbox.onRendered(function(){
-//
-//         $('.messagerie__layout').velocity('transition.slideLeftBigIn')
-// })
-//
-// Template.inbox.uihooks({
-//
-//         '.messagerie__layout': {
-//             remove: function(node, tpl) {
-//                 $('.messagerie__layout').velocity('transition.slideLeftBigIn')
-//                 $(node).remove();
-//             }
-//         }
-//     })
-
-    Template.inbox.uihooks({
-      '.inbox': {
-        container: '.messagerie__layout',
+Template.inbox.uihooks({
+  '.messagerie__layout': {
         insert: function(node, next, tpl) {
-          console.log('Inserting an item.');
-          $(node).insertBefore(next);
+            $(node).insertBefore(next);
+            $(node).velocity('transition.slideLeftBigIn',{
+                duration: 500
+            })
         },
-        move: function(node, next, tpl) {
-          console.log('Moving an item.');
-        },
+
         remove: function(node, tpl) {
-          console.log('Removing an item.');
-          $(node).remove();
+            $(node).velocity('transition.slideLeftBigOut',{
+                duration: 500,
+                complete : function(){
+                    $(node).remove();
+                }
+            })
+          console.log('test');
         }
-      }
-    });
+    }
+})
+
+Template.profile.uihooks({
+    '.profil__layout': {
+        insert: function(node, next, tp1) {
+            $(node).insertBefore(next);
+            $(node).velocity('transition.slideDownBigIn',{
+                duration: 500
+            })
+        },
+
+        remove: function(node, tp1){
+            $(node).velocity('transition.slideUpBigOut',{
+                duration: 500,
+                complete : function(){
+                    $(node).remove();
+                }
+            })
+        }
+    }
+
+})
+
+Template.addLesson.uihooks({
+    '.creation__layout': {
+        insert: function(node, next, tp1){
+            $(node).insertBefore(next);
+            $(node).velocity('transition.slideLeftBigIn',{
+                duration: 500
+            })
+        },
+
+        remove: function(node, tp1){
+            $(node).velocity('transition.slideLeftBigOut',{
+                duration: 500,
+                complete: function(){
+                    $(node).remove()
+                }
+            })
+        }
+    }
+})
+
+Template.home.uihooks({
+    'landing-page__layout': {
+        insert: function(node, next, tp1){
+            $(node).insertBefore(next);
+            $(node).velocity('transition.expandIn',{
+                duration: 500
+            })
+        },
+
+        remove: function(node, tp1){
+            $(node).velocity('transition.expandOut',{
+                duration: 500,
+                complete: function(){
+                    $(node).remove()
+                }
+            })
+        }
+    }
+})
