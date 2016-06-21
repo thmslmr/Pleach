@@ -6,15 +6,36 @@
 
     <!-- header -->
     <header>
-        {{#if currentUser}}
-			<a href='{{pathFor "addLesson" }}' class="header__purpose">Proposer un atelier</a>
-			<a href='{{pathFor "inbox"}}' class="header__chat">{{notViewConv}} Messagerie</a>
-			<a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{userPicture}}" alt="{{userName}}"> </a>
+        <div class="icon-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            {{#if currentUser}}
+            <a href='{{pathFor "addLesson" }}' class="button-gradient">Proposer un atelier</a>
+            <a href='{{pathFor "inbox"}}' class="slide-link slide-link--big" data-letters="{{notViewConv}} Messagerie">{{notViewConv}} Messagerie</a>
+            <a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{userPicture}}" alt="{{userName}}"> </a>
             <a href="#" class="logout-icon js-logout"> <img src="/img/logout.svg" alt=""> </a>
-        {{else}}
-            <a class="header__sign-in--btn" href='{{pathFor "register"}}'> Connexion</a>
-        {{/if}}
+            {{else}}
+            <a class="button-gradient" href='{{pathFor "register"}}'> Connexion</a>
+            {{/if}}
+        </div>
     </header>
+    <ul class="menu">
+        <a href='{{pathFor "profile" _id=myId}}'><li>
+            <img src="{{userPicture}}" alt="{{userName}}"> {{userName}}
+        </li></a>
+        <a href='{{pathFor "addLesson" }}'><li>
+            <img src="/img/logout.svg" alt=""> Proposer un atelier
+        </li></a>
+        <a href='{{pathFor "inbox"}}'><li>
+            <img src="/img/logout.svg" alt=""> {{notViewConv}} Messagerie
+        </li></a>
+        <a href="#" class="js-logout"><li>
+            <img src="/img/logout.svg" alt=""> Deconnexion
+        </li></a>
+    </ul>
 
     {{>yield}}
 
@@ -24,12 +45,14 @@
             <img src="/img/search.svg" alt="search">
         </a>
         <form class="search-form">
-            <a href="#" class="search-form__position js-myposition"><img src="/img/logo.svg" alt=""></a>
-            <div class="input-group">
-                <input class="js-address" placeholder="Adresse" type="text" name="username" />
-                <input class="js-radius" placeholder="Amplitude de déplacement" type="number" name="username" maxlength="3"/>
+                <div class="search-form__address">
+                    <a href="#" class="search-form__position js-myposition"><img src="/img/logo_g.svg" alt=""></a>
+                    <input class="js-address" placeholder="Adresse" type="text" name="username" />
+                </div>
+                <div class="search-form__radius">
+                    <input class="js-radius" placeholder="Amplitude de déplacement" type="number" name="username" maxlength="3"/>
+                </div>
                 <a class="search-form__btn js-searchLessons" href=""> Rechercher </a>
-            </div>
         </form>
     </footer>
 </template>

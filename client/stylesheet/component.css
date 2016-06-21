@@ -1,0 +1,131 @@
+/* SLIDE LINK */
+.slide-link {
+	position: relative;
+	font: 18px 'Open sans';
+	display: inline-block;
+	overflow: hidden;
+}
+
+.slide-link::before {
+	content: attr(data-letters);
+	position: absolute;
+	overflow: hidden;
+	color: #53e1dc;
+	white-space: nowrap;
+	width: 0%;
+	transition: width .2s;
+}
+
+.slide-link:hover::before {
+	width: 100%;
+}
+
+.slide-link--big{
+	color: #868ab6;
+	text-transform: uppercase;
+}
+
+/* GRADIENT BUTTON*/
+
+.button-gradient {
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    background-color: #F9F9F9;
+    padding : 8px 15px;
+    background-clip: padding-box;
+    text-decoration : none;
+    color : rgba(131, 138, 182, 1);
+    text-transform : uppercase;
+    font : 18px 'Open sans';
+    transition : all 0.5s
+}
+
+.button-gradient::after {
+    position: absolute;
+    top: -2px; bottom: -2px;
+    left: -2px; right: -2px;
+    background-image: linear-gradient(to right, rgba(131, 138, 182, 1) 0%, rgba(83, 225, 220, 1) 100%);;
+    content: '';
+    z-index: -1;
+    border-radius: 40px;
+}
+.button-gradient:hover{
+  color : #fff;
+  background-color : transparent;
+}
+
+/* WHITE BUTTON */
+
+.button{
+	padding: 10px 30px;
+    background-color: #fff;
+    border-radius: 100px;
+    font-size: 20px;
+	color : #868ab6;
+    text-transform: uppercase;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* MENU */
+
+.menu{
+	position: fixed;
+	margin: 0;
+	display: none;
+	background-color: #fff;
+	transform: translateY(-100%);
+	transition : all .5s;
+	padding : 10px 0px 10px 50px;
+	width: 100%;
+	z-index: 200;
+	opacity: 0;
+}
+.menu li{
+	display: flex;
+	width: 100%;
+	font-size: 20px;
+	color : #868ab6;
+	align-items: center;
+	margin: 10px 0;
+}
+.menu li img{
+	width : 40px;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+.menu.menu--open{
+	opacity: 1;
+	transform: translateY(0);
+	box-shadow: 3px 3px 50px grey;
+}
+.icon-menu{
+	display: none;
+	position: fixed;
+	z-index: 500;
+	top : 15px;
+	left : 15px;
+}
+.icon-menu span{
+	display: block;
+    width: 30px;
+    height: 4px;
+    border-radius: 2px;
+    background: #868ab6;
+	transition: all .3s;
+}
+.icon-menu span:first-child{
+	transform: translateY(-5px);
+}
+.icon-menu span:last-child{
+	transform: translateY(5px);
+}
+.menu--open span:nth-of-type(2){
+	opacity : 0
+}
+.menu--open span:first-child{
+	transform: translateY(4px);
+}
+.menu--open span:last-child{
+	transform: translateY(-4px);
+}

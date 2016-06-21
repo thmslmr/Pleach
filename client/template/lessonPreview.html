@@ -50,14 +50,14 @@
         			</div>
         		</div>
         		<div class='plus'>
-        			<a href='{{pathFor "lesson" _id=_id}}'>  Plus d'infos ... </a>
+        			<a href='{{pathFor "lesson" _id=_id}}' class="slide-link" data-letters="Plus d'infos ...">Plus d'infos ...</a>
         		</div>
             </div>
     		<div class='footer'>
     			<a href='#' class="footer__link">
     				<img src="{{userPicture private.owner}}" alt="{{userName private.owner}}" class='footer__photo' />
     			</a>
-    			<a href="{{pathFor 'profile' _id=private.owner}}" class="footer__link">{{userFirstName private.owner}}</a>
+    			<a href="{{pathFor 'profile' _id=private.owner}}" class="footer__link slide-link" data-letters="{{userFirstName private.owner}}">{{userFirstName private.owner}}</a>
                 <div class="grade">
                     {{#with userNotices private.owner}}
                         {{>notice}}

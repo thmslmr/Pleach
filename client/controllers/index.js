@@ -146,6 +146,9 @@ Template.index.events({
     },
     'click .map-container' : function(){
         $('footer').addClass('in-search');
+    },
+    'click .icon-menu' : function(){
+        $('.menu, .icon-menu').toggleClass('menu--open');
     }
 });
 

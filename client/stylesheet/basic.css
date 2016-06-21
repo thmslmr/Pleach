@@ -1,0 +1,34 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+button{
+    border: none;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input, textarea,
+::-webkit-input-placeholder {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+}
+:focus{
+    outline : 0;
+}

@@ -33,10 +33,9 @@ Template.conversation.helpers({
 
 Template.conversation.events({
 
-    'submit .js-formMessage' : function(evt){
+    'submit .js-formMessage' : function(event){
 
-        evt.preventDefault();
-        evt.stopImmediatePropagation();
+        event.preventDefault();
 
         text = _.trim( $('.js-inputMessage').val() );
 
