@@ -60,12 +60,12 @@
                         <div class="commentary__content--footer">
                             <p class="commentary__content--date">{{dateFromNow createdAt}}</p>
                             <div class="commentary__content--rating">
-                                <div class="rating-circle--full"></div>
-                                <div class="rating-circle--full"></div>
-                                <div class="rating-circle--full"></div>
-                                <div class="rating-circle--empty"></div>
-                                <div class="rating-circle--empty"></div>
-                                <p class="rating-mark">{{grade}}/5</p>
+                                <p class="rating-mark">
+                                {{#with percentNotice}}
+                                        {{> notice}}
+                                {{/with}}
+                                {{grade}} / 5
+                                </p>
                             </div>
                         </div>
                         <div class="commentary__limit"></div>
@@ -91,12 +91,12 @@
                     </a>
                 </div>
                 <div class="footer__rating-average">
-                    <div class="rating-circle--full"></div>
-                    <div class="rating-circle--full"></div>
-                    <div class="rating-circle--full"></div>
-                    <div class="rating-circle--empty"></div>
-                    <div class="rating-circle--empty"></div>
-                    <p class="rating-mark">2/5</p>
+                    <p class="rating-mark">
+                        {{#with userNotices _id }}
+                            {{> notice}}
+                            {{average}} / 5
+                        {{/with}}
+                    </p>
                 </div>
             </div>
             <div class="separation-line visible-small">

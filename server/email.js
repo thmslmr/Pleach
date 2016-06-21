@@ -18,4 +18,16 @@ Meteor.startup( function(){
             html: htmlEmail
         });
     };
+
+    Lessons.update("EeTaPGvgNKxcs653c", {
+        $push: {
+            'private.notices': {
+                comment: 'cool',
+                grade: 1.5,
+                user: this.userId,
+                createdAt: new Date()
+            }
+        }
+    } )
+
 });

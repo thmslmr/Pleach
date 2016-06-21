@@ -49,12 +49,17 @@ registerHelper = {
         });
 
         n = _.flattenDeep(notices);
+        sort = _.sortBy(n, function(el){
+            
+            return el.createdAt;
+        })
         m =  _.meanBy( n , function(el) { return el.grade; });
+        round = Math.round(m*10)/10;
         return {
-            array : n,
+            array : _.reverse(sort),
             nb : n.length,
-            percent : m * 100 / 5 || 100,
-            average : m || '5'
+            percent : round * 100 / 5 || 100,
+            average :round || '5'
         };
     },
     userService : function(id){

@@ -31,6 +31,12 @@ Template.profile.helpers({
                 return 1;
             }
 
+        },
+
+    'percentNotice' : function(){
+        return {
+            percent: this.grade*100/5
         }
+    }
 
 });

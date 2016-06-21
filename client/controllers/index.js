@@ -7,7 +7,7 @@ Template.index.onRendered(function(){
     initGoogleMaps();
 
     Session.set({
-        'userLatLng': null,
+        'userLatLng': ["",""],
         'search' : false
     });
 
@@ -99,6 +99,7 @@ Template.index.events({
         // Vérifie que les champs ont été rentré
         if( !Session.get('userLatLng') || !$('.js-radius').val() )
         return null;
+
 
         // Récuperation de la latitude et longitude
         lat = Session.get('userLatLng')[0];
