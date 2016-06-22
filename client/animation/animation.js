@@ -33,23 +33,6 @@ Template.inbox.uihooks({
 
 });
 
-// Template.inbox.uihooks({
-//
-//     '.message__layout *': {
-//         insert: function(node, next, tp1){
-//             conv = Router.current().url.indexOf('conversation') > -1 ? true : false
-//             $(node).insertBefore(next);
-//             if(conv){
-//                 $(node).velocity('transition.slideLeftBigIn',{
-//                     duration: 500
-//                 });
-//             }
-//         },
-//
-//         remove:
-//     }
-// })
-
 Template.conversation.uihooks({
     '.message__layout': {
         insert: function(node, next, tp1){

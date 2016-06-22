@@ -12,7 +12,7 @@ Template.lesson.onRendered(function(){
         directionsService.route({
             origin : new google.maps.LatLng(Session.get('userLatLng')[0], Session.get('userLatLng')[1]),
             destination : new google.maps.LatLng(lessonLocation[1], lessonLocation[0]),
-            travelMode : google.maps.TravelMode.BICYCLING,
+            travelMode : google.maps.TravelMode.DRIVING,
         }, function(result, status) {
             if (status == google.maps.DirectionsStatus.OK) {
                 data = result.routes[0].legs[0];

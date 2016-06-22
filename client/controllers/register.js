@@ -3,8 +3,6 @@ Template.register.events({
         Meteor.loginWithFacebook({loginStyle : 'redirect'}, function(err){
             if(err){
                 console.log(err.reason);
-            }else{
-                Meteor.subscribe('userData');
             }
         });
     },
@@ -12,8 +10,6 @@ Template.register.events({
         Meteor.loginWithGoogle({loginStyle : 'redirect'}, function(err){
             if(err){
                 console.log(err.reason);
-            }else{
-                Meteor.subscribe('userData');
             }
         });
     }

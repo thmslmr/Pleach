@@ -30,38 +30,42 @@
                 </div>
             </div>
             <div class="right-part">
-                {{#if userNotices.noNotices}}
-                    <div class="nocommentary">
-                        <img src="/img/empty_commentary.svg"/>
-                    </div>
-                {{/if}}
-                {{#each userNotices.array}}
-                <div class="commentary">
-                    <div class="commentary__user">
-                        <div class="commentary__user--picture">
-                            <img src="{{userPicture user}}" />
+                {{#with userNotices _id}}
+                    {{#if noNotices}}
+                        <div class="nocommentary">
+                            <img src="/img/empty_commentary.svg"/>
                         </div>
-                        <p class="commentary__user--name">{{userName user}}</p>
-                    </div>
-                    <div class="commentary__content">
-                        <p class="commentary__content--paragraph">
-                            {{comment}}
-                        </p>
-                        <div class="commentary__content--footer">
-                            <p class="commentary__content--date">{{dateFromNow createdAt}}</p>
-                            <div class="commentary__content--rating">
-                                <p class="rating-mark">
-                                {{#with percentNotice}}
-                                        {{> notice}}
-                                {{/with}}
-                                {{grade}} / 5
+                    {{/if}}
+                {{/with}}
+                {{#with userNotices _id}}
+                    {{#each array}}
+                        <div class="commentary">
+                            <div class="commentary__user">
+                                <div class="commentary__user--picture">
+                                    <img src="{{userPicture user}}" />
+                                </div>
+                                <p class="commentary__user--name">{{userName user}}</p>
+                            </div>
+                            <div class="commentary__content">
+                                <p class="commentary__content--paragraph">
+                                    {{user}} {{comment}}
                                 </p>
+                                <div class="commentary__content--footer">
+                                    <p class="commentary__content--date">{{dateFromNow createdAt}}</p>
+                                    <div class="commentary__content--rating">
+                                        <p class="rating-mark">
+                                        {{#with percentNotice}}
+                                                {{> notice}}
+                                        {{/with}}
+                                        {{grade}} / 5
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="commentary__limit"></div>
                             </div>
                         </div>
-                        <div class="commentary__limit"></div>
-                    </div>
-                </div>
-                {{/each}}
+                    {{/each}}
+                {{/with}}
             </div>
         </div>
         <section class="profil__footer">

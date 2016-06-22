@@ -16,7 +16,6 @@ Template.profile.helpers({
 
     'userBadge' : function(){
         nb = Lessons.find({'private.owner' : this._id}).count();
-        console.log(nb);
         level = 1;
 
             if(nb>49){
