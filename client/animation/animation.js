@@ -2,21 +2,79 @@ Template.inbox.uihooks({
   '.messagerie__layout': {
         insert: function(node, next, tpl) {
             $(node).insertBefore(next);
-            $(node).velocity('transition.slideLeftBigIn',{
+            fromConv = Session.get('conv');
+            if(fromConv){
+                wrapper = $(node).children('.wrapper2-animation');
+                wrapper.velocity('transition.slideLeftBigIn',{
+                    duration: 500,
+                    
+                })
+            }else{
+                $(node).velocity('transition.slideLeftBigIn',{
+                    duration: 500
+                });
+            }
+        },
+
+        remove: function(node, tpl) {
+            conv2 = Router.current().url.indexOf('conversation') > -1 ? true : false
+            if(!conv2){
+                $(node).velocity('transition.slideLeftBigOut',{
+                    duration: 500,
+                    complete : function(){
+                        $(node).remove();
+                    }
+                });
+            }else{
+                $(node).remove();
+            }
+        }
+    },
+
+});
+
+// Template.inbox.uihooks({
+//
+//     '.message__layout *': {
+//         insert: function(node, next, tp1){
+//             conv = Router.current().url.indexOf('conversation') > -1 ? true : false
+//             $(node).insertBefore(next);
+//             if(conv){
+//                 $(node).velocity('transition.slideLeftBigIn',{
+//                     duration: 500
+//                 });
+//             }
+//         },
+//
+//         remove:
+//     }
+// })
+
+Template.conversation.uihooks({
+    '.message__layout': {
+        insert: function(node, next, tp1){
+            $(node).insertBefore(next);
+            wrapper = $(node).children('.wrapper-animation');
+            wrapper.velocity('transition.slideLeftBigIn',{
                 duration: 500
             });
         },
 
-        remove: function(node, tpl) {
-            $(node).velocity('transition.slideLeftBigOut',{
-                duration: 500,
-                complete : function(){
-                    $(node).remove();
-                }
-            });
+        remove: function(node, tp1){
+            conv2 = Router.current().url.indexOf('inbox') > -1 ? true : false
+            if(conv2){
+                $(node).remove();
+            }else{
+                $(node).velocity('transition.slideLeftBigOut',{
+                    duration: 500,
+                    complete : function(){
+                        $(node).remove();
+                    }
+                })
+            }
         }
     }
-});
+})
 
 Template.profile.uihooks({
     '.profil__layout': {

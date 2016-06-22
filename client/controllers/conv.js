@@ -61,5 +61,4 @@ Template.conversation.onDestroyed(function(){
             console.log(err);
         }
     });
-
 });
