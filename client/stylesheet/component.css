@@ -1,3 +1,12 @@
+.notfound{
+	width: 100vw;
+	height: 100vh;
+	background: url('/img/404.png') no-repeat center center fixed;
+	background-size: cover;
+	z-index: 100000;
+	position: fixed;
+}
+
 /* SLIDE LINK */
 .slide-link {
 	position: relative;
@@ -89,7 +98,7 @@
 	color : #868ab6;
 	align-items: center;
 	justify-content: center;
-	margin: 10px 0 20px; 
+	margin: 10px 0 20px;
 }
 .menu li img{
 	width : 40px;
