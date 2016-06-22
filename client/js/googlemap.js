@@ -62,7 +62,6 @@ initGoogleMaps = function(){
                 }).observe({
                 // Pour un ajout
                 added: function(document) {
-                    console.log("added");
                     // Création d'un marqueur
                     marker = map_createLessonMarker(map, document._id, document.public.categorie, document.public.address.loc.coordinates);
                     // Ajout à la liste associative
