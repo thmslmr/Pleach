@@ -23,20 +23,23 @@
         </div>
     </header>
     <ul class="menu">
-        <a href='{{pathFor "profile" _id=myId}}'><li>
-            <img src="{{userPicture}}" alt="{{userName}}"> {{userName}}
-        </li></a>
-        <a href='{{pathFor "addLesson" }}'><li>
-            <img src="/img/logout.svg" alt=""> Proposer un atelier
-        </li></a>
-        <a href='{{pathFor "inbox"}}'><li>
-            <img src="/img/logout.svg" alt=""> {{notViewConv}} Messagerie
-        </li></a>
-        <a href="#" class="js-logout"><li>
-            <img src="/img/logout.svg" alt=""> Deconnexion
-        </li></a>
+        {{#if currentUser}}
+            <li>
+                <a href='{{pathFor "profile" _id=myId}}'> <img src="{{userPicture}}" alt="{{userName}}"> </a>
+                <a href="#" class="js-logout"><img src="/img/logout_w.svg" alt=""></a>
+            </li>
+            <li>
+                <a href='{{pathFor "addLesson" }}' class="button-menu">Proposer un atelier</a>
+            </li>
+            <li>
+                <a href='{{pathFor "inbox"}}'>{{notViewConv}} Messagerie </a>
+            </li>
+        {{else}}
+            <li>
+                <a href="{{pathFor 'register'}}">Connexion</a>
+            </li>
+        {{/if}}
     </ul>
-
     {{>yield}}
 
     <!-- <a href="#" class="js-myposition">Ici</a> -->
