@@ -61,7 +61,7 @@ footer.in-search .footer__search-icon{
     padding : 20px;
     width: 100px;
 }
-@media screen and (max-width : 640px){
+@media screen and (max-width : 800px){
     .logo{
         display: none;
     }
@@ -165,4 +165,7 @@ option{
     margin: 10px 0;
     text-align: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.hidden{
+    opacity: 0;
 }

@@ -66,6 +66,11 @@
         width: 80% !important;
     }
 }
+@media  (max-width : 800px) {
+    .landing-page__layout .content img{
+        width: 50%;
+    }
+}
 
 @media (min-width: 640px) and (max-width: 1024px) {
   .landing-page__layout {
