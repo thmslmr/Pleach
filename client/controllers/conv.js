@@ -48,7 +48,7 @@ Template.conversation.events({
                 $('.discussion').scrollTop($('.discussion')[0].scrollHeight);
             }
         });
-
+        return false;
     }
 
 });
