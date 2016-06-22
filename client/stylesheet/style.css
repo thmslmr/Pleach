@@ -15,6 +15,10 @@ header{
     position: fixed;
     z-index: 300;
 }
+header div:last-child{
+    display: flex;
+    align-items: center;
+}
 @media screen and (max-width : 800px){
     header .icon-menu{
         display: block

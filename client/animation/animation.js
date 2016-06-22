@@ -4,7 +4,7 @@ Template.inbox.uihooks({
             $(node).insertBefore(next);
             $(node).velocity('transition.slideLeftBigIn',{
                 duration: 500
-            })
+            });
         },
 
         remove: function(node, tpl) {
@@ -13,11 +13,10 @@ Template.inbox.uihooks({
                 complete : function(){
                     $(node).remove();
                 }
-            })
-          console.log('test');
+            });
         }
     }
-})
+});
 
 Template.profile.uihooks({
     '.profil__layout': {
@@ -25,7 +24,7 @@ Template.profile.uihooks({
             $(node).insertBefore(next);
             $(node).velocity('transition.slideDownBigIn',{
                 duration: 500
-            })
+            });
         },
 
         remove: function(node, tp1){
@@ -34,11 +33,11 @@ Template.profile.uihooks({
                 complete : function(){
                     $(node).remove();
                 }
-            })
+            });
         }
     }
 
-})
+});
 
 Template.addLesson.uihooks({
     '.creation__layout': {
@@ -46,19 +45,19 @@ Template.addLesson.uihooks({
             $(node).insertBefore(next);
             $(node).velocity('transition.slideLeftBigIn',{
                 duration: 500
-            })
+            });
         },
 
         remove: function(node, tp1){
             $(node).velocity('transition.slideLeftBigOut',{
                 duration: 500,
                 complete: function(){
-                    $(node).remove()
+                    $(node).remove();
                 }
-            })
+            });
         }
     }
-})
+});
 
 Template.home.uihooks({
     'landing-page__layout': {
@@ -66,16 +65,16 @@ Template.home.uihooks({
             $(node).insertBefore(next);
             $(node).velocity('transition.expandIn',{
                 duration: 500
-            })
+            });
         },
 
         remove: function(node, tp1){
             $(node).velocity('transition.expandOut',{
                 duration: 500,
                 complete: function(){
-                    $(node).remove()
+                    $(node).remove();
                 }
-            })
+            });
         }
     }
-})
+});
