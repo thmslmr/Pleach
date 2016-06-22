@@ -1304,6 +1304,12 @@
     .message__layout .en-tete__message{
         padding: 30px !important;
     }
+    .message__layout .en-tete__message__title{
+        font-size: 23px !important;
+    }
+    .message__layout .en-tete__message__date{
+        font-size: 18px !important;
+    }
     .message__layout .discussion{
         padding: 0 30px !important;
     }
