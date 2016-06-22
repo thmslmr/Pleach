@@ -1,4 +1,61 @@
 <template name="index">
-  Coucou, ceci est le 1er template du projet. <br>
-  {{>yield}}
+    <!-- map -->
+    <div class="map-container">
+        {{> googleMap name="map" options=mapOptions}}
+    </div>
+
+    <!-- header -->
+    <div class="icon-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <header>
+        <div>
+            {{#if currentUser}}
+            <a href='{{pathFor "addLesson" }}' class="button-gradient">Proposer un atelier</a>
+            <a href='{{pathFor "inbox"}}' class="slide-link slide-link--big" data-letters="{{notViewConv}} Messagerie">{{notViewConv}} Messagerie</a>
+            <a href='{{pathFor "profile" _id=myId}}' class="header__picture"> <img src="{{userPicture}}" alt="{{userName}}"> </a>
+            <a href="#" class="logout-icon js-logout"> <img src="/img/logout.svg" alt=""> </a>
+            {{else}}
+            <a class="button-gradient" href='{{pathFor "register"}}'> Connexion</a>
+            {{/if}}
+        </div>
+    </header>
+    <ul class="menu">
+        {{#if currentUser}}
+            <li>
+                <a href='{{pathFor "profile" _id=myId}}'> <img src="{{userPicture}}" alt="{{userName}}"> </a>
+                <a href="#" class="js-logout"><img src="/img/logout_w.svg" alt=""></a>
+            </li>
+            <li>
+                <a href='{{pathFor "addLesson" }}' class="button-menu">Proposer un atelier</a>
+            </li>
+            <li>
+                <a href='{{pathFor "inbox"}}'>{{notViewConv}} Messagerie </a>
+            </li>
+        {{else}}
+            <li>
+                <a href="{{pathFor 'register'}}">Connexion</a>
+            </li>
+        {{/if}}
+    </ul>
+    {{>yield}}
+
+    <!-- <a href="#" class="js-myposition">Ici</a> -->
+    <footer>
+        <a href="#" class="footer__search-icon js-showForm">
+            <img src="/img/search.svg" alt="search">
+        </a>
+        <form class="search-form">
+                <div class="search-form__address">
+                    <a href="#" class="search-form__position js-myposition"><img src="/img/logo_g.svg" alt=""></a>
+                    <input class="js-address" placeholder="Adresse" type="text" name="username" />
+                </div>
+                <div class="search-form__radius">
+                    <input class="js-radius" placeholder="Amplitude de déplacement" type="number" name="username" maxlength="3"/>
+                </div>
+                <a class="search-form__btn js-searchLessons" href=""> Rechercher </a>
+        </form>
+    </footer>
 </template>

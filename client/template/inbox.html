@@ -1,0 +1,36 @@
+<template name="inbox">
+		<div class="messagerie__layout">
+            <a class="close-btn" href="{{pathFor 'home'}}">
+                <img src="/img/close.svg" />
+            </a>
+			<div class='en-tete__messagerie'>
+                {{#if nbConvNotView}}
+				    <div class='en-tete__messagerie__cercle'>{{nbConvNotView}}</div>
+                {{/if}}
+				<div class='en-tete__messagerie__titre'>Messagerie</div>
+				<div class='en-tete__messagerie__nb_conversation'>{{nbConversations}} conversation{{pluralize nbConversations}}</div>
+			</div>
+			<div class="wrapper2-animation">
+	            {{#each conversations}}
+	                <a href='{{pathFor "conversation" _id=_id}}'>
+	        			<div class='messagerie__conversation'>
+	    					<div class="conversation__photo">
+	    						<img src='{{userPicture speaker}}'>
+	    					</div>
+	    					<div class='conversation__texte'>
+	    						<div class='conversation__nom'>
+	                                {{#unless isView}}
+	    							    <div class='conversation__nonlu'></div>
+	                                {{/unless}}
+	                                {{titleLesson}}
+	    						</div>
+	    						<div class='conversation__message'>
+	                                {{lastMessage}}
+	    						</div>
+	    					</div>
+	        			</div>
+	                </a>
+	            {{/each}}
+			</div>
+		</div>
+</template>

@@ -1,0 +1,104 @@
+<template name="addLesson">
+    <div class="creation__layout">
+        <a class="close-btn" href="{{pathFor 'home'}}">
+            <img src="/img/close.svg" />
+        </a>
+		<div class='en-tete'>
+			Mon atelier
+		</div>
+		<div class="steps">
+			<a class="step step--done" href="#"></a>
+			<a class="step" href="#"></a>
+			<a class="step" href="#"></a>
+		</div>
+        <div class="all-container">
+        <div class="step-content">
+            <form>
+                <div class="input-group">
+                    Titre
+                    <input data-newLesson = 'title' placeholder="Titre" type="text" maxlength="20">
+                </div>
+                <div class="input-group">
+                    Description
+                    <textarea data-newLesson = "description" placeholder="Description" rows="5"></textarea>
+                    <div class="info-textarea js-textareaInfo">500</div>
+                </div>
+                <div class="input-group inputs-radio">
+                    <div>
+                        <input data-newLesson="level" type="radio" name="level" value="1" checked>
+                        Debutant
+                    </div>
+                    <div>
+                        <input data-newLesson="level" type="radio" name="level" value="2">
+                        Amateur
+                    </div>
+                    <div>
+                        <input data-newLesson="level" type="radio" name="level" value="3">
+                        Confirmé
+                    </div>
+                </div>
+                <div class="input-group">
+                    Catégorie
+                    <!-- <input data-newLesson = 'categorie' placeholder="Categorie" type="text" > -->
+                    <select data-newLesson="categorie" class="categorie" name="categorie">
+                        <option value="scolaire">Scolaire</option>
+                        <option value="art">Art</option>
+                        <option value="musique">Musique</option>
+                        <option value="cuisine">Cuisine</option>
+                        <option value="sport">Sport</option>
+                        <option value="ludique">Ludique</option>
+                        <option value="divers">Divers</option>
+                    </select>
+                </div>
+            </form>
+            <div class="end-form">
+                <a href="#" class="button js-next">Suivant</a>
+            </div>
+        </div>
+            <div class="step-content">
+                <form class="nouveau-cours">
+                    <div class="input-group">
+                        Adresse
+                        <input data-newLesson = 'address' class="js-address" placeholder="Adresse" type="text">
+                    </div>
+                    <div class="input-group">
+                        Date
+                        <input data-newLesson = "date" placeholder="Quand ?" type="date" min="{{mindate}}" max="{{maxdate}}">
+                    </div>
+                    <div class="inputs">
+                        <div class="input-group">
+                            Commence à :
+                            <input class="js-hour" data-newLesson = "timestart" type="text" placeholder="..h.." maxlength="5">
+                        </div>
+                        <div class="input-group">
+                            Et dure :
+                            <input class="js-hour" data-newLesson = "duration" type="text" placeholder="..h.." maxlength="5">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        Contact
+                        <input data-newLesson = 'contact' type="text" value="{{userEmail}}">
+                    </div>
+                </form>
+                <div class="end-form">
+                    <a href="#" class="button js-next">Suivant</a>
+                </div>
+            </div>
+            <div class="step-content">
+        		<form class="nouveau-cours">
+        			<div class="input-group">
+        				Nombre de participants
+        				<input data-newLesson = 'nbseats' placeholder="Nombre de places" type="number" step='1'>
+        			</div>
+        			<div class="input-group">
+        				Tarif
+        				<input data-newLesson = 'price' placeholder="Tarif" type="number" step="1" maxlength="3">
+        			</div>
+        		</form>
+                <div class="end-form">
+                    <a href="#" class="button js-submit">C'est parti !</a>
+                </div>
+            </div>
+        </div>
+	</div>
+</template>

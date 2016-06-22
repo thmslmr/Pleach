@@ -18,3 +18,19 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 iron:router
+accounts-password
+accounts-facebook
+accounts-google
+service-configuration
+check
+stevezhu:lodash
+jeremy:geocomplete
+dburles:google-maps
+momentjs:moment
+accounts-base
+session
+oakworks:marker-clusterer
+email
+meteorhacks:ssr
+gwendall:ui-hooks
+velocityjs:velocityjs

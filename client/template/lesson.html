@@ -1,0 +1,110 @@
+<template name="lesson">
+	<div class="atelier__layout">
+        <a class="close-btn" href="{{pathFor 'home'}}">
+            <img src="/img/close.svg" />
+        </a>
+        <!-- Corner -->
+		<div class="corner">
+			<div class="corner__content">
+				<div>
+					{{public.price}} €
+				</div>
+				<div class="info">
+					{{public.duration}}
+				</div>
+			</div>
+		</div>
+        <!-- Content -->
+        <div class='content'>
+			<div class='en-tete'>
+				<div class="en-tete__title">
+					{{public.title}}
+				</div>
+				<div class="en-tete__niveaux">
+					niveau {{levelLesson public.level}}
+				</div>
+			</div>
+			<div class='prix__petit-ecran'>
+				{{public.price}}€
+				<span style="font-style : italic;">
+                    pour
+                </span>
+				{{public.duration}}
+			</div>
+			<div class='infos'>
+				<div>
+					<img src="/img/logo.svg" alt="where">
+					<br>
+                    {{{breakAddress public.address.name}}}
+				</div>
+				<div>
+					<img src="/img/time.svg" alt="when">
+					<br>
+					{{dateCalendar public.date}}
+				</div>
+				<div>
+					<img src="/img/ride.svg" alt="how">
+					<br>
+					{{{travel}}}
+				</div>
+			</div>
+
+            <div class='text-bloc'>
+				<div>
+					Informations
+				</div>
+				<div>
+                    {{{public.description}}}
+				</div>
+			</div>
+			<div class='text-bloc'>
+				<div>
+					Contact
+				</div>
+				<div>
+					{{public.contact}}
+				</div>
+			</div>
+
+			<div class='footer'>
+				<div class='footer__professeur'>
+
+					<a href='{{pathFor "profile" _id=private.owner}}' class="footer__link">
+						<img src='{{userPicture private.owner}}' class='footer__photo' />
+					</a>
+
+                    <a href='{{pathFor "profile" _id=private.owner}}' class="footer__link slide-link" data-letters="{{userName private.owner}}">
+						{{userName private.owner}}
+					</a>
+					{{#with userNotices private.owner}}
+						{{>notice}}
+                    	{{nb}} avis
+					{{/with}}
+				</div>
+
+				<div class='footer__inscription'>
+
+					<div class="footer__inscription__info">
+                        {{#if isRegistered}}
+                            Vous êtes inscrit
+                        {{else}}
+                            Déjà {{lengthTab private.registered}} inscrit{{pluralize lengthTab private.registered}}  sur {{public.nbseats}}
+                        {{/if}}
+					</div>
+					<div class="footer__inscription__bouton">
+                        {{#if isRegistered}}
+                            <a href="#" class="js-messaging button">
+                                Discuter
+                            </a>
+                        {{else}}
+                            <a href='#' class="js-entry button">
+                                S'inscrire
+                            </a>
+                        {{/if}}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

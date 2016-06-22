@@ -1,0 +1,132 @@
+<template name="profile">
+    <div class="profil__layout">
+        <a class="close-btn close-btn--bottom" href="{{pathFor 'home'}}">
+            <img src="/img/close.svg" />
+        </a>
+        <div class="profil__content">
+            <div class="left-part">
+                {{#if nolessons}}
+                    <div class="nolessons">
+                        <img src="/img/empty_atelier.svg"/>
+                    </div>
+                {{/if}}
+                {{#each userLessons}}
+                <div class="left-part__history">
+                    <div class="left-part__history--bar"></div>
+                    <div class="left-part__history--step">
+                        <h2 class="step-title">{{public.title}}</h2>
+                        <p class="step-date">{{dateCalendar public.date}}</p>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="left-part__level">
+                    <div class="left-part__level--logo">
+                        <img src="/img/badge_lvl{{userBadge}}.svg" />
+                    </div>
+                </div>
+            </div>
+            <div class="separation-line">
+                <div class="separation-line__horizontal">
+                </div>
+            </div>
+            <div class="right-part">
+                {{#with userNotices _id}}
+                    {{#if noNotices}}
+                        <div class="nocommentary">
+                            <img src="/img/empty_commentary.svg"/>
+                        </div>
+                    {{/if}}
+                {{/with}}
+                {{#with userNotices _id}}
+                    {{#each array}}
+                        <div class="commentary">
+                            <div class="commentary__user">
+                                <div class="commentary__user--picture">
+                                    <img src="{{userPicture user}}" />
+                                </div>
+                                <p class="commentary__user--name">{{userName user}}</p>
+                            </div>
+                            <div class="commentary__content">
+                                <p class="commentary__content--paragraph">
+                                    {{user}} {{comment}}
+                                </p>
+                                <div class="commentary__content--footer">
+                                    <p class="commentary__content--date">{{dateFromNow createdAt}}</p>
+                                    <div class="commentary__content--rating">
+                                        <p class="rating-mark">
+                                        {{#with percentNotice}}
+                                                {{> notice}}
+                                        {{/with}}
+                                        {{grade}} / 5
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="commentary__limit"></div>
+                            </div>
+                        </div>
+                    {{/each}}
+                {{/with}}
+            </div>
+        </div>
+        <section class="profil__footer">
+            <!-- medium screen markup -->
+            <div class="footer__profil visible-medium">
+                <div class="footer__profil-picture">
+                    <img src="{{userPicture _id}}" />
+                </div>
+                <div class="footer__profil-name">
+                    <h4>{{userName _id}}</h4>
+                </div>
+            </div>
+            <div class="footer__profil-info visible-medium">
+                <div class="footer__social">
+                    <a class="footer__social--fb" href="#">
+                        <img src="/img/fb.svg" />
+                    </a>
+                </div>
+                <div class="footer__rating-average">
+                    <p class="rating-mark">
+                        {{#with userNotices _id }}
+                            {{> notice}}
+                            {{average}} / 5
+                        {{/with}}
+                    </p>
+                </div>
+            </div>
+            <div class="separation-line visible-small">
+                <div class="separation-line__horizontal">
+
+                </div>
+            </div>
+            <!-- large screen markup -->
+            <div class="footer__social hidden-medium">
+                {{#if userService _id}}
+                <a class="footer__social--fb" href="{{userLink _id}}" target="_blank">
+                    <img src="/img/fb.svg" />
+                </a>
+                {{else}}
+                <a class="footer__social--goo" href="{{userLink _id}}" target="_blank">
+                        <img src="/img/goo.svg" />
+                </a>
+                {{/if}}
+            </div>
+            <div class="footer__half-circle hidden-medium">
+            </div>
+            <div class="footer__profil-picture hidden-medium">
+                <img src="{{userPicture _id}}" />
+            </div>
+            <div class="footer__profil-name hidden-medium">
+                <h4>{{userFirstName _id}}</h4>
+            </div>
+            <div class="footer__rating-average hidden-medium">
+                <p class="rating-mark">
+                    {{#with userNotices _id }}
+                        {{> notice}}
+                        {{average}} / 5
+                    {{/with}}
+                </p>
+            </div>
+            <!-- <a class="footer__profil-edit-btn"></a> -->
+        </section>
+    </div>
+</template>
