@@ -1,7 +1,10 @@
 // Fonction exécutée au rendu du template index
 Template.index.onRendered(function(){
-    if( Meteor.userId() )
-    Meteor.subscribe('userData');
+    this.autorun(function(){
+        if( Meteor.userId() )
+        Meteor.subscribe('userData');
+    })
+
 
     // Initialisation de Google Maps (tout ce passe ici pour la map, aller voir dans js/googlemap.js)
     initGoogleMaps();
