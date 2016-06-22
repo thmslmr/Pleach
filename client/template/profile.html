@@ -1,30 +1,15 @@
 <template name="profile">
-    <!-- <div class="panel short-panel">
-        {{#if isUser _id}}
-            Voici ton profile !
-        {{/if}}
-        <img src="{{userPicture this._id}}" alt=""/>
-        {{userName this._id}}
-        {{userNotices.nb}} {{userNotices.average}}
-        <br>
-        <h3>Cours de {{userName this._id}}</h3>
-        {{#each userLessons}}
-            {{public.title}} <br>
-        {{/each}}
-        <h3>Avis</h3>
-
-        {{#each userNotices.array}}
-            {{comment}}
-            {{grade}} <br>
-            {{dateFromNow createdAt}}
-        {{/each}}
-    </div> -->
     <div class="profil__layout">
         <a class="close-btn close-btn--bottom" href="{{pathFor 'home'}}">
             <img src="/img/close.svg" />
         </a>
         <div class="profil__content">
             <div class="left-part">
+                {{#if nolessons}}
+                    <div class="nolessons">
+                        <img src="/img/empty_atelier.svg"/>
+                    </div>
+                {{/if}}
                 {{#each userLessons}}
                 <div class="left-part__history">
                     <div class="left-part__history--bar"></div>
@@ -45,6 +30,11 @@
                 </div>
             </div>
             <div class="right-part">
+                {{#if userNotices.noNotices}}
+                    <div class="nocommentary">
+                        <img src="/img/empty_commentary.svg"/>
+                    </div>
+                {{/if}}
                 {{#each userNotices.array}}
                 <div class="commentary">
                     <div class="commentary__user">

@@ -149,6 +149,9 @@ Template.index.events({
     },
     'click .icon-menu' : function(){
         $('.menu, .icon-menu').toggleClass('menu--open');
+    },
+    'click .menu a' : function(){
+        $('.menu, .icon-menu').removeClass('menu--open');
     }
 });
 

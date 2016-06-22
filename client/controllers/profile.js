@@ -37,6 +37,14 @@ Template.profile.helpers({
         return {
             percent: this.grade*100/5
         }
-    }
+    },
+
+    'nolessons' : function(){
+        return Lessons.find({
+            'private.owner' : this._id,
+        }).count() == 0
+
+    },
+
 
 });
