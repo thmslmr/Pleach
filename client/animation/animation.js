@@ -102,30 +102,6 @@ Template.addLesson.uihooks({
     }
 });
 
-// Template.home.uihooks({
-//     '.landing-page__layout': {
-//         insert: function(node, next, tp1){
-//             $(node).insertBefore(next);
-//             if(!Session.get('search')){
-//                 $(node).velocity('transition.expandIn',{
-//                     duration: 100
-//                 });
-//             }
-//         },
-//
-//         remove: function(node, tp1){
-//             $(node).velocity('transition.slideLeftBigOut',{
-//                 duration: 500,
-//
-//                 complete: function(){
-//                     // console.log("complete");
-//                     $(node).remove();
-//                 }
-//             });
-//         }
-//     }
-// });
-
 Template.lessonPreview.uihooks({
     '.recherche__layout': {
         insert: function(node, next, tp1){
@@ -164,6 +140,24 @@ Template.lesson.uihooks({
                     $(node).remove();
                 }
             })
+        }
+    }
+})
+
+Template.register.uihooks({
+    '.modal': {
+        insert: function(node, next, tp1){
+            wrapper = $(node).children('.modal__connexion');
+            $(node).insertBefore(next);
+            wrapper.velocity('transition.flipXIn',{
+                duration: 500,
+                stagger: 100
+            })
+        },
+
+        remove: function(node, tp1){
+                    $(node).remove();
+
         }
     }
 })
