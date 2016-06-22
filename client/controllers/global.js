@@ -50,7 +50,7 @@ registerHelper = {
 
         n = _.flattenDeep(notices);
         sort = _.sortBy(n, function(el){
-            
+
             return el.createdAt;
         })
         m =  _.meanBy( n , function(el) { return el.grade; });
@@ -59,7 +59,8 @@ registerHelper = {
             array : _.reverse(sort),
             nb : n.length,
             percent : round * 100 / 5 || 100,
-            average :round || '5'
+            average :round || '5',
+            noNotices : n.length == 0
         };
     },
     userService : function(id){

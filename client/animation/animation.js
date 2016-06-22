@@ -7,7 +7,7 @@ Template.inbox.uihooks({
                 wrapper = $(node).children('.wrapper2-animation');
                 wrapper.velocity('transition.slideLeftBigIn',{
                     duration: 500,
-                    
+
                 })
             }else{
                 $(node).velocity('transition.slideLeftBigIn',{
@@ -56,7 +56,8 @@ Template.conversation.uihooks({
             $(node).insertBefore(next);
             wrapper = $(node).children('.wrapper-animation');
             wrapper.velocity('transition.slideLeftBigIn',{
-                duration: 500
+                duration: 500,
+                display: 'flex'
             });
         },
 
@@ -81,7 +82,8 @@ Template.profile.uihooks({
         insert: function(node, next, tp1) {
             $(node).insertBefore(next);
             $(node).velocity('transition.slideDownBigIn',{
-                duration: 500
+                duration: 500,
+                display : 'flex'
             });
         },
 
